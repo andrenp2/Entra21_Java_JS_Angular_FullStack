@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form>
+
+        <h3>Ano Bissexto</h3>
+
+        <label for="idAno">Digite o ano:</label><br>
+        <input type="number" id="idAno" name="nmAno">
+        <br><br>
+
+        <input type="button" id="idBotVerificar" value="Verificar" onclick="verificarAno()">
+
+        <br><br>
+        <output id="idOut" >Verificar se o ano digitado é bissexto: </output>
+        
+        </form>
+
+        <script>
+
+            var out = document.getElementById("idOut")
+
+            function verificarAno(){
+
+                var ano = document.getElementById("idAno").value
+
+                if ((ano % 4 == 0) && (ano % 100 != 0) || (ano % 400 == 0)){
+                    
+                    mensagem = "O ano " + ano + "  é Bissexto"
+
+                }else{
+                        mensagem = "O ano " + ano + " não é Bissexto"
+                    
+                }
+
+            out.value = mensagem
+
+            }
+
+
+
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <h2>Exercicio 003</h2>
+
+        <form>
+
+            <label for="idTemp">Insira as temperaturas:</label><br>
+            <input type="number" id="idTemp" name="nmTemp" step="0.01">
+            
+            <br><br>
+            <label for="idTempHoje">Temperatura Hoje:</label><br>
+            <input type="number" id="idTempHoje" name="nmTempHoje" step="0.01">
+            <br><br>
+            
+            <output id="idOut" value>Resultado: </output>
+            <br><br>
+            <button type="button" id="idSalvarTemp" onlcick="salvarTemp()">Salvar</button>
+            <button type="button" id="idTestarTemp" onclick="testarTemp()">Testar Temp.</button>
+
+        </form>
+        <script>
+
+            var somaTemp = 0
+            var count = 0
+
+            function salvarTemp(){
+                
+                somaTemp = somaTemp + Number(document.getElementById("idTemp").value)
+                count++
+                document.getElementById("idTemp").value = ""
+            }
+
+            function testarTemp(){
+
+                var tempHoje = Number(document.getElementById("idTempHoje").value)
+                var media = (somaTemp / count).toFixed(2)
+
+                var msg
+
+                if (tempHoje > media) {
+                    msg = "Temperatura hoje: " + tempHoje + " maior que a média " + media
+                } else {
+                    if (tempHoje < media) {
+                        msg = "Temperatura hoje: " + tempHoje + " menor que a media " + media
+                    
+                    } else{
+                        msg = "Temperatura hoje " + tempHoje + " esta na media " + media
+                    }
+                }
+
+                document.getElementById("idOut").value = msg
+            }
+
+        </script>
+        
+
+
+
+    </body>
+</html>
+
+<!--
+    Crie um algoritmo que permita cadastrar e imprimir a temperatura dos últimos 3 dias. Calcule a média e descubra se a temperatura de hoje está acima ou abaixo da média.
+-->

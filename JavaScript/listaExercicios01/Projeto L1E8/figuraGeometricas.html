@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        
+        <form>
+            <h2>Cálculo da Área</h2>
+            Escolha a figura geométrica que deseja calcular a área.
+            
+            <br><br>
+            <fieldset>
+                <legend>Círculo</legend>
+                <label for="idRaio">Raio:</label><br>
+                <input type="number" id="idRaio" name="nmRaio">
+
+                <br><br>
+                <label for="idAreaCirculo">Área:</label><br>
+                <input type="number" id="idAreaCirculo" name="nmAreaCirculo">
+
+                <br><br>
+                <button type="button" id="idBotaoCirculo" onclick="calc_circulo()">Calcular</button>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Retângulo</legend>
+
+                <label for="idLado1">Lado 1:</label><br>
+                <input type="number" id="idLado1" name="nmLado1"><br><br>
+
+                <label for="idLado2">Lado 2:</label><br>
+                <input type="number" id="idLado2" name="nmLado2">
+
+                <br><br>
+                <label for="idAreaRetangulo">Área:</label><br>
+                <input type="number" id="idAreaRetangulo" name="nmAreaRetanguo"> 
+
+                <br><br>
+                <button type="button" id="idBotaoRetangulo" onclick="calc_retangulo()">Calcular</button>
+            </fieldset>
+
+            <fieldset>
+                <legend>Triângulo Retângulo</legend>
+                <label for="idBase">Base:</label><br>
+                <input type="number" id="idBase" name="nmBase"><br><br>
+
+                <label for="idAltura">Altura:</label><br>
+                <input type="number" id="idAltura" name="nmAltura">
+
+                <br><br>
+                <label for="idAreaTriRet">Área:</label><br>
+                <input type="number" id="idAreaTriRet" name="nmAreaTriRet"> 
+
+                <br><br>
+                <button type="button" id="idBotaoTriRet" onclick="calc_trianguloRet()">Calcular</button>
+            </fieldset>
+
+            <fieldset>
+                <legend>Triângulo Equilátero</legend>
+                <label for="idLado">Lado:</label><br>
+                <input type="number" id="idLado" name="nmLado"><br><br>
+
+                <label for="idTriEqui">Área:</label><br>
+                <input type="number" id="idTriEqui" name="nmTriEqui"> 
+
+                <br><br>
+                <button type="button" id="idBotaoTriEqui" onclick="calc_trianguloEqui()">Calcular</button>
+            </fieldset>
+
+        </form>
+
+        <script>
+            var raio;
+            var areaCirculo
+            var lado1;
+            var lado2;
+            var areaRetangulo;
+            var base;
+            var altura;
+            var areaTrianguloRet
+            var lado;
+            var areaTrianguloEqui
+
+            function calc_circulo(){
+                
+                raio = Number(document.getElementById("idRaio").value)
+
+                areaCirculo = Math.PI * (raio ** 2) 
+
+                document.getElementById("idAreaCirculo").value = areaCirculo.toFixed(2)
+            }
+
+            function calc_retangulo(){
+
+                lado1 = Number(document.getElementById("idLado1").value)
+                lado2 = Number(document.getElementById("idLado2").value)
+
+                areaRetangulo = lado1 * lado2
+
+                document.getElementById("idAreaRetangulo").value = areaRetangulo.toFixed(2)
+            }
+
+            function calc_trianguloRet(){
+
+                base = Number(document.getElementById("idBase").value)
+                altura = Number(document.getElementById("idAltura").value)
+
+                areaTrianguloRet = ( base * altura ) / 2
+
+                document.getElementById("idAreaTriRet").value = areaTrianguloRet.toFixed(2)
+
+            }
+
+            function calc_trianguloEqui(){
+
+                lado = Number(document.getElementById("idLado").value)
+
+                areaTrianguloEqui = ((lado ** 2) * Math.sqrt(3))/2
+
+                document.getElementById("idTriEqui").value = areaTrianguloEqui.toFixed(2)
+            }
+        </script>
+
+
+
+    </body>
+</html>

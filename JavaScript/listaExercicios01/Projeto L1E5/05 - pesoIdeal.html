@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <h3>Calculo do Peso Ideal</h3>
+        <form>
+            <fieldset>
+                <legend>Digite seus dados:</legend>
+                <br>
+
+                <label for="idAltura">Altura:</label><br>
+                <input type="text" id="idAltura" name="nmAltura"> [m]
+                <br><br>
+
+                <input type="radio" id="idFem" name="nmGenero" checked>
+                <label for="idFem">Feminino</label>
+
+                <input type="radio" id="idMasc" name="nmGenero">
+                <label for="idMasc">Masculino</label>
+
+                <br><br>
+                <button type="button" id="idCalcular" onclick="calcPeso()">Calcular</button>
+    
+                <br><br>
+                <label for="idResultadoImc">Peso Ideal:</label><br>
+                <output type="text" id="idResultadoImc" name="nmResultadoImc"><br>
+                <output type="text" id="idMsgImc" name="nmMsgImc">Avaliação:</output>
+
+            </fieldset>
+        </form>
+        <script>
+
+            var feminino
+            var masculino
+            var peso
+
+            function calcPeso(){
+
+                masculino = document.getElementById("idMasc").checked
+                feminino = document.getElementById("idFem").checked
+                altura = Number(document.getElementById("idAltura").value)
+
+                if (masculino == true){
+
+                    peso = (72.7 * altura) - 58
+                    document.getElementById("idResultadoImc").value = peso.toFixed(2)
+                }    
+                else{
+
+                    peso = pesoFem = (62.1 * altura ) - 58
+                    document.getElementById("idResultadoImc").value = peso.toFixed(2)
+                }
+            }
+
+        </script>
+    </body>
+</html>

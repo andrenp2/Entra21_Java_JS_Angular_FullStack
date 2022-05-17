@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contato XYZ</title>
+</head>
+    <body>
+        <form action="">
+            <fieldset>
+                <legend>Formulário XYZ</legend>
+                
+                <br>
+                <label for="idNome">Nome</label><br>
+                <input type="text" id="idNome" name="nmNome" required>
+
+                <br><br>
+                <label for="idEmail">Email</label><br>
+                <input type="text" id="idEmail" name="nmEmail" required>
+
+                <br><br>
+                <label for="idEmpresa">Empresa</label><br>
+                <input type="text" id="idEmpresa" name="nmEmpresa" required>
+
+                <br><br>
+                <label for="idTelefone">Telefone</label><br>
+                <input type="number" id="idTelefone" name="nmTelefone" required>
+                
+                <br><br><br>
+
+                <fieldset>
+                    <legend>Motivo do Contato:</legend>
+                    <br>
+                    <input type="radio" id="idMotivoComercial" name="nmMotivo">
+                    <label for="idMotivoComercial">Comercial</label>
+                    <br><br>
+
+                    <input type="radio" id="idMotivoReclamacao" name="nmMotivo">
+                    <label for="idMotivoReclamacao">Reclamação</label>
+
+                    <br><br>
+                    <input type="radio" id="idMotivoSugestao" name="nmMotivo">
+                    <label for="idMotivoSugestao">Sugestão</label>
+
+                    <br><br>
+                    <input type="radio" id="idMotivoCancelamento" name="nmMotivo">
+                    <label for="idMotivoCancelamento">Cancelamento</label>
+
+                    <br><br>
+                    <input type="radio" id="idMotivoDuvidas" name="nmMotivo">
+                    <label for="idMotivoDuvida">Dúvidas</label>
+
+                    <br><br>
+                    <input type="radio" id="idMotivoOutros" name="nmMotivo">
+                    <label for="idMotivoOutros">Outros</label>
+
+                </fieldset>
+
+                <br><br>
+                <label for="idComentario">Comentário:</label><br>
+                <textarea name="nmTextArea" id="idComentario" cols="70" rows="10" maxlength="1000"></textarea>
+
+                <br><br>
+                <button type="submit" onclick="mostrarSaida()" id=idEnviar>Enviar</button>
+                <button type="reset" id=idCancelar>Cancelar</button>
+            </fieldset>
+        </form>
+        
+        <script>
+
+            var nome
+            var email
+            var empresa
+            var telefone
+
+            var motivoCom
+            var motivoCan
+            var motivoRec
+            var motivoSug
+            var motivoOut
+            var motivoDuv
+
+            var comentario
+
+            function mostrarSaida(){
+                
+                nome = document.getElementById("idNome").value 
+                console.log("Nome: " + nome)
+
+                email = document.getElementById("idEmail").value
+                console.log("Email: " + email)
+
+                empresa = document.getElementById("idEmpresa").value
+                console.log("Empresa: " + empresa)
+
+                telefone = document.getElementById("idTelefone").value
+                console.log("Telefone: " + telefone)
+
+                motivoCom = document.getElementById("idMotivoComercial").checked
+                motivoRec = document.getElementById("idMotivoReclamacao").checked
+                motivoSug = document.getElementById("idMotivoSugestao").checked
+                motivoCan = document.getElementById("idMotivoCancelamento").checked
+                motivoDuv = document.getElementById("idMotivoDuvidas").checked
+                motivoOut = document.getElementById("idMotivoOutros").checked
+                console.log("Motivo : " + "Comercial : " + motivoCom + " Reclamacao : " + motivoRec + " Sugestão : " + motivoSug + " Cancelamento : " + motivoCan + " Duvidas : " + motivoDuv + " Outros : " + motivoOut)
+
+                comentario = document.getElementById("idComentario").value
+                console.log("Comentario: " + comentario)
+
+            }
+
+        </script>
+
+    </body>
+</html>
+<!-- 
+3. Crie um formulário de contato para o Site da empresa XYZ. 
+Campos: *Nome, *Email, *Empresa, *Telefone, 
+*Motivo do contato(Comercial, Reclamação, Sugestão,
+ Cancelamento de Assinatura, Dúvida, Outros), 
+ *Seu Comentário(Permitir múltiplas linhas de digitação 
+ e um máximo de 1000 caracteres).
+**Utilize Placeholder no lugar de Label
+**Botão: Enviar
+-->

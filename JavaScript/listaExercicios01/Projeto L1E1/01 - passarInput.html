@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio001</title>
+</head>
+    <body>
+        <h3>Exercicio 001</h3>
+        <br>
+
+        <label for="idInput1">Input 1:</label><br>
+        <input type="text" id="idInput1" name="nmInput1"><br>
+
+        <br>
+        <label for="idInput2">Input 2:</label><br>
+        <input type="text" id="idInput2" name="nmInput2">
+
+        <br><br>
+        <button type="submit" id="idButton1" onclick="passarTexto()">Enviar</button>
+
+        <script>
+            var textoInput1
+
+            function passarTexto(){
+
+                textoInput1 = document.getElementById("idInput1").value
+
+                document.getElementById("idInput2").value = textoInput1
+                
+            }
+
+        </script>
+
+
+    </body>
+</html>
+<!-- 
+Crie uma tela com dois Inputs e um botão. Ao clicar no botão o programa deverá copiar o conteúdo do primeiro input para o segundo.
+
+Crie um programa para ler dois números da tela, somá-los e mostrar o resultado em um terceiro Input.
+
+Crie um projeto a partir do exercício 2, implemente as demais operações aritméticas (Subtração, multiplicação, divisão)
+-->

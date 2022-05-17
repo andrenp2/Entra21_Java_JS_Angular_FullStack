@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form>
+
+            <h3>Alistamento Militar</h3>
+
+            <label for="idAnoNasc">Ano de Nascimento:</label><br>
+            <input type="number" id="idAnoNasc" name="nmAnoNasc" min="1900" max="2022">
+            <br><br>
+
+            <button id="idBotNasc" onclick="verAlistamento()">Verificar</button>
+            <br><br>
+
+            <output id="idOut">Verificar alistamento : </output>
+
+        </form>
+        <script>
+
+            
+
+            function verAlistamento(){
+
+                var out = document.getElementById("idOut")
+                var mensagem
+                var anoNasc = Number(document.getElementById("idAnoNasc").value)
+                var idade
+                var anoAtual = Number(2022)
+
+                idade = anoAtual - anoNasc
+
+                if (idade >= 18){
+                    
+                    mensagem = "Alistamento obrigatório"
+
+                    if (idade > 18){
+                        mensagem = "Alistamento obrigatório há " + (idade-18) + " ano(s)"
+                    }
+
+                }else{
+                    if (idade < 18){
+                        mensagem = "Restam " + (18-idade) + " ano(s) para se alistar"
+                    }
+                }
+
+            out.value = mensagem
+
+            }
+
+        </script>
+
+    </body>
+</html>

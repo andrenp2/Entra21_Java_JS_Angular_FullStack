@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <h2>Exercicio 002</h2>
+
+        <form>
+
+            <label for="idIdade">Idade:</label><br>
+            <input type="Number" id="idIdade" name="nmIdade">
+
+            <p>Para verificar se voce pode dirigir, clique no botão abaixo.</p>
+            
+            <button type="button" id="idBotaoVerificar" onclick="verificarIdade()">Verificar</button>
+            <br><br>
+
+            <output id="idOut">Apto a dirigir?</output>
+
+
+        </form>
+        <script>
+
+            var idade
+
+            function verificarIdade() {
+                
+                idade = Number(document.getElementById("idIdade").value)
+                
+                if (idade >= 18){
+                    document.getElementById("idOut").value = "Você está apto a Dirigir! "
+                }
+                else{
+                    document.getElementById("idOut").value = "Você ainda não completou a idade minima para dirigir! "  
+                }
+            }
+        </script>
+        
+    </body>
+</html>
+
+<!-- 
+    Faça um programa para testar a idade da pessoa e descubra se ela pode dirigir ou não.
+-->

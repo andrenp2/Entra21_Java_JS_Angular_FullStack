@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <h3> Testar se o número é Par ou Impar:</h3>
+
+        <form action="">
+
+            <label for="idNum1">Número</label><br>
+            <input type="number" id="idNum1" name="nmNum1">
+            <br><br>
+
+            <output id="idOut"></output>
+            <br><br>
+
+            <button id="idButton1" onclick="testarNum()">Verificar!</button>
+
+        </form>
+        <script>
+
+            function testarNum(){
+
+                var num1 = Number(document.getElementById("idNum1").value)
+                var saida = document.getElementById("idOut")
+
+                if ((num1 % 2) == 0){
+                    saida.value = "O numero " + num1 + " é Par!"
+                } else {
+                    saida.value = "O numero " + num1 + " é Impar!"
+                }
+
+
+            }
+        </script>
+    </body>
+</html>

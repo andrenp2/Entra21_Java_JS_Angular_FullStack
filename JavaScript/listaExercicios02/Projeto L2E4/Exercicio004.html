@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <h2>Exercicio 004</h2>
+
+        <form>
+            <fieldset>
+                <legend>Dados Correntista</legend><br>
+            
+            <label for="idNome">Nome Correntista:</label><br>
+            <input type="text" id="idNome" name="nmNome">
+            <br><br>
+
+            <label for="idBanco">Nome do Banco:</label><br>
+            <input type="text" id="idBanco" name="nmBanco">
+            <br><br>
+
+            <label for="idConta">Numero da Conta:</label><br>
+            <input type="number" id="idConta" name="nmConta">
+            <br><br>
+
+            <label for="idLimite">Limite de Credito:</label><br>
+            <input type="number" id="idLimite" name="nmLimite" disabled>
+            <br><br>
+
+            <label for="idSaldo">Saldo:</label><br>
+            <input type="number" id="idSaldo" name="nmSaldo" disabled>
+            <br><br>
+            
+            </fieldset>
+            <fieldset>
+                <legend>Operações</legend>
+
+                
+                <input type="radio" id="idSaque" name="nmOperacao" checked>
+                <label id="idSaque">Saque</label>
+                
+                <br><br>
+                <input type="radio" id="idDeposito" name="nmOperacao">
+                <label id="idDeposito">Deposito</label><br><br>
+
+                <input type="number" id="idValor" name="nmValor">
+                <label id="idValor">Valor</label><br><br>
+
+                <button type="button" id="idBotaoEnter" onclick="efetuarOp()">Enter</button>
+                <button type="button" id="idBotaoExtrato" onclick="emitirExtrato()">Extrato</button>
+                <br><br>
+                <output id="idOut">Status: </output>
+
+            </fieldset>
+
+        </form>
+        <script>
+
+            document.getElementById("idLimite").value = 300
+            document.getElementById("idSaldo").value = 0
+
+            var saldo = 0
+            var limite = 300
+            
+
+            function efetuarOp(){
+
+                var opSaque = document.getElementById("idSaque").checked
+                var valorOp = Number(document.getElementById("idValor").value)
+
+                if (opSaque){
+                    if (limite >= (-1 * saldo) + valorOp) {
+                        saldo = saldo - valorOp
+                        document.getElementById("idOut").value = "Status: Operação realizada com sucesso!"
+                    }else{
+                        document.getElementById("idOut").value = "Status: Saldo Insuficiente!"
+                    }
+                
+                }else{
+                    saldo = saldo + valorOp
+                    document.getElementById("idOut").value = "Status: Operação Realizada com Sucesso!"
+                }
+
+                document.getElementById("idSaldo").value = saldo
+            }
+
+
+        </script>
+        
+
+
+    </body>
+</html>
+
+<!-- 
+    Crie um algoritmo que permita cadastrar um cliente de um banco: nome do correntista, o nome do banco, o número da conta, o limite de credito e saldo atual.
+    Realize operações de crédito e débito na conta específica e, no final, imprima o saldo final do cliente.
+-->

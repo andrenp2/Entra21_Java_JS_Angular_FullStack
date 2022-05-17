@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <br>
+            <label for="idNum1">Insira o Numero:</label><br>
+            <input type="number" id="idNum1" name="nmNum">
+            <br><br>
+            <input type="button" id="idButton1" value="Salvar" onclick="comparaNum()">
+            <br><br>
+            <output id="idOut">O número é:...</output>
+    
+        </form>
+        <script>
+
+            const num20 = 20
+
+            function comparaNum(){
+                
+                var mensagem
+                num1 = Number(document.getElementById("idNum1").value)
+                out = document.getElementById("idOut")
+
+                if (num1 > num20){
+                    mensagem = "O número ["+num1+"] é maior que [20]."
+                
+                }else if (num1 < num20){
+                    mensagem = "O número ["+num1+"] é menor que [20]."
+                
+                }else{
+                    mensagem = mensagem = "O número ["+num1+"] é igual a [20]."
+
+                }
+
+                out.value = mensagem
+            }
+
+
+        </script>
+    </body>
+</html>

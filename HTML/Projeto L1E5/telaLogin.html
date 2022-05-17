@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+</head>
+    <body>
+        <h1> Tela de Login </h1>
+        <fieldset>
+            <legend>Login:</legend>
+            <br>
+
+            <label for="idUsuario"> Usuário </label><br>
+            <input type="text" id="idUsuario" name="nmUsuario" autocomplete="on">
+            
+            <br><br>
+            
+            <label for="idSenha"> Senha </label><br>
+            <input type="password" id="idSenha" name="nmSenha" min="8" max="15" required autocomplete="off" pattern="^(?=.[A-Z])(?=.[a-z])(?=.[0-9])(?=.[@#$])[a-zA-Z0-9@#$]{8,15}$"> 
+            <button type="button">Recuperar Senha</button>
+
+            <br><br>
+            <button type="submit">Login</button>
+            <button type="reset">Cancelar</button>
+            
+        </fieldset>
+    </body>
+</html>
+
+<!-- 5. Crie uma tela de login. Campos: Usuário, Senha; Botões: Login, Recuperar Senha;
+Critérios: a) A senha deverá ter no mínimo 8 e no máximo 15 caracteres;
+b)O campo usuário deverá permitir autocomplete
+c) O campo senha não deverá permitir autocomplete
+d) A senha deverá ser composta por letras maiúsculas e minúsculas, números e @#$ 
+pattern="^(?=.[A-Z])(?=.[a-z])(?=.[0-9])(?=.[@#$])[a-zA-Z0-9@#$]{8,15}$"
+-->

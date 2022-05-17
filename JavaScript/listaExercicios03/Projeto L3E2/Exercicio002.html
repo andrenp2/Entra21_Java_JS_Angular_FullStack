@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+        <br>
+        <label for="idNum1">Insira o Numero:</label><br>
+        <input type="number" id="idNum1" name="nmNum">
+        <br><br>
+        <input type="button" id="idButton1" value="Salvar" onclick="retornarMax()">
+        <br><br>
+        <output id="idOut">O maior número:</output>
+
+        </form>
+
+        <script>
+
+            var count=0
+            var numMaior = -99999999
+
+            function retornarMax(){
+                let num1 = Number(document.getElementById("idNum1").value)
+                let out = document.getElementById("idOut")
+                document.getElementById("idNum1").value = ""
+
+                count++
+
+                if (num1 > numMaior){
+
+                    numMaior = num1
+                }
+
+                out.value = "O numero " + numMaior + " é o maior."
+
+                if (count == 3){
+                    document.getElementById("idNum1").disabled = true
+                }
+
+            }
+
+
+        </script>
+
+
+    </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+    <body>
+        <h3>Exercicio 003</h3>
+        <br>
+
+        <label for="idNum1">Numero 1:</label><br>
+        <input type="text" id="idNum1" name="nmNum1"><br>
+
+        <br>
+        <label for="idNum2">Numero 2:</label><br>
+        <input type="text" id="idNum2" name="nmNum2">
+        <br><br>
+        
+        <label for="idNum3">Resultado:</label><br>
+        <input type="text" id="idNum3" name="nmNum3">
+        <br><br>
+    
+        <fieldset>
+            <legend>Escola a operação:</legend>
+            <button type="submit" id="idSoma" onclick="passarSoma()">Somar</button>
+            <button type="submit" id="idSubtracao" onclick="passarSubtracao()">Subtrair</button>
+            <button type="submit" id="idDivisao" onclick="passarDivisao()">Dividir</button>
+            <button type="submit" id="idMultiplicacao" onclick="passarMultiplicacao()">Multiplicar</button>
+            <button type="submit" id="idPotencia" onclick="passarPotencia()">Potencia</button>
+        </fieldset>
+
+        <script>
+            var num1
+            var num2
+            
+            var subtracao
+            var multiplicacao
+            var divisao 
+            var potenciacao
+            var soma
+
+            function passarSoma(){
+                num1 = document.getElementById("idNum1").value
+                num2 = document.getElementById("idNum2").value
+
+                soma = Number(num1) + Number(num2)
+                document.getElementById("idNum3").value = soma
+            }
+            function passarSubtracao(){
+                num1 = document.getElementById("idNum1").value
+                num2 = document.getElementById("idNum2").value
+
+                subtracao = Number(num1) - Number(num2)
+                document.getElementById("idNum3").value = subtracao
+            }
+                
+            function passarDivisao(){ 
+                num1 = document.getElementById("idNum1").value
+                num2 = document.getElementById("idNum2").value
+                
+                divisao = Number(num1) / Number(num2)
+                document.getElementById("idNum3").value = divisao
+            }
+
+            function passarMultiplicacao(){
+                num1 = document.getElementById("idNum1").value
+                num2 = document.getElementById("idNum2").value
+
+                multiplicacao = Number(num1) * Number(num2)
+                document.getElementById("idNum3").value = multiplicacao
+            }
+
+            function passarPotencia(){
+                num1 = document.getElementById("idNum1").value
+                num2 = document.getElementById("idNum2").value
+
+                potenciacao = Number(num1) ** Number(num2)
+                document.getElementById("idNum3").value = potenciacao
+            }
+
+        </script>
+
+
+        
+    </body>
+</html>

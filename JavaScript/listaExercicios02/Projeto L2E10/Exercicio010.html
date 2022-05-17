@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <h3>Formação de Triangulo</h3>
+        <form>
+            <h4>Insira o comprimento dos três segmentos de retas:</h4>
+        
+            <label for="idReta1">Segmento 1:</label><br>
+            <input type="number" id="idReta1" name="nmReta1">
+            <br><br>
+            <label for="idReta2">Segmento 2:</label><br>
+            <input type="number" id="idReta2" name="nmReta2">
+            <br><br>
+            <label for="idReta3">Segmento 3:</label><br>
+            <input type="number" id="idReta3" name="nmReta3">
+            <br><br>
+            <button id="idButton1" onclick="verTriangulo()">Avaliar</button>
+            <br><br>
+            <output id="idOut">Verificar se é possivel formar um triângulo...</output>
+            
+        </form>
+        <script>
+
+            function verTriangulo(){
+                
+                var out = document.getElementById("idOut")
+                var reta1 = Number(document.getElementById("idReta1").value)
+                var reta2 = Number(document.getElementById("idReta2").value)
+                var reta3 = Number(document.getElementById("idReta3").value)
+                var mensagem
+                var isTriangulo = false
+
+                if (reta1 < (reta2 + reta3)){
+                    isTriangulo = true
+                } 
+                if (reta2 < (reta1 + reta3)){
+                    isTriangulo = true
+                }
+                if (reta3 < (reta1 + reta2)){
+                    isTriangulo = true
+                }
+                if (reta1==reta2 && reta1==reta3){
+                    isTriangulo = true
+                }
+
+                if (isTriangulo){
+                    out.value = "É possível formar um triangulo com os lados : " + reta1 + " " + reta2 + " " + reta3
+                }else{
+                    out.value = "Não é possível formar um triangulo com essas retas"
+                }
+                
+            }
+        </script>
+
+
+    </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Urna Eletrônica </title>
+</head>
+    <body>
+        
+        <form action="">
+
+            <fieldset>
+                <legend class="titulo">Urna Eletrônica</legend>
+
+                <br>
+                <label class="numCandidato" for="idNumCandidato">Número Candidato</label><br>
+                <select name="nmNumCandidato" id="idNumCandidato">
+                    <option value="10">10 - Joao</option>
+                    <option value="20">20 - Mario</option>
+                    <option value="30">30 - Lucas</option>
+                    <option value="40">40 - Mauro</option>
+                    <option value="50">50 - Anderson</option>
+                </select>
+
+                <br><br>
+                <label class="nomeCandidato" for="idNomeCandidato">Nome do Candidato</label><br>
+                <input type="text" id="idNomeCandidato" name="nmNomeCandidato">
+
+                <br><br>
+                <img class="fotoCandidato" src="/Projeto E2L1/Fotos/personIcon.png" alt="Foto Candidato" width="150">
+
+                <br><br>
+                <button class=butConfirma type="submit">Confirmar</button>
+                <button class=butCancela type="reset">Cancelar</button>
+                <button class=butBranco type="button">Branco</button>
+
+                <!-- <input type="submit" value="Confirmar">
+                <input type="reset"  value="Cancelar">
+                <input type="button" value="Branco">
+                -->
+                <style>
+                    .butConfirma{background-color: green;
+                                font-weight: bold;
+                                border-radius: 10px;
+                                width: 80px;
+                                height: 25px;}
+                    .butCancela{background-color: red;
+                                font-weight: bold;
+                                border-radius: 10px;
+                                width: 80px;
+                                height: 25px}
+                    .butBranco{background-color: white;
+                                font-weight: bold;
+                                border-radius: 10px;
+                                width: 80px;
+                                height: 25px}
+                    .titulo{font-weight: bold;
+                            font-size: 22px;}
+                    .numCandidato{text-align: center;}
+                    .nomeCandidato{text-align: center;}
+
+                </style>
+
+
+            </fieldset>
+
+        </form>
+
+    </body>
+</html>

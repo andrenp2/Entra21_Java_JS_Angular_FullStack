@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio1_Lista1</title>
+</head>
+    <body>
+        
+        <form action="" method="get"> 
+
+            <fieldset>
+            <legend>Dados Pessoais:</legend>
+                <label for="idNome">Nome</label> <br>
+                <input type="text" id="idNome" name="nmNome" required>
+
+                <br><br>    
+                <label for="idSobrenome">Sobrenome</label> <br>
+                <input type="text" id="idSobrenome" name="nmSobrenome" required>
+
+                <br><br>
+                <label for="idNascimento">Data de Nascimento</label><br>
+                <input type="text" id="idNascimento" name="nmNascimento" min="2018-01-01" max="2022-01-01" required>
+
+                <br><br>
+                <label for="idEndereco">Endereço</label><br>
+                <input type="text" id="idEndereco" name="nmEndereco" required>
+
+                <br><br>
+                <label for="idNomeMae">Nome Mãe</label><br>
+                <input type="text" id="idNomeMae" name="nmNomeMae" required>
+
+                <br><br>
+                <label for="idNomePai">Nome Pai</label><br>
+                <input type="text" id="idNomePai" name="nmNomePai">
+
+                <br><br>
+                <label for="idEmail">E-mail</label><br>
+                <input type="text" id="idEmail" name="nmEmail">
+
+                <br><br>
+                <label for="idSerie">Série Atual</label><br>
+                <input type="number" id="idSerie" name="nmSerie" min="1" max="9" required>
+
+                <!-- Selecionar um campo entre as opcoes abaixo -->
+                <br><br>
+                <input type="radio"  id="idSexoFem" name="nmSexo">
+                <label for="idSexoFem">Feminino</label><br>
+                
+                <br>
+                <input type="radio"  id="idSexoMasc" name="nmSexo">
+                <label for="idSexoMasc">Masculino</label><br>
+
+                <br>
+                <input type="radio"  id="idSexoOutro" name="nmSexo">
+                <label for="idSexoOutro">Outro</label><br>
+
+                <!-- ============================================= -->
+                
+            </fieldset>
+
+                <br><br>
+                <fieldset>
+                    <legend>Endereço:</legend>
+                    <label for="idRua">Rua</label><br>
+                    <input type="text" id="idRua" name="nmRua">
+
+                    <br><br>
+                    <label for="idCidade">Cidade</label><br>
+                    <input type="text" id="idCidade" name="nmCidade">
+
+                    <label for="idEstado">Estado</label>
+                    <input type="text" id="idEstado" name="nmEstado" size="2" maxlength="2">
+
+                </fieldset>
+                
+                <br>
+                <button type="submit"> Salvar</button>
+                <button type="reset">Cancelar</button>
+
+        </form>
+    </body>
+</html>

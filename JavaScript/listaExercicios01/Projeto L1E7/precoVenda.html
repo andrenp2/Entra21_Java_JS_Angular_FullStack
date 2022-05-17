@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+
+        <form>
+            <h3>Preço de venda Comércio</h3>
+
+                <fieldset>
+                    <legend>Entrada:</legend>
+                    <label for="idMercadoria">Mercadoria:</label><br>
+                    <input type="text" id="idMercadoria" name="nmMercadoria">
+
+                    <br><br>
+                    <label for="idPrecoCompra">Preço de Compra:</label><br>
+                    <input type="number" id="idPrecoCompra" name="nmPrecoCompra">
+
+                    <br><br>
+                    <label for="idCustosFixos">Custos Fixos:</label><br>
+                    <input type="number" id="idCustosFixos" name="nmCustosFixos">
+
+                    <br><br>
+                    <button type="button" id="idBotaoCalcular" onclick="calcularPreco()">Calcular Preço</button>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Saída</legend>
+                    <br>
+                    <label for="idPrecoVenda">Preço de Venda:</label> <br>
+                    <input type="number" id="idPrecoVenda" name="nmPrecoVenda"> Margem Lucro Liquido: 35% 
+
+                    <br><br>
+                    <label for="idLucroLiq">Lucro Líquido:</label><br>
+                    <input type="number" id="idLucroLiq" name="nmLucroLiq"> R$
+                </fieldset>
+        </form>
+        
+        <script>
+
+            var mercadoria;
+            var precoCompra;
+            var custosFixos;
+            var precoVenda;
+            var lucroLiquido;
+
+            var margemLucro = 0.35;
+
+            function calcularPreco(){
+
+                mercadoria = document.getElementById("idMercadoria").value
+
+                precoCompra = Number(document.getElementById("idPrecoCompra").value)
+                custosFixos = Number(document.getElementById("idCustosFixos").value)
+
+                precoVenda = ( precoCompra + custosFixos ) * 1.35
+                lucroLiquido = ( precoVenda - precoCompra)
+
+                document.getElementById("idPrecoVenda").value = precoVenda
+                document.getElementById("idLucroLiq").value = lucroLiquido
+            }
+
+        </script>
+
+
+
+    </body>
+</html>

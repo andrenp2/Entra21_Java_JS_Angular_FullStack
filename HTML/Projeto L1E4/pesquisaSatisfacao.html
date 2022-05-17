@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Satisfação</title>
+</head>
+    <body>
+        <br>
+        <h1>Pesquisa de Satisfação:</h1>
+        
+            <form action="" method="">
+                <br>
+                <h3>a) Sua solicitação foi atendida?</h3>
+                
+                <input type="radio" id="idNaoAtendido" name="nmSolicitacao">
+                <label for="idNaoAtendido">Não foi atendida</label>
+                <br><br>
+
+                <input type="radio" id="idParcialmente" name="nmSolicitacao">
+                <label for="idParcialmente">Parcialmente atendida</label>
+                <br><br>
+
+                <input type="radio" id="idAtendida" name="nmSolicitacao">
+                <label for="idAtendida">Totalmente atendida</label>
+                <br><br>
+
+                <h3>b) Qual nota voce daria para o atendimento?</h3>
+                
+                <input type="radio" id="idExcelente" name="nmNota">
+                <label for="idExcelente">Excelente</label>
+                <br><br>
+
+                <input type="radio" id="idBom" name="nmNota">
+                <label for="idBom">Bom</label>
+                <br><br>
+
+                <input type="radio" id="idAceitavel" name="nmNota">
+                <label for="idAceitavel">Aceitável</label>
+                <br><br>
+
+                <input type="radio" id="idRuim" name="nmNota">
+                <label for="idRuim">Ruim</label>
+                <br><br>
+
+                <input type="radio" id="idPessimo" name="nmNota">
+                <label for="idPessimo">Péssimo</label>
+                <br><br>
+
+                <h3>c) Como você classificaria o comportamento do atendente?</h3>
+
+                <input type="radio" id="idMuitoAtencioso" name="nmComportamento">
+                <label for="idMuitoAtencioso">Muito Atencioso</label>
+                <br><br>
+
+                <input type="radio" id="idEducado" name="nmComportamento">
+                <label for="idEducado">Educado</label>
+                <br><br>
+
+                <input type="radio" id="idNeutro" name="nmComportamento">
+                <label for="idNeutro">Neutro</label>
+                <br><br>
+
+                <input type="radio" id="idCompRuim" name="nmComportamento">
+                <label for="idCompRuim">Ruim</label>
+                <br><br>
+
+                <input type="radio" id="idCompPessimo" name="nmComportamento">
+                <label for="idCompPessimo">Péssimo</label>
+                <br><br>
+
+                <h3>d) De 0 a 10, qual nota voce daria para o produto?</h3>
+                <input type="range" list="idNota" name="nmNota" min="0" max="10" step="1.0"> 0 - Ruim à 10 - Excelente
+                <datalist id="idNota">
+                    <option value="0" label="0">
+                    <option value="1">
+                    <option value="2">
+                    <option value="3">
+                    <option value="4">
+                    <option value="5" label="5">    
+                    <option value="6">
+                    <option value="7">
+                    <option value="8">
+                    <option value="9">
+                    <option value="10" label="10">
+                </datalist>
+
+
+                <h3>e) Informe a sua idade:</h3>
+                <input type="number" id="idIdade" name="nmIdade"> Anos.
+                <br>
+                
+                <h3>f) Informe seu genero:</h3>
+                <input type="text" id="idGenero" list="idListaGenero" name="nmGenero">
+                <datalist id="idListaGenero">
+                    <option value="Feminino">
+                    <option value="Masculino">
+                    <option value="LGBTQIA+">
+                    <option value="Nao Declarar">
+                </datalist> 
+                
+                <br><br>
+                <button type="submit" id="idBotaoEnviar">Enviar</button>
+                <button type="reset" id="idBotaoCancelar">Cancelar</button>
+
+            </form>
+    </body>
+</html>
+
+<!-- 4. A empresa XYZ quer exibir um formulário de pesquisa de satisfação ao termino de seu atendimento online. Crie uma tela com perguntas e respostas do tipo múltipla-escolha:
+a. Sua solicitação foi atendida? (não foi atendida, parcialmente atendida, totalmente atendida).
+b. Qual nota você daria para o atendimento? (péssimo, ruim, aceitável, bom, excelente).
+c. Como você classificaria o comportamento do atendente? (Indelicado, Mal-humorado, Neutro, Educado, Muito Atencioso).
+d. De 0 a 10, qual nota você daria para o produto (utilize range).
+e. Informe sua idade (campo numérico).
+f. Informa seu Gênero (Masculino/Feminino/LGBT).
+-->

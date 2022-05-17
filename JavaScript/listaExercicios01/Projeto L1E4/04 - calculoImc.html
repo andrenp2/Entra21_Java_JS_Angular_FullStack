@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <h3>Cálculo do Índice de Massa Corporal</h3>
+
+        <form>
+            <fieldset>
+                <legend>Dados Pessoais</legend>
+                <br>
+                Insira seus dados:
+                <br><br>
+                
+                <label for="idAltura">Altura:</label><br>
+                <input type="text" id="idAltura" name="nmAltura"> [m]
+
+                <br><br>
+                <label for="idPeso">Peso:</label><br>
+                <input type="text" id="idPeso" name="nmAltura"> [kg]
+                <br><br>
+
+                <label for="idResultadoIMC">Resultado:</label><br>
+                <input type="text" id="idResultadoIMC" nm="Name">
+                 
+                <output id="idMsgImc"></output>
+                <br><br>
+                <button type="button" id="idCalcularIMC" onclick="calculoIMC()">Calcular IMC</button>
+            </fieldset>
+        </form>
+        <script>
+            var altura
+            var peso
+            var imc
+            var mensagem    
+
+            function calculoIMC() {
+                altura = Number(document.getElementById("idAltura").value)
+                peso = Number(document.getElementById("idPeso").value)
+
+                imc = (peso / (altura*altura)).toFixed(2)
+                
+                document.getElementById("idResultadoIMC").value = imc
+
+                if (imc <= 16.9){
+                    mensagem = "Muito abaixo do peso!"
+                    document.getElementById("idMsgImc").value = mensagem
+                }
+                if (imc > 16.9 && imc <= 18.4){
+                    mensagem = "Abaixo do peso!"
+                    document.getElementById("idMsgImc").value = mensagem
+                }
+                if (imc > 18.4 && imc <= 24.9){
+                    mensagem = "Peso normal!"
+                    document.getElementById("idMsgImc").value = mensagem
+                }
+                if (imc > 24.9 && imc <= 29.9){
+                    mensagem = "Acima do peso!"
+                    document.getElementById("idMsgImc").value = mensagem
+                }
+                if (imc > 29.9 && imc <= 34.9){
+                    mensagem = "Obesidade Grau I!"
+                    document.getElementById("idMsgImc").value = mensagem
+                }
+                if (imc > 34.9 && imc <= 40){
+                    mensagem = "Obesidade Grau II!"
+                    document.getElementById("idMsgImc").value = mensagem
+                }
+                if (imc > 40){
+                    mensagem = "Obesidade Grau III!"
+                    document.getElementById("idMsgImc").value = mensagem
+                }
+            }
+
+        </script>
+        
+
+
+
+
+
+    </body>
+</html>
+
+<!-- 
+    Crie um programa para receber a altura, peso e calcule o imc. IMC = peso / (altura x altura).
+-->

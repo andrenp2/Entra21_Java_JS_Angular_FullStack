@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <h2>Exercicio 001</h2>
+
+        <form>
+
+            <label for="idNumero">Digite um numero:</label><br>
+            <input type="number" id="idNumero" name="nmNumero">
+
+            <br><br>
+            <button type="button" id="idBotaoCalcular" onclick="dividirNumero()">Calcular</button>
+
+            <br><br>
+            <label for="idOut">Saida:</label><br>
+            <input type="text" id="idOut"></input>
+            <br><br>
+            Se o numero for maior que 20, o programa dividira por 2.
+
+        </form>
+
+        <script>
+
+            var numero
+
+            function dividirNumero(){
+
+                numero = Number(document.getElementById("idNumero").value)
+
+                if (numero > 20){
+                    document.getElementById("idOut").value = numero / 2
+                }
+                else{
+                    document.getElementById("idOut").value = numero 
+                }
+        
+            }
+
+        </script>
+
+    </body>
+</html>
+
+<!-- 
+    Crie um algoritmo que leia um número, se ele for maior que 20, divida o número por 2.
+-->

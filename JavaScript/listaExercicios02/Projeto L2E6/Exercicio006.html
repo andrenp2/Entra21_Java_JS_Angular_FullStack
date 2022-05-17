@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <h3>Capital do Brasil:</h3>
+
+        <label for="idCapital">Qual a capital do Brasil?</label><br>
+        <input type="text" id="idCapital" name="nmCapital">
+        <br><br>
+        <input type="button" id="idButton1" value="Conferir" name="nmCapital" onclick="checarCapital()">
+        <br><br>
+        <output id="idOut">A resposta está : </output>
+
+    </body>
+    <script>
+
+        var capital 
+
+        function checarCapital(){
+            capital = document.getElementById("idCapital").value
+            out = document.getElementById("idOut")
+
+            if (capital.toLowerCase() == "brasilia"){
+                out.value = "A resposta está : Correta!"
+            }else{
+                out.value = "A resposta está : Incorreta!"
+            }
+        }
+
+    </script>
+</html>
+
+<!--
+Crie um algoritmo que permita ao aluno responder qual é a capital do Brasil. 
+O algoritmo deve dizer se a resposta está certa ou errada.
+-->
