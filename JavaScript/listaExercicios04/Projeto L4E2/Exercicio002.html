@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form>
+            <h3>Lações de repetições</h3>
+            <br>
+            <input type="button" id="idBotaoWhile" value="Contagem While" name="nmBotaoWhile" onclick="contWhile()">
+            <output id="idOutWhile">Saída utilizando while: </output>
+            <br><br>
+            <input type="button" id="idBotaoFor" value="Contagem For" name="nmBotaoWhile" onclick="contFor()">
+            <output id="idOutFor">Saída utilizando for: </output>
+    
+        </form>
+        <script>
+    
+            var cont = 15
+            var textoContagem = ""
+            var outWhile = document.getElementById("idOutWhile")
+            var outFor = document.getElementById("idOutFor")
+    
+            function contWhile() {
+                textoContagem=0
+    
+                while (cont >= 3) {
+                    textoContagem = textoContagem + cont + "  "
+                    cont--
+                }
+                    
+                outWhile.value = "while -> Início " + textoContagem + " Acabou!"
+            }
+    
+            function contFor(){
+                textoContagem=0
+                for (let i = 15; i >= 3; i--) {
+                    textoContagem = textoContagem  + i + "  "
+     
+                }
+                outFor.value = "for -> Início " + textoContagem + " Acabou!"
+            }
+            
+        </script>
+    </body>
+</html>
+
+<!--
+2. Faça um algoritmo que mostre na tela a seguinte contagem:
+"Inicio 15 14 13 12 11 10 9 8 7 6 5 4 3 Acabou!" 
+-->
