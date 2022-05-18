@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <fieldset>
+                <legend>Calculo Salário</legend>
+                <br>
+                <label for="idNum1">Salário Bruto:</label><br>
+                <input type="number" id="idNum1" name="nmNum1">
+                <br><br>
+
+                <input type="radio" id="idSalario1" name="nmSalario" checked>
+                <label for="idSalario1">Menor ou igual a R$ 600,00</label>
+                <br><br>
+                <input type="radio" id="idSalario2" name="nmSalario">
+                <label for="idSalario2">Maior que R$ 600,00 e menor ou igual a R$ 1200,00</label>
+                <br><br>
+                <input type="radio" id="idSalario3" name="nmSalario">
+                <label for="idSalario3">Maior que R$ 1200,00 e menor ou igual a R$ 2000,00</label>
+                <br><br>
+                <input type="radio" id="idSalario4" name="nmSalario">
+                <label for="idSalario4">Maior que R$ 2000,00</label>
+
+
+                <br><br>
+                <input type="button" id="idButton1" value="Calcular" onclick="calcSalario()">
+                <br><br>
+                <label for="idNum2">Calcular Salário Líquido:</label ><br>
+                <input type="number" id="idNum2" name="nmNum2">
+                
+                
+                <br><br>
+                <output id="idOut">Resultado da operação...</output>
+            </fieldset>
+        </form>        
+        <script>
+
+            function calcSalario(){
+
+                var salarioBruto = Number(document.getElementById("idNum1").value)
+                var salarioLiquido = 0
+                var out = document.getElementById("idOut")
+
+                var faixaSalario1 = document.getElementById("idSalario1").checked
+                var faixaSalario2 = document.getElementById("idSalario2").checked
+                var faixaSalario3 = document.getElementById("idSalario3").checked
+                var faixaSalario4 = document.getElementById("idSalario4").checked
+                var taxa = ""
+
+                
+                if(faixaSalario1 == true){
+                    salarioLiquido = salarioBruto * 1
+                    taxa = '0%'
+                
+                }else if(faixaSalario2 == true){
+                    salarioLiquido = salarioBruto * ( 1 - 0.25 )
+                    taxa = '25%'
+                
+                }else if(faixaSalario3 == true){
+                    salarioLiquido = salarioBruto * ( 1 - 0.30 )
+                    taxa = '30%'
+                
+                }else if(faixaSalario4 == true){
+                    salarioLiquido = salarioBruto * ( 1 - 0.35 )
+                    taxa = '35%'
+
+                }else{
+                    salarioLiquido = "Algo errado!"
+                    taxa = " ... "
+                }
+                
+                document.getElementById("idNum2").value = salarioLiquido.toFixed(2)
+                out.value = "valor do INSS: " + taxa 
+            }
+                
+
+
+            
+
+        </script>
+    </body>
+</html>
+
+<!-- 
+7.	Entrar com o salário de uma pessoa e imprimir o Salário Líquido, segundo a tabela a seguir:
+|  Salário Bruto                                   |   INSS   |
+|:-------------------------------------------------|:--------:|
+| Menor ou igual a R$600,00                        |  Isento  |
+| Maior que R$600,00 e menor ou igual a R$1200,00  |    25%   |
+| Maior que R$1200,00 e menor ou igual a R$2000,00 |    30%   |
+| Maior que R$2000,00                              |    35%   |	
+-->
