@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+
+            <label for="idNum1">Valor Produto:</label><br>
+            <input type="number" id="idNum1" name="nmNum1">
+            <br><br>
+            <input type="button" id="idButton1" value="Calcular" onclick="precoVenda()">
+            <br><br>
+            <output id="idOut">Preço de venda...</output>
+
+        </form>
+        <script>
+
+            function precoVenda(){
+                var valorProduto = Number(document.getElementById("idNum1").value)
+                var out = document.getElementById("idOut")
+                var valorVenda = 0
+                var taxa = 0
+
+                if (valorProduto <= 20){
+
+                    valorVenda = valorProduto * ( 1 + 0.5 )
+                    taxa = 50
+
+                }else{
+
+                    valorVenda = valorProduto * ( 1 + 0.35 )
+                    taxa = 35
+
+                }
+
+            
+                out.value = "Preco de venda : R$ " + valorVenda.toFixed(2) + " com uma taxa de lucro de : " + taxa + "%"
+
+            }
+
+
+        </script>
+    </body>
+</html>
+
+<!-- 
+    8.	Um comerciante comprou um produto e quer vende-lo 
+    com um lucro de 50% se o valor da compra for menor que R$ 20,00. 
+    Caso contrário, o lucro será de 35%. 
+    Entrar com o valor do produto e imprimir o valor de venda.
+-->
