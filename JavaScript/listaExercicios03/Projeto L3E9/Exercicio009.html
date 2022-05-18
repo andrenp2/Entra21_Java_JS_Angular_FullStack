@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Cálculo de Área das Figuras Geométricas</h3>
+            <fieldset>
+                <legend>Escolha a Geometria</legend>
+                <br>
+                <input type="radio" id="idCirculo" name="nmCirculo" onclick="mudarLabels()" checked>
+                <label for="idCirculo">Área Círculo</label>
+                <br><br>
+                <input type="radio" id="idRetangulo" name="nmCirculo" onclick="mudarLabels()">
+                <label for="idRetangulo">Área Retângulo</label>
+                <br><br>
+                <input type="radio" id="idTriRet" name="nmCirculo" onclick="mudarLabels()">
+                <label for="idTriRet">Área Triângulo Retângulo</label>
+                <br><br>
+                <input type="radio" id="idTriEqui" name="nmCirculo" onclick="mudarLabels()">
+                <label for="idTriEqui">Área Triângulo Equilátero</label>
+                <br><br>
+
+                <output id="idOut1">Insira o Raio do circulo:</output><br>
+                <input type="number" id="idEntrada1" name="nmEntrada1">
+                <br><br>
+                <output id="idOut2">Ignore esta entrada:</output><br>
+                <input type="number" id="idEntrada2" name="nmEntrada2">
+                
+                <br><br>
+                <input type="button" id="idButton1" value="Calcular" onclick="calcArea()">
+                <br><br>
+                <output id="idOut3"></output>
+            
+            </fieldset> 
+        </form>
+        <script>
+
+        function calcArea(){
+
+            var valor1 = Number(document.getElementById("idEntrada1").value)
+            var valor2 = Number(document.getElementById("idEntrada2").value)
+            var outValor1 = document.getElementById("idOut1")
+            var outValor2 = document.getElementById("idOut2")
+            var outDescricao = document.getElementById("idOut3")
+
+            var circulo = document.getElementById("idCirculo").checked
+            var retangulo = document.getElementById("idRetangulo").checked
+            var triRet = document.getElementById("idTriRet").checked
+            var triEqui = document.getElementById("idTriEqui").checked
+            
+            var area
+
+            var menu = 0
+
+            if(circulo == true){
+                menu = 0
+            }else if(retangulo ==true){
+                menu = 1
+            }else if(triRet == true){
+                menu = 2
+            }else if(triEqui == true){
+                menu = 3
+            }else{
+                var mensagem = "Algo errado"
+            }
+
+
+            switch (menu) {
+                case 0:
+                    area = Math.PI * ( valor1 ** 2 )
+                    outDescricao.value = "A área do círculo é : [ " + area.toFixed(2) + " ]\nCalculada a partir da formula\n( pi * raio^2)"
+                    break;
+            
+                case 1:
+                    area = valor1 * valor2
+                    outDescricao.value = "A área do retangulo é : [ " + area.toFixed(2) + " ]\nCalculada a partir da formula\n( lado1 * lado2 )"
+                    break;
+                case 2:
+                    area = (valor1 * valor2) / 2 
+                    outDescricao.value = "A área do triangulo retangulo é : [ " + area.toFixed(2) + " ]\nCalculada a partir da formula\n( base * altura / 2 )"
+                    break;
+                case 3:
+                    area = ( (valor1 ** 2) * Math.sqrt(3) / 4 )
+                    outDescricao.value = "A área do triangulo equilatero é : [ " + area.toFixed(2) + " ]\nCalculada a partir da formula\n( lado^2 * sqrt(3) / 4 )"
+                    break;
+
+                default:
+                    break;
+            }
+
+
+
+
+        }
+
+
+        function mudarLabels(){
+
+            var outValor1 = document.getElementById("idOut1")
+            var outValor2 = document.getElementById("idOut2")
+            var outDescricao = document.getElementById("idOut3")
+
+            var circulo = document.getElementById("idCirculo").checked
+            var retangulo = document.getElementById("idRetangulo").checked
+            var triRet = document.getElementById("idTriRet").checked
+            var triEqui = document.getElementById("idTriEqui").checked
+
+            if (circulo==true){
+                outValor1.value = "Insira o Raio do circulo:"
+                outValor2.value = "Ignore esta entrada"
+                document.getElementById("idEntrada2").readonly
+                
+            }else if(retangulo==true){
+                outValor1.value = "Insira o primeiro lado do retângulo:"
+                outValor2.value = "Insira o segundo lado do retângulo:"
+                
+            }else if(triRet == true){
+                outValor1.value = "Insira a base do triângulo:"
+                outValor2.value = "Insira a altura do triângulo:"
+            
+            }else if(triEqui == true){
+                outValor1.value = "Insira o lado do triângulo equilátero:"
+                outValor2.value = "Ignore esta entrada"
+                document.getElementById("idEntrada2").readonly
+            }
+        }
+
+
+
+        </script>
+
+    </body>
+</html>
+
+<!--
+    9. Crie um programa para calcular a área das formas geométricas básicas:  
+a.	Círculo (pedir o raio);  
+b.	Retângulo (pedir o tamanho os lados);  
+c.	Triangulo retângulo (pedir a base e altura);  
+d.	Triangulo Equilátero: pedir o lado.
+- O usuário deve poder escolher a forma geométrica que deseja calcular
+ a partir de um menu (radio button, por exemplo). O programa, por sua vez,
+deverá exibir os lables, caixas de digitação e demais textos explicativos correspondentes a opcão escolhida. 
+-->
