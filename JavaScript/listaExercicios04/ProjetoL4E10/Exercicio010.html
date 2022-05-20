@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form>
+            
+            <label for="idNum1">Valor Inicial:</label><br>
+            <input type="number" id="idNum1" name="nmNum1">
+            <br><br>
+            <label for="idNum2">Valor Final:</label><br>
+            <input type="number" id="idNum2" name="nmNum2">
+            <br><br>
+            <input type="button" id="idBotaoImpar" value="Imprimir Ímpares" name="nmBotaoImpares" onclick="imprimirImpares()">
+            <input type="button" id="idBotaoFor" value="Imprimir Pares" name="nmBotaoPares" onclick="imprimirPares()">
+            <br><br>
+            <output id="idOutPar">Valores pares ou impares: </output><br>
+            <output id="idOutQuant">Quantidade de numeros: </output>
+
+        </form>
+        <script>
+
+            function imprimirPares(){
+
+                var valorInicial = Number(document.getElementById("idNum1").value)
+                var valorFinal = Number(document.getElementById("idNum2").value)
+                var saidaPar = ""
+                var count=0
+
+                for (let i = valorInicial; i <= valorFinal; i++){
+                    saida = valorInicial + i
+                    
+                    if(saida % 2 == 0){
+                        saidaPar = saidaPar + saida + " "
+                        count++
+                    }          
+                }
+
+                document.getElementById("idOutPar").value = "Os números pares sao: " + saidaPar
+                document.getElementById("idOutQuant").value = "Total de " + count + " numeros."
+
+            }
+            function imprimirImpares(){
+
+                var valorInicial = Number(document.getElementById("idNum1").value)
+                var valorFinal = Number(document.getElementById("idNum2").value)
+                var saidaImpar = ""
+                var countImpar=0
+
+                for (let i = valorInicial; i <= valorFinal; i++){
+                    saida = valorInicial + i
+                    
+                    if(saida % 2 != 0){
+                        saidaImpar = saidaImpar + saida + " "
+                        countImpar++
+                    }          
+                }
+
+                document.getElementById("idOutPar").value = "Os números pares sao: " + saidaImpar
+                document.getElementById("idOutQuant").value = "Total de " + countImpar + " numeros."
+
+                }
+
+
+
+        </script>
+
+
+
+    </body>
+</html>
+<!--
+    10. Crie um programa que leia os valores inicial e final de um intervalo e imprima todos os valores impares ou pares contidos no intervalo. 
+- O usuário deve poder escolher entre impares e pares.  
+- Mostre o resultado na tela (não no console.log).
+- Mostre também quantos números da sequencia são pares e quantos são impares. 
+-->
