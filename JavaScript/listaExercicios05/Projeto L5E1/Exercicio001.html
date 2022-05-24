@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form>
+            <h3>Lista Exercicio 05</h3>
+            <p>
+                1. Crie um algoritmo que mostre na tela todos os números entre 1 e 100<br>que sejam múltiplos de 3 ou 5.(Console.log)
+            </p>
+            <output id="idOut3">Saida...</output><br><br>
+            <output id="idOut5">Saida...</output> 
+
+        </form>
+        <script>
+
+            var multiplosDe3 = 0
+            var multiplosDe5 = 0
+            var out3 = document.getElementById("idOut3")
+            var out5 = document.getElementById("idOut5")
+            
+            for(i=1; i <= 100; i++){
+                if(i % 3 == 0){
+                    multiplosDe3 += i + " "
+                    
+                }else if(i % 5 == 0){
+                    multiplosDe5 += i + " "
+                }
+            }
+            console.log(multiplosDe3)
+            console.log(multiplosDe5)
+
+            out3.value = "Multiplos de 3 : " + multiplosDe3 + " ."
+            out5.value = "Multiplos de 5 : " + multiplosDe5 + " ."
+
+
+        </script>
+
+
+        
+
+    </body>
+</html>

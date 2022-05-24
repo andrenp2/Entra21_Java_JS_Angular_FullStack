@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exercicio 007:</h3>
+            <p>
+                7. Em um jogo de adivinhação, o jogador deve descobrir um número entre 1 e 10 <br>
+                usando até três tentativas.<br>
+                A cada tentativa o jogador é informado se o número foi descoberto,<br>
+                ou se ele é maior ou menor do que a tentativa.<br> 
+                Se após três tentativas o jogador não descobrir o número<br>
+                então ele perde o jogo. Crie um algoritmo que implemente esse jogo.
+            </p>
+
+            <h4>Adivinhe o Número:</h4>
+            <label for="idNumero">Insira o Numero:</label><br>
+            <input type="number" id="idNumero" name="nmNumero" min="0" max="10" step="1">
+            <br><br>
+            <input type="button" id="idButton" value="Verificar!" onclick="adivinharNum()">
+            <br><br>
+            <output id="idOut">Adivinhe o número...</output>
+            <br><br>
+            <output id="idOut2">Tentativas Restantes...</output>
+            <br><br><br><br>
+            <output id="idOculto">[Numero Oculto]</output>
+
+
+        </form>        
+        <script>
+
+            var count = 0
+            var numAleatorio = Number((Math.random(0,10).toFixed(1)*10))
+
+            document.getElementById("idOculto").value ="[" + numAleatorio + "]"
+
+            function adivinharNum(){
+
+                var out = document.getElementById("idOut")
+                var out2 = document.getElementById("idOut2")
+                var num = Number(document.getElementById("idNumero").value)
+                
+
+                count++
+
+                if (num == numAleatorio){
+                    out.value = "VOCE ACERTOU! PARABENS!!"
+                    document.getElementById("idNumero").disabled = true
+                    document.getElementById("idButton").disabled = true
+                }else{
+                    if (num<numAleatorio){
+                        out.value = "Você digitou um número MENOR. Tente novamente."
+                    }else if(num > numAleatorio){
+                        out.value = "Você digitou um número MAIOR. Tente novamente."
+                    }
+                }
+
+                var tentativaRestante = 3 - count
+                out2.value = "Voce ainda tem : " + tentativaRestante + " tentativas."
+
+                if (count == 3){
+                    document.getElementById("idNumero").disabled = true
+                    document.getElementById("idButton").disabled = true
+                    out.value = "Você zerou suas tentativas!"
+                }
+
+                
+
+
+
+
+                
+                
+
+
+
+            }
+
+
+
+
+
+        </script>
+        
+    </body>
+</html>

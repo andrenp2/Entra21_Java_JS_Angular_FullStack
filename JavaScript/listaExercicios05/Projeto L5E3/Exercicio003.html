@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form>
+            <h3>Exercicio 3:</h3>
+            <p>
+                3. Desenvolva um programa que faça o sorteio de 20 números entre 0 e 10 e mostre na tela:<br>
+                a) Quais foram os números sorteados<br>
+                b) Quantos números estão acima de 5<br>  
+                c) Quantos números são divisíveis por 3<br> 
+            </p>
+            
+            <output id="idOut">Numeros sorteados...</output><br>
+            <output id="idOut1">Numeros acima de 5...</output><br>
+            <output id="idOut2">Numeros divisiveis por 3...</output>
+
+        </form>
+        <script>
+
+            var outSorted = document.getElementById("idOut")
+            var outAcima5 = document.getElementById("idOut1")
+            var outDiv3 = document.getElementById("idOut2")
+            var sorted = ""
+            var count=0
+            var countMaior5 =0
+            var countDiv3 = 0
+
+            while (count < 20){
+                num = (Math.random().toFixed(1)*10)
+
+                if (num > 5){
+                    countMaior5++
+                }else if(num % 3 ==0){
+                    countDiv3++
+                }
+                sorted += num + " - "
+                count++
+            }
+
+            outSorted.value = "Numeros Sorteados :  " + sorted
+            outAcima5.value = "Numeros Acima de 5 :     [" + countMaior5+']'
+            outDiv3.value = "Numeros Divisiveis por 3: [" + countDiv3+']'
+            
+        </script>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exercicio 008</h3>
+
+            <p>
+                8. Ler uma temperatura em graus Celsius e apresentá-la convertida em graus Fahrenheit. <br>
+                A fórmula de conversão é: F=(9*C+160)/5, sendo F a temperatura em Fahrenheit e C a temperatura em Celsius. 
+            </p>
+
+            <label for="idTemp">Temperatura em Cº:</label><br>
+            <input type="number" id="idTemp" name="nmTemp">
+            <br><br>
+            <input type="button" value="Converter" onclick="converterTemp()">
+            <br><br>
+            <output id="idOut">A temperatura em Fahrenheit:</output>
+
+        </form>
+        <script>
+
+            
+            var tempF = 0
+
+            function converterTemp(){
+                var temp = Number(document.getElementById("idTemp").value)
+                
+                tempF = ((( 9 * temp ) + 160 ) / 5 )
+
+                document.getElementById("idOut").value = "A temperatura em Fahrenheit : " + tempF + " F"
+            }
+
+
+        </script>
+    </body>
+</html>

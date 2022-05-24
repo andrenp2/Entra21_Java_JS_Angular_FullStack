@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form>
+            <h3>Exercicio 3:</h3>
+            <p>
+                2. Crie um programa que leia os valores inicial e final de um intervalo e imprima todos os números primos contidos no intervalo. 
+            </p><br><br>
+
+            <label for="idValorInicial" >Valor Inicial</label><br>
+            <input type="number" id="idValorInicial" name="nmValorInicial">
+            <br><br>
+            <label for="idValorFinal" >Valor Final</label><br>
+            <input type="number" id="idValorFinal" name="nmValorInicial">
+            <br><br>
+            <input type="button" id="idButton1" value="Salvar" onclick="numerosPrimos()">
+            <br><br>
+            <output id="idOutPrimos">Numeros primos no intervalo...</output>
+
+        </form>
+        <script>
+
+            function numerosPrimos(){
+
+                let limiteInf = Number(document.getElementById("idValorInicial").value)
+                let limiteSup = Number(document.getElementById("idValorFinal").value)
+                var out = document.getElementById("idOutPrimos")
+                let primo = true
+                var listaPrimos = 0
+
+                for(let i = limiteInf; i < limiteSup + 1; i++){    
+                    for(let j = 2; j < i; j++){
+                        if (i % j == 0){
+                            primo = false
+                        }
+                    }
+                    
+                    if (primo){
+                        console.log(i + " é primo")
+                        listaPrimos = listaPrimos + i + " "
+                        out.value = "Numeros Primos : " + listaPrimos
+                    }
+
+                    primo=true
+                    
+                }
+
+                /*
+                1  -> div2 -> 
+                2  -> ok -> nok -> primo 
+                3  -> nok -> ok -> primo    
+                4  -> div2 resto zero n primo
+                5  -> primo 
+                6   
+                7   
+                */
+
+
+            }
+
+
+
+
+
+        </script>
+        
+
+
+
+
+
+    </body>
+</html>

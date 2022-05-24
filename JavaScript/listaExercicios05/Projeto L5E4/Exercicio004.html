@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <h3>Exercicio 004</h3>
+        <p>
+        4. Faça um programa que mostre os 10 primeiros elementos da Sequência de Fibonacci:<br><br>
+        1 1 2 3 5 8 13 21...
+        </p>
+        <br>
+        <output id="idOut">Sequencia: </output>
+    </form>
+    <script>
+
+    fibonacci = []
+    fibonacci[0] = 0
+    fibonacci[1] = 1
+    var saida = ""
+    var out = document.getElementById("idOut")
+
+        for(let i=2; i < 10; i++){
+            
+            fibonacci[i] = (fibonacci[i-2] + fibonacci[i-1]) 
+            saida += String(fibonacci[i]) + ' '
+        }
+
+        console.log(fibonacci[1] + " " + saida)
+        out.value = "Resposta: " + fibonacci[1] + " " + saida
+
+    </script>
+</body>
+</html>

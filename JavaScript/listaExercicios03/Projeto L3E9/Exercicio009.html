@@ -98,7 +98,7 @@
 
         }
 
-
+        document.getElementById("idEntrada2").disabled = true
         function mudarLabels(){
 
             var outValor1 = document.getElementById("idOut1")
@@ -109,24 +109,27 @@
             var retangulo = document.getElementById("idRetangulo").checked
             var triRet = document.getElementById("idTriRet").checked
             var triEqui = document.getElementById("idTriEqui").checked
+            
 
             if (circulo==true){
                 outValor1.value = "Insira o Raio do circulo:"
-                outValor2.value = "Ignore esta entrada"
-                document.getElementById("idEntrada2").readonly
+                outValor2.value = ""
+                document.getElementById("idEntrada2").disabled = true
                 
             }else if(retangulo==true){
                 outValor1.value = "Insira o primeiro lado do retângulo:"
                 outValor2.value = "Insira o segundo lado do retângulo:"
+                document.getElementById("idEntrada2").disabled = false
                 
             }else if(triRet == true){
                 outValor1.value = "Insira a base do triângulo:"
                 outValor2.value = "Insira a altura do triângulo:"
+                document.getElementById("idEntrada2").disabled = false
             
             }else if(triEqui == true){
                 outValor1.value = "Insira o lado do triângulo equilátero:"
-                outValor2.value = "Ignore esta entrada"
-                document.getElementById("idEntrada2").readonly
+                outValor2.value = ""
+                document.getElementById("idEntrada2").disabled = true
             }
         }
 

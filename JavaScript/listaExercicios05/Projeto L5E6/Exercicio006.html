@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <h3>Exercicio 006:</h3>
+        <form action="">
+            <p>       
+                6. Crie um algoritmo que leia a idade de 'n' pessoas, mostrando no final:<br>
+                a) Qual é a média de idade do grupo<br>  
+                b) Quantas pessoas tem mais de 18 anos<br>  
+                c) Quantas pessoas tem menos de 5 anos  <br>
+                d) Qual foi a maior idade lida  
+            </p>
+
+            <label for="idNumPessoas">Número de Pessoas</label><br>
+            <input type="number" id="idNumPessoas" name="nmNumPessoas">
+            <br><br>
+            <label for="idIdade">Idade</label><br>
+            <input type="number" id="idIdade" name="nmIdade">
+            <br><br>
+            <input type="button" value="Salvar" onclick="funcaoIdade()">
+            
+            <br><br>
+            <output id="idOutNum">Nº de pessoas:</output>
+            <br><br>
+            <output id="idOutMedia">Media de Idade:</output>
+            <br><br>
+            <output id="idOutMaior18">Maiores de 18 anos:</output>
+            <br><br>
+            <output id="idOutMenor5">Menor de 5 anos:</output>
+            <br><br>
+            <output id="idOutMaiorIdade">Maior idade:</output>
+            <br><br>
+            
+
+        </form>  
+        <script>
+
+            var countMaior18 = 0
+            var countMenor5 = 0
+            var countMedia = 0
+            var maiorIdade = 0
+            var somaIdade = 0 
+
+            document.getElementById("idNumPessoas").value = 0
+            document.getElementById("idNumPessoas").disabled = true
+
+            function funcaoIdade(){
+
+                countMedia++
+
+                idade = Number(document.getElementById("idIdade").value)
+
+                somaIdade = somaIdade + idade 
+
+                if(idade > 18){
+                    countMaior18++
+                }else if(idade < 5){
+                    countMenor5++
+                }
+
+                media = ( somaIdade / countMedia ).toFixed(0)
+
+                if(idade > maiorIdade){
+                    maiorIdade = idade
+                }
+
+                /*
+                    18, 29, 18, 4, 3, 2, 18, 25, 60
+                */
+                document.getElementById("idNumPessoas").value = countMedia
+                document.getElementById("idNumPessoas").disabled = true
+
+                document.getElementById("idOutNum").value = "Nº de pessoas: " + countMedia
+                document.getElementById("idOutMedia").value = "Media de Idade: " + media
+                document.getElementById("idOutMaior18").value = "Maiores de 18 anos: " + countMaior18
+                document.getElementById("idOutMenor5").value = "Menor de 5 anos: " + countMenor5
+                document.getElementById("idOutMaiorIdade").value = "Maior Idade: " + maiorIdade
+
+            }
+
+        </script>      
+         
+    </body>
+</html>

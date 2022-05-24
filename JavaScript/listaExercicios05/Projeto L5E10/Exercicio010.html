@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exercicio 010</h3>
+            <p>
+                10. Elaborar um programa para a casa de câmbio que receba as cotações do dia e efetue a conversão de uma moeda para outra.<br> 
+                O programa deverá permitir conversões entre Real, Dólar Americano, Euro, Libra Esterlina e Dólar Canadense.<br>
+                - O usuário pode selecionar o tipo de moeda de entrada e selecionar o tipo para o qual ele deseja converter.<br>
+            </p>
+            <h4>Conversão de Moedas</h4>
+
+            <fieldset>
+                <legend>Entrada </legend>
+                <label for="idMoedas">Escolha a moeda:</label><br>
+                <input list="idListaMoedas" id="idMoedas" name="nmMoedas">
+                
+                <datalist id="idListaMoedas">
+                    <option value="Real">
+                    <option value="Dolar Americano">
+                    <option value="Euro">
+                    <option value="Libra Esterlina">
+                    <option value="Dolar Canadense">
+                </datalist>
+            
+                <br><br>
+                <label for="idValor">Insira a quantidade:</label><br>
+                <input type="number" id="idValor" name="nmValor">
+            </fieldset>
+            <fieldset>
+                <legend>Converter para:</legend>
+                <label for="idMoedas2">Escolha para qual moeda deseja converter:</label><br>
+                <input list="idListaMoedas2" id="idMoedas2" name="nmMoedas2">
+                
+                <datalist id="idListaMoedas2">
+                    <option value="Real">
+                    <option value="Dolar Americano">
+                    <option value="Euro">
+                    <option value="Libra Esterlina">
+                    <option value="Dolar Canadense">
+                </datalist>
+                <br><br>
+                <input type="button" id="idButton" value="Converter" onclick="converterMoedas()">
+                <br><br>
+                <output id="idOutMoeda">Conversão:</output>
+
+            </fieldset>
+            
+        </form>        
+        <script>
+
+            var quantMoeda = Number(document.getElementById("idValor").value)
+            var moedaEntrada 
+            var moedaSaida
+            var realHoje 
+            var dolarCanHoje
+            var dolarAmeHoje
+            var libraHoje
+            var euroHoje
+
+            function converterMoedas(){
+                var moedaEntrada = ""
+
+                moedaEntrada = document.getElementById("idMoedas2").value
+
+                document.getElementById("idOutMoeda").value = moedaEntrada
+
+
+
+            }
+
+
+        </script>
+    </body>
+</html>

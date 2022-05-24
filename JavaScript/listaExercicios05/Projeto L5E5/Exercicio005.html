@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <h3>Exercicio 005:</h3>
+        <form action="">
+            <p>
+                5. Crie um aplicativo que leia o preço de 'n' produtos.<br> No final, mostre na tela qual foi o maior e qual foi o menor preço digitados.
+            </p>
+
+            <label for="idQuantProd">Numero de produtos</label><br>
+            <input type="number" id="idQuantProd" name="nmQuantProd">
+            <br><br>
+            <label for="idPreco">Preço do Produto</label><br>
+            <input type="number" id="idPreco" name="nmPreco">
+            <br><br>
+            <input type="button" value="Salvar" onclick="salvarProd()">
+            <br><br>
+            <output id="idOutMaior">Maior preço: 0</output>
+            <br><br>
+            <output id="idOutMenor">Menor preço: 0</output>
+
+        </form>        
+        <script>
+            
+            var maiorPreco = -9999999
+            var menorPreco = 9999999
+            var count = 0
+            
+
+            function salvarProd(){
+                count++
+                let outMaior = document.getElementById("idOutMaior")
+                let outMenor = document.getElementById("idOutMenor")
+                var quantidadeProd = Number(document.getElementById("idQuantProd").value)
+                var precoAtual = Number(document.getElementById("idPreco").value)
+                document.getElementById("idPreco").value = ""
+                document.getElementById("idQuantProd").disabled = true
+
+                if (count==1){
+                    maiorPreco = precoAtual
+                    menorPreco = precoAtual
+                }
+
+
+                if(precoAtual > maiorPreco){
+                    maiorPreco = precoAtual
+                    console.log("oi, entrou:" ,precoAtual)
+                    console.log(maiorPreco)
+                }
+
+                else if(precoAtual < menorPreco){
+                    menorPreco = precoAtual
+                }
+
+
+                if (count == quantidadeProd){
+                    document.getElementById("idPreco").disabled = true
+                }
+                
+                outMaior.value = "Maior preço : " + maiorPreco
+                outMenor.value = "Menor preço : " + menorPreco
+                
+            }
+
+        </script>
+    </body>
+</html>

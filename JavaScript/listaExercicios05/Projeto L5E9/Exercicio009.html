@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exercicio 009</h3>
+            <p>
+                9. Crie um novo programa a partir do exercício anterior e permita que o usuário escolha<br>
+                 em que unidade de medida ele deseja informar a temperatura (C, F ou K).<br>
+                 O programa deverá converter deverá converter a temperatura para as outras unidades de medida. <br>
+                >> Sendo C= Celsius, F= Fahrenheit e K = Kelvin <br>
+                >> Formulas fornecidas: <br>
+                >> K=C+273<br>
+                >> F=(9*C+160)/5<br>
+                >> Referências: https://www.infoescola.com/fisica/conversao-de-escalas-termometricas/
+            </p>
+            <br>
+            <label for="idTemp">Temperatura:</label><br>
+            <input type="number" id="idTemp" name="nmTemp"><br><br>
+            
+            <input type="radio" id="idCelsius" name="nmEscala" checked>
+            <label for="idCelsius">[ Celsius ]</label>
+            <input type="radio" id="idFahrenheit" name="nmEscala">
+            <label for="idFahrenheit">[ Fahrenheit ]</label>
+            <input type="radio" id="idKelvin" name="nmEscala">
+            <label for="idKelvin">[ Kelvin ]</label>
+            <br><br>
+            <label for="idSaidaTexto">Escolher a saída da temperatura:</label><br><br>
+            <input type="radio" id="idSaidaC" name="nmEscalaSaida">
+            <label for="idSaidaC">[ Celsius ]</label>
+            <input type="radio" id="idSaidaF" name="nmEscalaSaida">
+            <label for="idSaidaF">[ Fahrenheit ]</label>
+            <input type="radio" id="idSaidaK" name="nmEscalaSaida">
+            <label for="idSaidaK">[ Kelvin ]</label>
+        
+            <br><br>
+            <input type="button" value="Converter" onclick="converterTemp()">
+            <br><br>
+            <output id="idOut">Temperatura convertida:</output><br>
+            <input type="number" id="idSaidaTemp" name="nmSaidaTemp">
+
+        </form>
+        <script>
+
+            function converterTemp(){
+                var tempEntrada = Number(document.getElementById("idTemp").value)
+                var tempSaida = 0
+                var entradaC = document.getElementById("idCelsius").checked
+                var entradaF = document.getElementById("idFahrenheit").checked
+                var entradaK = document.getElementById("idKelvin").checked
+
+                var saidaC = document.getElementById("idSaidaC").checked
+                var saidaF = document.getElementById("idSaidaF").checked
+                var saidaK = document.getElementById("idSaidaK").checked
+
+                if ((entradaC == true) && (saidaC == true)){
+                    tempSaida = tempEntrada
+                }else if((entradaC == true) && (saidaF == true)){
+                    tempSaida = ((9 * tempEntrada)+160) / 5
+                }else if((entradaC == true) && (saidaK == true)){
+                    tempSaida = tempEntrada + 273.15
+                }else if ((entradaF == true) && (saidaC == true)){
+                    tempSaida = ((tempEntrada - 32) * (5/9))
+                }else if((entradaF == true) && (saidaF == true)){
+                    tempSaida = tempEntrada
+                }else if((entradaF == true) && (saidaK == true)){
+                    tempSaida = ((tempEntrada - 32) * (5/9)) + 273.15
+                }else if((entradaK == true) && (saidaC == true)){
+                    tempSaida = tempEntrada - 273.15
+                }else if((entradaK == true) && (saidaF == true)){
+                    tempSaida = ((( tempEntrada - 273.15 ) * (9/5)) + 32) 
+                }else if((entradaK == true) && (saidaK == true)){
+                    tempSaida = tempEntrada
+                }
+
+                document.getElementById("idSaidaTemp").value = tempSaida
+                /*
+                possibilidades:
+
+                C -> C (entradaC == true) && (saidaC == true) OK
+                C -> F (entradaC == true) && (saidaF == true) OK 
+                C -> K (entradaC == true) && (saidaK == true) OK
+
+                F -> C (entradaF == true) && (saidaC == true) OK 
+                F -> F (entradaF == true) && (saidaF == true) OK
+                F -> K (entradaF == true) && (saidaK == true) OK
+
+                K -> C (entradaK == true) && (saidaC == true) OK
+                K -> F (entradaK == true) && (saidaF == true) OK
+                K -> K (entradaK == true) && (saidaK == true)
+                */
+
+
+            }
+
+
+
+        </script>
+        
+    </body>
+</html>
