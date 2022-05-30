@@ -60,20 +60,28 @@
 
                 if ((entradaC == true) && (saidaC == true)){
                     tempSaida = tempEntrada
+
                 }else if((entradaC == true) && (saidaF == true)){
                     tempSaida = ((9 * tempEntrada)+160) / 5
+
                 }else if((entradaC == true) && (saidaK == true)){
                     tempSaida = tempEntrada + 273.15
+
                 }else if ((entradaF == true) && (saidaC == true)){
                     tempSaida = ((tempEntrada - 32) * (5/9))
+
                 }else if((entradaF == true) && (saidaF == true)){
                     tempSaida = tempEntrada
+
                 }else if((entradaF == true) && (saidaK == true)){
                     tempSaida = ((tempEntrada - 32) * (5/9)) + 273.15
+
                 }else if((entradaK == true) && (saidaC == true)){
                     tempSaida = tempEntrada - 273.15
+
                 }else if((entradaK == true) && (saidaF == true)){
                     tempSaida = ((( tempEntrada - 273.15 ) * (9/5)) + 32) 
+                    
                 }else if((entradaK == true) && (saidaK == true)){
                     tempSaida = tempEntrada
                 }

@@ -31,7 +31,7 @@
             
                 <br><br>
                 <label for="idValor">Insira a quantidade:</label><br>
-                <input type="number" id="idValor" name="nmValor">
+                <input type="number" id="idValor" name="nmValor"> 
             </fieldset>
             <fieldset>
                 <legend>Converter para:</legend>
@@ -48,30 +48,166 @@
                 <br><br>
                 <input type="button" id="idButton" value="Converter" onclick="converterMoedas()">
                 <br><br>
-                <output id="idOutMoeda">Conversão:</output>
-
+                <output id="idOutMoeda">Conversão:</output><br><br><br>
+                <fieldset>
+                    <legend>Cotação Atual 29/05/2022</legend><br>
+                    <output id="idCotacaoDolarCad">CAD/BRL : R$ 3.73 </output><br>
+                    <output id="idCotacaoDolarUsd">USD/BRL : R$ 4.73 </output><br>
+                    <output id="idCotacaoDolarEur">EUR/BRL : R$ 5.11 </output><br>
+                    <output id="idCotacaoDolarGbp">GBP/BRL : R$ 6.00 </output><br>
+                </fieldset>
             </fieldset>
             
         </form>        
         <script>
 
-            var quantMoeda = Number(document.getElementById("idValor").value)
+            
             var moedaEntrada 
             var moedaSaida
-            var realHoje 
-            var dolarCanHoje
-            var dolarAmeHoje
-            var libraHoje
-            var euroHoje
+
+            var real 
+            var dolarCanadense
+            var dolarAmericano = 4.73 // reais
+            var libraEsterlina
+            var euro 
+
+            var moedaConvertida = 0
+
+            function converterReal(moeda, quantidade){
+
+                if (moeda == 'Real'){
+                    moedaReal = quantidade * 1
+                }else if (moeda == 'Dolar Americano'){
+                    moedaReal = quantidade * 4.73
+                }else if (moeda == 'Dolar Canadense'){
+                    moedaReal = quantidade * 3.73
+                }else if (moeda == 'Libra Esterlina'){
+                    moedaReal = quantidade * 6.00
+                }else if (moeda == 'Euro'){
+                    moedaReal = quantidade * 5.11
+                }
+
+                return Number(moedaReal).toFixed(2)
+            }
+
 
             function converterMoedas(){
-                var moedaEntrada = ""
 
-                moedaEntrada = document.getElementById("idMoedas2").value
+                let quantMoeda = Number(document.getElementById("idValor").value)
+                var moedaEntrada = document.getElementById("idMoedas").value
+                var moedaSaida = document.getElementById("idMoedas2").value
 
-                document.getElementById("idOutMoeda").value = moedaEntrada
+                
+                var quantidadeReais = converterReal(moedaEntrada, quantMoeda)
 
+                
+                var out = document.getElementById("idOutMoeda")
 
+                if (moedaEntrada == 'Real'){
+                    if (moedaSaida == 'Dolar Americano'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 4.73 )).toFixed(2)+ " USD"
+                    }else if (moedaSaida == 'Dolar Canadense'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 3.73 )).toFixed(2) + " CAD"
+                    }else if (moedaSaida == 'Euro'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 5.11 )).toFixed(2) + " EUR"
+                    }else if (moedaSaida == 'Libra Esterlina'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 6.00 )).toFixed(2) + " GBP"
+                    }else{
+                        out.value = "Valor convertido : " + (quantidadeReais * 1 ).toFixed(2) + " BRL"
+                    }
+                }
+
+                if (moedaEntrada == 'Dolar Canadense'){
+                    if (moedaSaida == 'Dolar Americano'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 4.73 )).toFixed(2)+ " USD"
+                    }else if (moedaSaida == 'Euro'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 5.11 )).toFixed(2) + " EUR"
+                    }else if (moedaSaida == 'Libra Esterlina'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 6.00 )).toFixed(2) + " GBP"
+                    }else if (moedaSaida == 'Real'){
+                        out.value = "Valor convertido : " + (quantidadeReais * 1 ).toFixed(2) + " BRL"
+                    }else{
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 3.73 )).toFixed(2) + " CAD"
+                    }
+                }
+
+                if (moedaEntrada == 'Dolar Americano'){
+                    if (moedaSaida == 'Real'){
+                        out.value = "Valor convertido : " + (quantidadeReais * 1 ).toFixed(2) + " BRL"
+                    }else if (moedaSaida == 'Dolar Canadense'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 3.73 )).toFixed(2) + " CAD"
+                    }else if (moedaSaida == 'Libra Esterlina'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 6.00 )).toFixed(2) + " GBP"
+                    }else if (moedaSaida == 'Euro'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 5.11 )).toFixed(2) + " EUR"
+                    }else{
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 4.73 )).toFixed(2)+ " USD"
+                    }
+                }
+
+                if (moedaEntrada == 'Euro'){
+                    if (moedaSaida == 'Real'){
+                        out.value = "Valor convertido : " + (quantidadeReais * 1 ).toFixed(2) + " BRL"
+                    }else if (moedaSaida == 'Dolar Canadense'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 3.73 )).toFixed(2) + " CAD"
+                    }else if (moedaSaida == 'Dolar Americano'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 4.73 )).toFixed(2)+ " USD"
+                    }else if (moedaSaida == 'Libra Esterlina'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 6.00 )).toFixed(2) + " GBP"
+                    }else{
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 5.11 )).toFixed(2) + " EUR"
+                    }
+                }
+
+                if (moedaEntrada == 'Libra Esterlina'){
+                    if (moedaSaida == 'Real'){
+                        out.value = "Valor convertido : " + (quantidadeReais * 1 ).toFixed(2) + " BRL"
+                    }else if (moedaSaida == 'Dolar Canadense'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 3.73 )).toFixed(2) + " CAD"
+                    }else if (moedaSaida == 'Dolar Americano'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 4.73 )).toFixed(2)+ " USD"
+                    }else if (moedaSaida == 'Euro'){
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 5.11 )).toFixed(2) + " EUR"
+                    }else{
+                        out.value = "Valor convertido : " + (quantidadeReais * ( 1 / 6.00 )).toFixed(2) + " GBP"
+                    }
+                }
+
+                /*
+                real para dolar -> 1 / 4.73 = 0.21 US
+                canada para dolar -> 1 / 1.27 = 0.79 US 
+                euro para dolar -> 1 / 0.93 = 1.08 US
+                libra para dolar ->  1 / 0.79  = 1.26 US
+                */ 
+
+                /* 
+                    entrada ----- saida
+
+                    real -------- dolar us
+                         -------- dolar cad
+                         -------- euro
+                         -------- libra
+
+                    dolar cad --- dolar us
+                              --- euro
+                              --- libra
+                              --- real
+
+                    dolar us ---- real
+                             ---- dolar cad
+                             ---- libra
+                             ---- euro
+
+                    euro -------- real
+                         -------- dolar cad
+                         -------- dolar us
+                         -------- libra
+
+                    libra ------- real
+                          ------- dolar cad
+                          ------- dolar us
+                          ------- euro
+                */
 
             }
 
