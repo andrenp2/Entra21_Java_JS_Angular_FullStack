@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <h3>Exercicio 006<h3>
+        <p>
+            7. Faça um programa que leia 7 nomes de pessoas e guarde-os em um vetor.<br>
+            No final, mostre uma listagem com todos os nomes informados, na ordem inversa daquela em que eles foram informados.
+        </p>
+
+        <label for="idName">Insira o nome:</label><br>
+        <input type="text" id="idName" name="nmName"><br><br>
+        <input type="button" id="idButton" value="Salvar" onclick="salvarNomes()">
+        <input type="button" id="idButton2" value="Imprimir Inversos" onclick="nomesInverso()"><br><br><br><br>
+        <output id="idOut">Nome digitado:</output><br><br>
+        <output id="idOut2">Lista nomes:</output>
+
+    </form>
+    <script>
+
+        var listaNomes = []
+        var out = document.getElementById("idOut")
+        
+
+        function salvarNomes(){
+            
+            listaNomes.push(document.getElementById("idName").value)
+            document.getElementById("idName").value = ""
+
+        }
+
+        function nomesInverso(){
+            var out2 = document.getElementById("idOut2")
+            nomesInv = []
+
+            for(i=0; i <= listaNomes.length; i++){
+                nomesInv = listaNomes[Number(listaNomes.length - i)]
+                out2.value = nomesInv[2]
+
+            }
+
+        }
+        
+
+    </script>
+    
+</body>
+</html>

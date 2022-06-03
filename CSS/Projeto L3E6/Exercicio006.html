@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <style>
+            input[type=button]{
+
+                border-radius: 10px;
+                width: 25vw;
+                background-color: rgb(28, 212, 28);
+                background-repeat: no-repeat;
+            }
+            input[type="number"] {
+
+                background-color: whitesmoke;
+                
+            }
+
+
+
+
+
+
+        </style>
+       
+        <form action="">
+            <br>
+            <label for="idNum1">Primeiro Numero:</label><br>
+            <input type="number" id="idNum1" name="nmNum1">
+            <br><br>
+            <label for="idNum2">Segundo Numero:</label><br>
+            <input type="number" id="idNum2" name="nmNum2">
+            <br><br>
+            <label for="idOp">Operador:</label><br> 
+            <input type="text" id="idOp" name="nmOp"> [+, -, /, *, **]
+            <br><br>
+            <input type="button" id="idButton1" value="Calcular" onclick="calc()">
+            <br><br>
+            <output id="idOut">Resultado da operação...</output>
+
+        </form>        
+
+        <script>
+
+            function calc(){
+                var num1 = Number(document.getElementById("idNum1").value)
+                var num2 = Number(document.getElementById("idNum2").value)
+                var op = document.getElementById("idOp").value
+                var out = document.getElementById("idOut")
+                var result = 0
+
+                if (op == '+'){
+                    result = num1 + num2
+                
+                }else if(op == '-'){
+                    result = num1 - num2
+                
+                }else if(op == '*'){
+                    result = num1 * num2
+                
+                }else if(op == '/'){
+                    if (num2 == 0){
+                        result = 'Erro, div/0'
+                    }else{
+                        result = num1 / num2
+                    }    
+                }else if(op == '**'){
+                    result = num1 ** num2
+                }else{
+                    result = "Algo errado"
+                }
+            
+                out.value = result
+
+            }
+
+
+
+            /* Construa uma calculadora. O programa deverá receber 2 números e o caractere equivalente a um
+             dos operadores aritméticos.
+             Efetuar a operação aritmética correspondente e apresentar o resultado. */
+
+        </script>
+    </body>
+</html>

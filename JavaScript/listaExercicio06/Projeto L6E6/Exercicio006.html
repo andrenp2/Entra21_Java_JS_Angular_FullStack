@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <h3>Exercicio 006<h3>
+        <p>
+            6. Crie um programa que preencha automaticamente um vetor numérico com 7 números <br>
+            gerados aleatoriamente pelo computador e depois mostre os valores gerados na tela.
+        </p>
+
+        <output id="idOut">Saida:</output>
+
+        <script>
+
+            var vetorNum = []
+            var posicoes = 7
+            var out = document.getElementById("idOut")
+ 
+            for (i=0; i < posicoes; i++){
+                
+                vetorNum[i] = Math.random().toFixed(1)*10
+                
+            }
+            
+            out.value = "Saida : " + vetorNum
+
+        </script>
+    </form>
+</body>
+</html>
