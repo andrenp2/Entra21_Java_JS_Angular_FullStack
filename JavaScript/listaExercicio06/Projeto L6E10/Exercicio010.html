@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exercicio 010</h3>
+            <p>
+                10. Faça um algoritmo que preencha um vetor de 30 posições
+                com números entre 1 e 15 sorteados pelo computador.<br>
+                Depois disso, peça para o usuário digitar um número (chave) e seu programa deve mostrar em que posições essa chave foi encontrada.<br>
+                Mostre também quantas vezes a chave foi sorteada.
+            </p>
+
+            <label for="idChave">Digite uma chave (entre 1 e 15):</label><br>
+            <input type="number" id="idChave" name="nmChave"><br><br>
+            <input type="button" id="idButton" name="nmButton" value="Verificar" onclick="verificarNum()">
+
+            <br><br>
+            <output id="idOut">Vetor : </output>
+            <br><br>
+            <output id="idOut1">Posições da chave : </output>
+            <br><br>
+            <output id="idOut2">Numero de vezes sorteadas :</output>
+        </form>
+        <script>
+
+            var vetorNum = []
+            var chavesIndice = []
+            var count = 0
+
+            function getRandom(max) {
+                return Math.floor(Math.random() * max + 1)
+            }
+
+            for (i=0; i <= 30; i++){
+                vetorNum[i] = getRandom(15)
+            }
+
+            document.getElementById("idOut").value = "Vetor 30 posições: " + vetorNum
+
+            function verificarNum(){
+                
+                var chave = Number(document.getElementById("idChave").value)
+                var out1 = document.getElementById("idOut1")
+                var out2 = document.getElementById("idOut2")
+
+                for (i=0; i <= 30; i++){
+                    if (vetorNum[i] == chave){
+                        count++
+                        chavesIndice.push(i)
+                    }
+                }
+
+                out1.value = "Posições da chave : " + chavesIndice 
+
+                out2.value = "Numero de vezes sorteados : " + count
+
+
+
+            }
+        </script>
+    </body>
+</html>
