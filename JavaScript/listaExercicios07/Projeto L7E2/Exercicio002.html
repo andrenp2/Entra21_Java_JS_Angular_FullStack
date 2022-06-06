@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form accept="">
+            <h3>Exercicio 002</h3>
+            <p>
+                2. Crie um programa que leia o nome e a idade de 9 pessoas <br>
+                e guarde esses valores em dois vetores, em posições relacionadas.<br>
+                No final, mostre uma listagem contendo apenas os dados das pessoas menores de idade.
+            </p>
+
+            <label for="idNome">Nome:</label><br>
+            <input type="text" id="idNome"><br><br>
+
+            <label for="idIdade">Idade:</label><br>
+            <input type="number" id="idIdade"><br><br>
+
+            <input type="button" id="idButton1" value="Salvar" onclick="salvarDados()">
+            <input type="button" id="idButton2" value="Verificar" onclick="verificarDados()">
+
+            <br><br>
+            <output id="idOut1">Menores de idade:</output>
+
+        </form>
+        <script>
+
+            var listaNomes = []
+            var listaIdades = []
+            var count = 0
+
+            function salvarDados(){
+
+                var nome = document.getElementById("idNome").value
+                var idade = Number(document.getElementById("idIdade").value)
+
+                document.getElementById("idNome").value = ""
+                document.getElementById("idIdade").value = ""
+
+                count++
+
+                if (count == 9){
+                    document.getElementById("idButton1").disabled = true
+                    document.getElementById("idNome").disabled = true
+                    document.getElementById("idIdade").disabled = true
+                }
+
+                listaNomes.push(nome)
+                listaIdades.push(idade)
+
+            }
+
+            function verificarDados(){
+
+                var out = document.getElementById("idOut1")
+                var verIdade = [] 
+                var verNome = [] 
+
+                for (i=0; i < listaIdades.length; i++){
+
+                    if (listaIdades[i] <= 18){
+                        verIdade.push(listaIdades[i])
+                        verNome.push(listaNomes[i])
+                    }
+
+                }
+
+                for (i=0; i < verIdade.length; i++){
+
+                    out.value = out.value + "[Nome: " + verNome[i] + " - Idade : " + verIdade[i] + "]   -   "
+
+                }
+
+            }
+
+
+
+        </script>
+    </body>
+</html>
