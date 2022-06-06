@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exercicio 009</h3>
+            <p>
+                9. Desenvolva um programa que leia 10 números inteiros e guarde-os em um vetor.<br>
+                No final, mostre quais são os números pares que foram digitados e em que posições eles estão armazenados.
+            </p>
+
+            <label for="idNum">Digite um número:</label><br>
+            <input type="number" id="idNum" name="nmNum"><br><br>
+            <input type="button" id="idButton" value="Salvar" onclick="salvarNum()">
+            <input type="button" id="idButton2" value="Verificar" onclick="verificarNum()"><br><br>
+            <output id="idOut">Quantidade de número digitados:</output><br>
+            <output id="idOut2"></output><br>
+            <output id="idOut3">Numeros pares: </output>
+            <output id="idOut4"></output><br><br>
+            <output id="idOut5">Posições dos numeros pares:</output>
+            <output id="idOut6"></output><br><br>
+            
+
+        </form>
+        <script>
+
+            var listaNum = []
+            count = 0
+
+            function salvarNum(){
+
+                count++ 
+
+                var numero = Number(document.getElementById("idNum").value)
+                document.getElementById("idNum").value = ""
+
+                if (count == 10){
+                    document.getElementById("idNum").disabled = true
+                    document.getElementById("idButton").disabled = true
+                }
+
+                listaNum.push(numero)
+
+                document.getElementById("idOut").value = "Quantidade de numeros digitados : " + count
+
+            }
+
+            function verificarNum(){
+
+                var out4 = document.getElementById("idOut4")
+                var out6 = document.getElementById("idOut6")
+
+                document.getElementById("idOut2").value = "Array completo : " + listaNum
+                // multiplos de 10
+
+                for (i=0; i < listaNum.length; i++){
+                    if ((listaNum[i] % 2 == 0)&&(listaNum[i] != 0)){
+                        out4.value = out4.value + listaNum[i] + " "
+                        out6.value = out6.value + i + " "
+                    }
+                }
+            }
+
+
+        </script>
+    </body>
+</html>
