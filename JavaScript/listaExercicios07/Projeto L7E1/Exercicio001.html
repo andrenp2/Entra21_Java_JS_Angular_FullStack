@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exercicio 001</h3>
+            <p>
+                1. Faça um algoritmo que leia a nota de 10 alunos de uma turma e guarde-as em um vetor. No final, mostre: <br>
+                a) Qual é a média da turma  <br>
+                b) Quantos alunos estão acima da média da turma  <br>
+                c) Qual foi a maior nota digitada  <br>
+                d) Em que posições a maior nota aparece <br>
+            </p>
+
+            <label for="idNota">Insira a nota:</label><br>
+            <input type="number" id="idNota" name="nmNota"><br><br>
+            <input type="button" id="idButton1" value="Salvar" onclick="salvarNotas()">
+            <input type="button" id="idButton2" value="Verificar Notas" onclick="verificarNotas()">
+            <br><br>
+
+            <output id="idOut1">Média da turma: </output><br><br>
+            <output id="idOut2">Quantos acima da média: </output><br><br>
+            <output id="idOut3">Qual maior nota: </output><br><br>
+            <output id="idOut4">Posição da maior nota: </output><br><br>
+
+        </form>        
+        <script>
+
+            var listaNotas = []
+            var contador = 0
+
+            function salvarNotas(){
+
+                contador++
+
+                if (contador == 10){
+                    document.getElementById("idNota").disabled = true
+                    document.getElementById("idButton1").disabled = true
+                }
+
+                var nota = Number(document.getElementById("idNota").value)
+
+                listaNotas.push(nota)
+
+                document.getElementById("idNota").value = ""
+
+            }
+
+            function verificarNotas(){
+
+                var somaNotas = 0
+                var media = 0 
+                var contAcimaMedia = 0
+                var maiorNota = 0
+                var posicao = 0
+
+                var out1 = document.getElementById("idOut1")
+                var out2 = document.getElementById("idOut2")
+                var out3 = document.getElementById("idOut3")
+                var out4 = document.getElementById("idOut4")
+
+                for (i=0; i < listaNotas.length; i++){
+
+                    somaNotas = somaNotas + listaNotas[i] 
+                    console.log("NOTAS",somaNotas)
+
+                }
+
+                media = ( somaNotas / contador )
+                console.log("MEDIA",media)
+
+                for (i=0; i <= listaNotas.length; i++){
+
+                    if (listaNotas[i] > media){
+                        contAcimaMedia++
+                    }
+                }
+
+                for (i=0; i < listaNotas.length; i++){
+
+                    if (listaNotas[i] > maiorNota){
+                        maiorNota = listaNotas[i]
+                        posicao = i
+
+                    }
+
+                }
+
+                out1.value = "Média da turma : " + media
+                out2.value = "Quantos acima da média : " + contAcimaMedia
+                out3.value = "Maior Nota : " + maiorNota
+                out4.value = "Posição da nota : " + posicao
+
+            }
+
+            // 10 - 8 - 7 - 4 - 5 - 7 - 7 - 10 - 3 - 5
+            // maior 10
+            // posicao [0]
+            // media 6.7
+
+        </script>
+    </body>
+</html>
