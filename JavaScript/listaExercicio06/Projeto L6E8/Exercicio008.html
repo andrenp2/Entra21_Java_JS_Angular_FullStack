@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exercicio 008</h3>
+            <p>
+                8. Escreva um programa que leia 15 números e guarde-os em um vetor. <br>
+                No final, mostre o vetor inteiro na tela e em seguida mostre em que posições<br> foram digitados valores que são múltiplos de 10.
+            </p>
+
+            <label for="idNum">Digite um número:</label><br>
+            <input type="number" id="idNum" name="nmNum"><br><br>
+            <input type="button" id="idButton" value="Salvar" onclick="salvarNum()">
+            <input type="button" id="idButton2" value="Verificar" onclick="verificarNum()"><br><br>
+            <output id="idOut">Quantidade de número digitados:</output><br>
+            <output id="idOut2"></output><br>
+            <output id="idOut4">Posiçoes dos multiplos de 10: </output>
+            <output id="idOut3"></output>
+            
+
+        </form>
+        <script>
+
+            var listaNum = []
+            count = 0
+
+            function salvarNum(){
+
+                count++ 
+
+                var numero = Number(document.getElementById("idNum").value)
+                document.getElementById("idNum").value = ""
+
+                if (count == 15){
+                    document.getElementById("idNum").disabled = true
+                    document.getElementById("idButton").disabled = true
+                }
+
+                listaNum.push(numero)
+
+                document.getElementById("idOut").value = "Quantidade de numeros digitados : " + count
+
+            }
+
+            function verificarNum(){
+
+                var out3 = document.getElementById("idOut3")
+                document.getElementById("idOut2").value = "Array completo : " + listaNum
+                // multiplos de 10
+
+                for (i=0; i < listaNum.length; i++){
+                    if ((listaNum[i] % 10 == 0)&&(listaNum[i] != 0)){
+                        out3.value = out3.value + i + " "
+                    }
+                }
+            }
+
+
+        </script>
+    </body>
+</html>

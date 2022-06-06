@@ -8,7 +8,7 @@
 </head>
 <body>
     <form action="">
-        <h3>Exercicio 006<h3>
+        <h3>Exercicio 007<h3>
         <p>
             7. Faça um programa que leia 7 nomes de pessoas e guarde-os em um vetor.<br>
             No final, mostre uma listagem com todos os nomes informados, na ordem inversa daquela em que eles foram informados.
@@ -24,9 +24,9 @@
     </form>
     <script>
 
-        var listaNomes = []
-        var out = document.getElementById("idOut")
         
+        var out = document.getElementById("idOut")
+        var listaNomes = []
 
         function salvarNomes(){
             
@@ -40,10 +40,14 @@
             nomesInv = []
 
             for(i=0; i <= listaNomes.length; i++){
-                nomesInv = listaNomes[Number(listaNomes.length - i)]
-                out2.value = nomesInv[2]
+                // nomesInv = listaNomes[Number(listaNomes.length - i)]
+                nomesInv.unshift(listaNomes[i])
+
+                // unshift serve para adicionar elemento no inicio do array
 
             }
+
+            out2.value = "Lista nomes : " + nomesInv
 
         }
         
