@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exercicio 005</h3>
+            <p>
+                5. Crie um programa para:<br>
+                - Ler 10 números.<br>
+                - Permitir ao usuário que escolha entre:<br>
+                -   Ordenar em ordem crescente <br>                
+                -   Ordenar em ordem decrescente <br>
+            </p>
+            
+            <label for="idNum">Numero:</label><br>
+            <input type="number" id="idNum" name="nmNum"><br><br>
+            <input type="button" id="idButton1" value="Salvar" onclick="salvarNum()">
+
+            <br><br>
+            <input type="radio" id="idCrescente" name="nmOrdem" checked>
+            <label for="idCrescente">Ordem Crescente</label>
+
+            <br><br>
+            <input type="radio" id="idDecrescente" name="nmOrdem">
+            <label for="idCrescente">Ordem Decrescente</label>
+
+            <br><br>
+            <input type="button" id="idButton2" value="Ordenar" onclick="ordernarNum()">
+
+            <br><br>
+            <output id="idOut">Saída...</output>
+        </form>
+        <script>
+
+            var listaNum = []
+            var countNum = 0
+
+            function salvarNum(){
+            
+                /* funçao para salvar os numeros em um vetor */
+
+                countNum++
+
+                if (countNum == 10){
+                    document.getElementById("idNum").disabled = true
+                    document.getElementById("idButton1").disabled = true
+                }
+
+                var num = Number(document.getElementById("idNum").value)
+
+                listaNum.push(num)
+
+                document.getElementById("idNum").value = ""
+
+            }
+
+            function ordernarNum(){
+
+                /* funcao para ordenar os numeros em ordem crescente ou decrescente
+                de acordo com o radio button selecionado */
+
+                var arrayCresc = []
+                var arrayDecresc = []
+                var aux = 99999
+                var checkCrescente = document.getElementById("idCrescente").checked
+                var checkDecrescente = document.getElementById("idDecrescente").checked
+                var out = document.getElementById("idOut")
+
+
+
+                for (i=0; i < listaNum.length; i++){
+
+                    arrayCresc = listaNum.sort(function(num1,num2){
+                        return num1-num2
+                    })
+                    }
+
+
+                if (checkCrescente){
+
+                    out.value = "Array em ordem crescente : " + arrayCresc
+
+
+                }else if(checkDecrescente){
+
+                    for (i=0; i <= listaNum.length; i++){
+
+                        posicao = Number(arrayCresc.length - ( 1 * i ))
+
+                        arrayDecresc[i] = arrayCresc[posicao]
+
+                        console.log(posicao)
+
+                    }
+
+                    out.value = "Array em ordem decrescente : " + arrayDecresc
+
+                }
+
+                
+
+
+
+            }
+
+        </script>
+    </body>
+</html>
