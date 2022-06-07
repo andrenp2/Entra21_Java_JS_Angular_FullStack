@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exercicio 006</h3>
+            <p>
+                6. Crie um programa para gerenciar as notas dos alunos de uma escola.<br> 
+                - Crie um vetor para armazenar o nome dos alunos.<br> 
+                - Crie um vetor para armazenar o endereço dos alunos. <br> 
+                - Crie um vetor para armazenar o nome da mãe dos alunos.<br> 
+                - Crie um vetor para armazenar o nome do pai dos alunos. <br> 
+                - Crie um vetor para armazenar o telefone dos pais dos alunos. <br> 
+                - Crie 4 vetores para armazenar 4 notas por aluno.<br> 
+                - As informações nos vetores se relacionarão através dos indexadores dos vetores.<br> 
+                - Crie uma tela para cadastrar os alunos (nome, endereço, nome dos pais, telefone).<br> 
+                - Crie uma tela para cadastrar as notas dos alunos. <br> 
+                - Crie uma tela para consultar o cadastro e situação dos alunos. <br> 
+            </p>
+            <fieldset>
+                <legend>Informações do Aluno:</legend>
+            
+                <label for="idNome">Nome do Aluno:</label><br>
+                <input type="text" id="idNome">
+                <br><br>
+                <label for="idEndereco">Endereço do Aluno:</label><br>
+                <input type="text" id="idEndereco">
+                <br><br>
+                <label for="idMae">Nome da Mãe:</label><br>
+                <input type="text" id="idMae">
+                <br><br>
+                <label for="idPai">Nome do Pai:</label><br>
+                <input type="text" id="idPai">
+                <br><br>
+                <label for="idTelefone">Telefone:</label><br>
+                <input type="text" id="idTelefone">
+                <br><br>
+                <input type="button" id="idButton1" value="Cadastrar" onclick="cadastrarAluno()">
+
+            </fieldset>
+            <fieldset>
+                <legend>Notas do Aluno:</legend>
+                <br>
+                <label for="idNota1">Nota 1:</label>
+                <input type="number" id="idNota1">
+                <br><br>
+                <label for="idNota2">Nota 2:</label>
+                <input type="number" id="idNota2">
+                <br><br>
+                <label for="idNota3">Nota 3:</label>
+                <input type="number" id="idNota3">
+                <br><br>
+                <label for="idNota4">Nota 4:</label>
+                <input type="number" id="idNota4">
+                <br><br>
+                <input type="button" id="idButton2" value="Salvar Notas" onclick="salvarNotas()">
+            </fieldset>
+            <fieldset>
+                <legend>Consultar Aluno:</legend>
+                <br>
+
+                <label for="idBuscarAluno">Buscar Aluno:</label>
+                <input type="text" id="idBuscarAluno">
+                <input type="button" id="idButton3" value="Buscar" onclick="buscarNome()">
+            </fieldset>
+
+            <fieldset>
+                <legend>Resultado da Pesquisa:</legend>
+                <br>
+
+                <label for="idShowNome">Nome:</label><br>
+                <input type="text" id="idShowNome"><br><br>
+
+                <label for="idShowEndereco">Endereço:</label><br>
+                <input type="text" id="idShowEndereco"><br><br>
+
+                <label for="idShowMae">Mãe:</label><br>
+                <input type="text" id="idShowMae"><br><br>
+
+                <label for="idShowPai">Pai:</label><br>
+                <input type="text" id="idShowPai"><br><br>
+
+                <label for="idShowTelefone">Telefone:</label><br>
+                <input type="text" id="idShowTelefone"><br><br>
+
+                <label for="idShowMedia">Média:</label><br>
+                <input type="text" id="idShowMedia"><br><br>
+
+                <output id="idOut">Situação do Aluno:</output>
+
+            </fieldset>
+        </form>
+        <script>
+
+            var alunos = []
+            var enderecos = []
+            var nomesMaes = []
+            var nomesPais = []
+            var telefones = []
+
+            var notas1 = []
+            var notas2 = []
+            var notas3 = []
+            var notas4 = []
+            var medias = []
+
+            function cadastrarAluno(){
+
+                aluno = document.getElementById("idNome").value
+                endereco = document.getElementById("idEndereco").value
+                mae = document.getElementById("idMae").value
+                pai = document.getElementById("idPai").value
+                telefone = document.getElementById("idTelefone").value
+
+                // salvando nos vetores ... 
+                alunos.push(aluno.toLowerCase())
+                enderecos.push(endereco)
+                nomesMaes.push(mae)
+                nomesPais.push(pai)
+                telefones.push(telefone)
+
+                document.getElementById("idNome").disabled = true
+                document.getElementById("idEndereco").disabled = true
+                document.getElementById("idMae").disabled = true
+                document.getElementById("idPai").disabled = true
+                document.getElementById("idTelefone").disabled = true
+
+                
+            }
+
+            function salvarNotas(){
+
+                n1 = Number(document.getElementById("idNota1").value)
+                n2 = Number(document.getElementById("idNota2").value)
+                n3 = Number(document.getElementById("idNota3").value)
+                n4 = Number(document.getElementById("idNota4").value)
+
+                notas1.push(n1)
+                notas2.push(n2)
+                notas3.push(n3)
+                notas4.push(n4)
+
+                // recebendo a media ...
+                medias.push((n1+n2+n3+n4)/4)
+
+                document.getElementById("idNota1").disabled = true
+                document.getElementById("idNota2").disabled = true
+                document.getElementById("idNota3").disabled = true
+                document.getElementById("idNota4").disabled = true
+
+            }
+
+            function buscarNome(){
+
+                var nomeBusca = (document.getElementById("idBuscarAluno").value).toLowerCase()
+
+                console.log(nomeBusca)
+
+                for (i=0; i < alunos.length; i++){
+
+                    if (nomeBusca == alunos[i]){
+
+                        // nome
+                        document.getElementById("idShowNome").value = alunos[i]
+                        document.getElementById("idShowNome").disabled = true
+
+                        // endereco
+                        document.getElementById("idShowEndereco").value = enderecos[i]
+                        document.getElementById("idShowEndereco").disabled = true
+
+                        // mae
+                        document.getElementById("idShowMae").value = nomesMaes[i]
+                        document.getElementById("idShowMae").disabled = true
+
+                        // pai
+                        document.getElementById("idShowPai").value = nomesPais[i]
+                        document.getElementById("idShowPai").disabled = true
+
+                        // telefone
+                        document.getElementById("idShowTelefone").value = telefones[i]
+                        document.getElementById("idShowTelefone").disabled = true
+
+                        // media 
+                        document.getElementById("idShowMedia").value = medias[i]
+                        document.getElementById("idShowMedia").disabled = true
+
+                        if(medias[i] >= 7){
+                            document.getElementById("idOut").value = "Aluno APROVADO!"
+                        }else{
+                            document.getElementById("idOut").value = "Aluno REPROVADO!"
+                        }
+
+                    }
+                }
+
+            }
+
+
+
+
+        </script>
+
+
+
+    </body>
+</html>
