@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exericio 004</h3>
+            <p>
+                4. Crie um programa para armazenar informações meteorológicas.<br>
+                - Crie um vetor para armazenar 30 temperaturas.<br>
+                - Calcular a média das temperaturas.<br>
+                - O usuário pode informar um dia qualquer e o programa deve dizer se a temperatura desse dia estava acima ou abaixo da média.  
+            </p>
+
+            <label for="idTemp">Temperatura:</label><br>
+            <input type="number" id="idTemp" name="nmTemp"><br>
+            <output id="idOut1">numero de temperatura digitadas:</output>
+            <br><br>
+            <input type="button" id="idButton1" value="Salvar" onclick="salvarTemp()">
+            <br><br>
+            <output id="idOut2">Media Temperaturas:</output>
+            <br><br>
+            <label for="idDia">Buscar temperatura pelo dia:</label><br>
+            <input type="number" id="idDia">
+            <br><br>
+            <input type="button" id="idButton2" value="Buscar" onclick="buscarDia()">
+            <br><br>
+            <output id="idOut3">A temperatura está...</output>
+
+        </form>        
+        <script>
+
+            var temperaturas = []
+            var dias = 30
+            var media = 0 
+            var contaTemp = 0
+            var somaTemp = 0
+            var dia = 0
+
+            function salvarTemp(){
+
+                contaTemp++
+
+                if (contaTemp == 30){
+                    document.getElementById("idTemp").disabled = true
+                    document.getElementById("idButton1").disabled = true
+                }
+
+                var temp = Number(document.getElementById("idTemp").value)
+
+                temperaturas.push(temp)
+
+                document.getElementById("idTemp").value = ""
+                
+                document.getElementById("idOut1").value = "entradas digitadas : " + contaTemp
+
+                somaTemp = somaTemp + temp
+
+                media = somaTemp / contaTemp
+                
+                document.getElementById("idOut2").value = "Media temperaturas : " + media.toFixed(2)
+
+            }
+
+            function buscarDia(){
+
+                dia = Number(document.getElementById("idDia").value)
+
+                for (i=1; i < temperaturas.length+1; i++){
+
+                    if (i == dia){
+                        if (temperaturas[i] >= media){
+                            document.getElementById("idOut3").value = "Temperatura do dia " + dia + " [" + temperaturas[i] + "º] está acima da média. " 
+                        }else{
+                            document.getElementById("idOut3").value = "Temperatura do dia " + dia + " [" + temperaturas[i] + "º] está abaixo da média. " 
+                        }
+                    }
+                }
+
+            }
+
+        </script>
+    </body>
+</html>
