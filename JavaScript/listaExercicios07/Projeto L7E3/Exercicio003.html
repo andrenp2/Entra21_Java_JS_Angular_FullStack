@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="">
+            <h3>Exercicio 003</h3>
+            <p>
+                3. Faça um algoritmo que leia o nome, o sexo e o salário de 5 funcionários e guarde esses dados em três vetores.<br>
+                No final, mostre uma listagem contendo apenas os dados das funcionárias mulheres que ganham mais de R$5 mil.
+            </p>
+            <fieldset>
+                <legend>Cadastro:</legend>
+            
+                <label for="idNome" >Nome:</label><br>
+                <input type="text" id="idNome" name="nmNome">
+                <br><br>
+
+                <label id="idSexo">Sexo:</label><br><br>
+                <label for="idMasc">Masculino:</label>
+                <input type="radio" id="idMasc" name="nmSexo" checked><br><br>
+                <label for="idFem">Feminino:</label>
+                <input type="radio" id="idFem" name="nmSexo">
+                <br><br>
+
+                <label for="idSalario">Salário:</label><br>
+                <input type="number" id="idSalario" name="nmSalario">
+
+                <br><br>
+                <input type="button" id="idButton1" value="Salvar" onclick="salvarDados()">
+                <input type="button" id="idButton2" value="Verificar" onclick="imprimirListagem()">
+                <br><br>
+                <output id="idOut">Output:</output>
+            </fieldset>
+        </form>
+        <script>
+
+            var listaNome = []
+            var listaSexo = []
+            var listaSalario = []
+            var count = 0
+
+            function salvarDados(){
+
+                var out = document.getElementById("idOut")
+
+                count++
+
+                if(count == 5){
+                    document.getElementById("idNome").disabled = true
+                    document.getElementById("idSalario").disabled = true
+                    document.getElementById("idButton1").disabled = true
+                }
+
+                listaNome.push(document.getElementById("idNome").value)
+                listaSalario.push(Number(document.getElementById("idSalario").value))
+
+                document.getElementById("idNome").value = ""
+                document.getElementById("idSalario").value = ""
+
+
+                var masc = document.getElementById("idMasc").checked
+                var fem = document.getElementById("idFem").checked
+
+                if(masc == true){
+                    listaSexo.push("Masculino")
+                }else if(fem == true){
+                    listaSexo.push("Feminino")
+                }
+
+            }
+
+            function imprimirListagem(){
+
+                for (i=0; i <= listaSexo.length; i++){
+
+                    if ((listaSexo[i] == "Feminino") && (listaSalario[i] >= 5000)){
+                        console.table([listaNome[i], listaSexo[i], listaSalario[i]])
+                    }
+                }
+
+            }
+
+
+
+
+        </script>
+        
+    </body>
+</html>
