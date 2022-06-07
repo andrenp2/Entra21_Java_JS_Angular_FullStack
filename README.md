@@ -15,4 +15,6 @@ Repositório onde será colocado o andamento do curso de Desenvolvedor FullStack
     - [Lista Exercícios - 3](https://github.com/andrenp2/Entra21_Java_JS_Angular_FullStack/tree/main/JavaScript/listaExercicios03)  Estrutura Condicional/Seleçao
     - [Lista Exercícios - 4](https://github.com/andrenp2/Entra21_Java_JS_Angular_FullStack/tree/main/JavaScript/listaExercicios04)  Estrutura de Repetição
     - [Lista Exercícios - 5](https://github.com/andrenp2/Entra21_Java_JS_Angular_FullStack/tree/main/JavaScript/listaExercicios05)  Exercícios de Fixação
+    - [Lista Exercícios - 6](https://github.com/andrenp2/Entra21_Java_JS_Angular_FullStack/tree/main/JavaScript/listaExercicios06)  Estrutura de repetição e arrays
+    - [Lista Exercícios - 7](https://github.com/andrenp2/Entra21_Java_JS_Angular_FullStack/tree/main/JavaScript/listaExercicios07)  Exercícios arrays, funcoes e estrutura de repetições
  
