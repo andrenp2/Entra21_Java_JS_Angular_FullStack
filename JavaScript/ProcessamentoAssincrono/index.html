@@ -10,12 +10,22 @@
             <input type="text" id="idMoeda" placeholder="Cod. Moeda"><br><br>
             <input type="datetime" id="idData" placeholder="Data (mm-dd-ano)"><br><br>
             <input type="button" value="Buscar" id="idBtBuscar"><br><br>
-            <output id="idOut">Saída</output>
+            <output id="idOut">Saída</output><br><br>
+            <output id="idParCompra">Saída</output><br><br>
+            <output id="idParVenda">Saída</output><br><br>
+            <output id="idCotCompra">Saída</output><br><br>
+            <output id="idCotVenda">Saída</output><br><br>
+            <output id="idDataHora">Saída</output><br><br>
             
         <script>
 
             var btBuscarCotacao = document.getElementById("idBtBuscar")
             var out = document.getElementById("idOut")
+            var outParCompra = document.getElementById("idParCompra")
+            var outParVenda = document.getElementById("idParVenda")
+            var outCotCompra = document.getElementById("idCotCompra")
+            var outCotVenda = document.getElementById("idCotVenda")
+            var outDataHora = document.getElementById("idDataHora")
 
             // API - Application Programing Interface
             btBuscarCotacao.onclick = function (codigoMoeda, dataCotacao){
@@ -43,14 +53,20 @@
 
                 let cotacaoObj = JSON.parse(cotacaoJson)
                 
-                // do fechamento -> [4] 
+                // cotacao do fechamento -> array[4] 
 
                 var fechamento = cotacaoObj.value[4]
 
-                out.value = ("Paridade Compra : " + fechamento.paridadeCompra + "; Paridade Venda : " + fechamento.paridadeVenda + "; Cotacao Compra : " + fechamento.cotacaoCompra + "; Cotacao Venda : " + fechamento.cotacaoVenda + "; Data/Hora : " + fechamento.dataHoraCotacao)
+                /*out.value = ("Paridade Compra : " + fechamento.paridadeCompra + ";\n Paridade Venda : " + 
+                            fechamento.paridadeVenda + "; Cotacao Compra : " + fechamento.cotacaoCompra + "; Cotacao Venda : " +
+                            fechamento.cotacaoVenda + "; Data/Hora : " + fechamento.dataHoraCotacao)
+                */
 
-                //console.log("Estou aqui 2", cotacaoObj.value[4])
-                //console.log("Estou aqui 112", fechamento.paridadeCompra)
+                outParCompra.value = ("Paridade Compra : " + fechamento.paridadeCompra)
+                outParVenda.value = ("Paridade Venda : " + fechamento.paridadeVenda)
+                outCotCompra.value = ("Cotacao Compra : " + fechamento.cotacaoCompra)
+                outCotVenda.value = ("Cotacao Venda : " + fechamento.cotacaoVenda)
+                outDataHora.value = ("Data/Hora : " + fechamento.dataHoraCotacao)
                 
             }
             
