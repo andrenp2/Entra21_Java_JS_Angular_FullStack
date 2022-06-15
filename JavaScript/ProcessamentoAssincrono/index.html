@@ -9,11 +9,13 @@
     <body>
             <input type="text" id="idMoeda" placeholder="Cod. Moeda"><br><br>
             <input type="datetime" id="idData" placeholder="Data (mm-dd-ano)"><br><br>
-            <input type="button" value="Buscar" id="idBtBuscar">
+            <input type="button" value="Buscar" id="idBtBuscar"><br><br>
+            <output id="idOut">Saída</output>
             
         <script>
 
             var btBuscarCotacao = document.getElementById("idBtBuscar")
+            var out = document.getElementById("idOut")
 
             // API - Application Programing Interface
             btBuscarCotacao.onclick = function (codigoMoeda, dataCotacao){
@@ -36,14 +38,20 @@
 
             }
 
-            function imprimirCotacao(cotacaoJSON){
-                console.log(cotacaoJSON)
+            function imprimirCotacao(cotacaoJson){
+                //console.log(cotacaoJSON)
 
-                let cotacaoObj = JSON.parse(cotacaoJSON)
+                let cotacaoObj = JSON.parse(cotacaoJson)
+                
+                // do fechamento -> [4] 
 
-                console.log(cotacaoObj);
+                var fechamento = cotacaoObj.value[4]
 
+                out.value = ("Paridade Compra : " + fechamento.paridadeCompra + "; Paridade Venda : " + fechamento.paridadeVenda + "; Cotacao Compra : " + fechamento.cotacaoCompra + "; Cotacao Venda : " + fechamento.cotacaoVenda + "; Data/Hora : " + fechamento.dataHoraCotacao)
 
+                //console.log("Estou aqui 2", cotacaoObj.value[4])
+                //console.log("Estou aqui 112", fechamento.paridadeCompra)
+                
             }
             
             
