@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+            <input type="text" id="idMoeda" placeholder="Cod. Moeda"><br><br>
+            <input type="datetime" id="idData" placeholder="Data (mm-dd-ano)"><br><br>
+            <input type="button" value="Buscar" id="idBtBuscar">
+            
+        <script>
+
+            var btBuscarCotacao = document.getElementById("idBtBuscar")
+
+            // API - Application Programing Interface
+            btBuscarCotacao.onclick = function (codigoMoeda, dataCotacao){
+                var codigoMoeda = document.getElementById("idMoeda").value
+                var dataCotacao = document.getElementById("idData").value
+
+                console.log("moeda",codigoMoeda, dataCotacao)
+                var xhr = new XMLHttpRequest();
+                
+                var url = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda='"+codigoMoeda+"'&@dataCotacao='"+dataCotacao+"'&$top=100&$format=json&$select=paridadeCompra,paridadeVenda,cotacaoCompra,cotacaoVenda,dataHoraCotacao,tipoBoletim"
+
+                xhr.open("GET", url)
+
+                xhr.addEventListener("load", function(){
+                    var resposta = xhr.responseText;
+                    imprimirCotacao(resposta)
+                })
+
+                xhr.send()
+
+            }
+
+            function imprimirCotacao(cotacaoJSON){
+                console.log(cotacaoJSON)
+
+                let cotacaoObj = JSON.parse(cotacaoJSON)
+
+                console.log(cotacaoObj);
+
+
+            }
+            
+            
+
+        </script>
+        
+    </body>
+</html>
