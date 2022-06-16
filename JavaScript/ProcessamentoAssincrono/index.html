@@ -7,15 +7,29 @@
     <title>Document</title>
 </head>
     <body>
-            <input type="text" id="idMoeda" placeholder="Cod. Moeda"><br><br>
+            <label for="idMoeda">Escolha a Moeda:</label><br><br>
+            <select id="idMoeda">
+                <option value="AUD">Dolar Australiano</option>
+                <option value="CAD">Dolar Canadense</option>
+                <option value="CHF">Franco Suiço</option>
+                <option value="DKK">Coroa Dinamarquesa</option>
+                <option value="EUR">Euro</option>
+                <option value="GBP">Libra Esterlina</option>
+                <option value="JPY">Iene</option>
+                <option value="NOK">Coroa Noroeguesa</option>
+                <option value="SEK">Coroa Sueca</option>
+                <option value="USD">Dolar Americano</option>
+            </select><br><br>
             <input type="datetime" id="idData" placeholder="Data (mm-dd-ano)"><br><br>
             <input type="button" value="Buscar" id="idBtBuscar"><br><br>
-            <output id="idOut">Saída</output><br><br>
-            <output id="idParCompra">Saída</output><br><br>
-            <output id="idParVenda">Saída</output><br><br>
-            <output id="idCotCompra">Saída</output><br><br>
-            <output id="idCotVenda">Saída</output><br><br>
-            <output id="idDataHora">Saída</output><br><br>
+            <output id="idOut">...</output><br><br>
+            <output id="idParCompra">...</output><br><br>
+            <output id="idParVenda">...</output><br><br>
+            <output id="idCotCompra">...</output><br><br>
+            <output id="idCotVenda">...</output><br><br>
+            <output id="idDataHora">...</output><br><br>
+            <br><br>
+            <output id="idOut2">...</output><br><br>
             
         <script>
 
@@ -31,7 +45,11 @@
             btBuscarCotacao.onclick = function (codigoMoeda, dataCotacao){
                 var codigoMoeda = document.getElementById("idMoeda").value
                 var dataCotacao = document.getElementById("idData").value
+                buscarCotacao(codigoMoeda, dataCotacao)
 
+            }
+
+            function buscarCotacao(codigoMoeda, dataCotacao){    
                 console.log("moeda",codigoMoeda, dataCotacao)
                 var xhr = new XMLHttpRequest();
                 
@@ -42,6 +60,7 @@
                 xhr.addEventListener("load", function(){
                     var resposta = xhr.responseText;
                     imprimirCotacao(resposta)
+                    imprimirCotacaoDois(resposta)
                 })
 
                 xhr.send()
@@ -69,8 +88,21 @@
                 outDataHora.value = ("Data/Hora : " + fechamento.dataHoraCotacao)
                 
             }
-            
-            
+
+            function imprimirCotacaoDois(cotacaoJson){
+
+                let boletinsCotacaoObj = JSON.parse(cotacaoJson)
+                let msn = "("
+
+                boletinsCotacaoObj.value.forEach(boletim => {
+                    boletim.paridadeCompra
+                    msn = msn + boletim.paridadeCompra + ";"
+                });
+
+                msn = msn + ")"
+
+                document.getElementById("idOut2").value = msn
+            }
 
         </script>
         
