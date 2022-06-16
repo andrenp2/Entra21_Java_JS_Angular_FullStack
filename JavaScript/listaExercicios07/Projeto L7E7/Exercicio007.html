@@ -18,9 +18,184 @@
                 - Apresentar os resultados em ordem decrescente (do primeiro ao ultimo colocado).<br>
             </p>
 
+            <h3>Adivinhe a capital do estado brasileiro abaixo:</h3>
+            <output id="idEstado">Estado:</output><br><br>
+
+            <output id="idOutJogador">Rodada: Jogador 1 </output><br><br>
             
+            <select id="idCapitais">
+                <option value="Nulo">Capital</option>
+                <option value="Porto Alegre">Porto Alegre</option>
+                <option value="Florianópolis">Florianópolis</option>
+                <option value="Curitiba">Curitiba</option>
+                <option value="Cuiabá">Cuiabá</option>
+                <option value="Belo Horizonte">Belo Horizonte</option>
+                <option value="Fortaleza">Fortaleza</option>
+                <option value="Salvador">Salvador</option>
+                <option value="Goiânia">Goiânia</option>
+                <option value="São Paulo">São Paulo</option>
+                <option value="Belém">Belém</option>
+                <option value="Rio de Janeiro">Rio de Janeiro</option>
+                <option value="Manaus">Manaus</option>
+                <option value="Recife">Recife</option>
+                <option value="São Luís">São Luís</option>
+                <option value="Vitória">Vitória</option>
+                <option value="Porto Velho">Porto Velho</option>
+                <option value="Natal">Natal</option>
+                <option value="João Pessoa">João Pessoa</option>
+                <option value="Maceió">Maceió</option>
+                <option value="Teresina">Teresina</option>
+                <option value="Campo Grande">Campo Grande</option>
+                <option value="Boa Vista">Boa Vista</option>
+                <option value="Rio Branco">Rio Branco</option>
+                <option value="Aracaju">Aracaju</option>
+                <option value="Palmas">Palmas</option>
+                <option value="Macapá">Macapá</option>
+                <option value="Brasília">Brasília</option>
+            </select>
+
+            <input type="button" id="idBtRegistrar" value="Registrar!">
+            <br>
+            <output id="idJogada"></output><br><br>
+            <input type="button" id="idBtConferir" value="Conferir">
+
+            <br><br><output id="idOut1">SAIDENHA TESTE</output>
+            <br><br><output id="idOut2">SAIDENHA TESTE</output>
+            <br><br><output id="idOut3">SAIDENHA TESTE</output>
+            <br><br><output id="idOut4">SAIDENHA TESTE</output>
+
+            <br><br><output id="idPt1">Pontuacao jogador 1:</output>
+            <br><br><output id="idPt2">Pontuacao jogador 2:</output>
+            <br><br><output id="idPt3">Pontuacao jogador 3:</output>
+            <br><br><output id="idPt4">Pontuacao jogador 4:</output>
+
 
         </form>
-        
+        <script>
+            // definir variaveis globais 
+
+            var estados = ['Rio Grande do Sul', 'Santa Catarina', 'Paraná', 'Mato Grosso', 'Minas Gerais', 'Ceará', 'Bahia', 
+                           'Goiás', 'São Paulo', 'Pará', 'Rio de Janeiro', 'Amazonas', 'Pernambuco', 'Maranhão', 'Espírito Santo',
+                           'Rondônia', 'Rio Grande do Norte', 'Paraíba', 'Alagoas', 'Piauí', 'Mato Grosso do Sul', 'Roraima', 'Acre','Sergipe','Tocantins','Amapá','Distrito Federal']
+
+            var capitais = ['Porto Alegre', 'Florianópolis', 'Curitiba', 'Cuiabá', 'Belo Horizonte', 'Fortaleza', 'Salvador',
+                            'Goiânia', 'São Paulo', 'Belém', 'Rio de Janeiro', 'Manaus', 'Recife', 'São Luís', 'Vitória',
+                            'Porto Velho', 'Natal', 'João Pessoa', 'Maceió', 'Teresina', 'Campo Grande', 'Boa Vista', 'Rio Branco', 'Aracaju', 'Palmas', 'Macapá','Brasília']
+                            
+            var jogador1 = ''; // 0
+            var jogador2 = ''; // 1
+            var jogador3 = ''; // 2
+            var jogador4 = '';// 3
+
+            var pontuacaoJg1 = 0 
+            var pontuacaoJg2 = 0
+            var pontuacaoJg3 = 0
+            var pontuacaoJg4 = 0
+
+            
+            var btJogador = document.getElementById("idBtRegistrar")
+            var btConferir = document.getElementById("idBtConferir")
+
+            var contador = 0;
+
+            //
+
+            imprimirEstadoAleatorio()
+
+            // declarar eventos 
+
+            btJogador.onclick = function (){
+                registrarJogador(contador)
+                contador++
+            }
+
+            btConferir.onclick = function(){
+                conferirResultados(capital, jogador1,jogador2,jogador3,jogador4)
+            }
+
+            // declarar funções
+
+            /*
+                Criar funcao para randomizar um estado na tela
+            */
+            function numeroAleatorio(a,b){
+                return Math.floor(Math.random() * (b - a + 1)) + a
+            }
+
+            /*
+                Funcao para imprimir um estado aleatorio na tela
+            */
+
+            function imprimirEstadoAleatorio(){
+
+                var estadoIndex = numeroAleatorio(0,26)
+
+                estado = estados[estadoIndex]
+                capital = estados[estadoIndex]
+
+                document.getElementById("idEstado").value = " ======= " + estado + " ======= "
+
+                return capital
+            }
+
+            function registrarJogador(contador){
+                if (contador == 0){
+                    jogador1 = document.getElementById("idCapitais").value
+                    document.getElementById("idOut1").value = jogador1 
+                    document.getElementById("idOutJogador").value = "Rodada: Jogador 2"
+                    document.getElementById("idJogada").value = "Jogador 1, resposta salva."
+
+                }else if(contador == 1){
+                    jogador2 = document.getElementById("idCapitais").value
+                    document.getElementById("idOut2").value = jogador2 
+                    document.getElementById("idOutJogador").value = "Rodada: Jogador 3"
+                    document.getElementById("idJogada").value = "Jogador 2, resposta salva."
+
+                }else if(contador == 2){
+                    jogador3 = document.getElementById("idCapitais").value
+                    document.getElementById("idOut3").value = jogador3 
+                    document.getElementById("idOutJogador").value = "Rodada: Jogador 4"
+                    document.getElementById("idJogada").value = "Jogador 3, resposta salva."
+
+                }else if(contador == 3){
+                    jogador4 = document.getElementById("idCapitais").value
+                    document.getElementById("idOut4").value = jogador4
+                    document.getElementById("idCapitais").disabled = true
+                    document.getElementById("idOutJogador").value = "Todos jogaram. Confira os resultados."
+                    document.getElementById("idJogada").value = "Jogador 4, resposta salva."
+                }   
+            }
+
+            function conferirResultados(capital, jogador1,jogador2,jogador3,jogador4){
+                //
+                
+                if (jogador1 == capital){
+                    pontuacaoJg1 += 1
+                    document.getElementById("idPt1").value = pontuacaoJg1
+                }
+
+                if (jogador2 == capital){
+                    pontuacaoJg2 += 1
+                    document.getElementById("idPt2").value = pontuacaoJg2
+                }
+
+                if (jogador3 == capital){
+                    pontuacaoJg3 += 1
+                    document.getElementById("idPt3").value = pontuacaoJg3
+                }
+
+                if (jogador4 == capital){
+                    pontuacaoJg4 += 1
+                    document.getElementById("idPt4").value = pontuacaoJg4
+                }
+                
+
+                
+                
+
+            }
+
+
+        </script>
     </body>
 </html>
