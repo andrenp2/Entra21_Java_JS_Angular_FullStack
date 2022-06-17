@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .planoFundo{
+            background-image:url(fotoPizza.png);
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            opacity: 0.8;
+            
+        }
+
+        .formulario{
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.84);
+            top: 10%;
+            left: 20%;
+            padding: 50px;
+            color: rgb(234, 234, 234);
+            width: 300px;
+            height: 400px;
+            text-align: center;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 17px;
+            
+        }
+
+        .camposTexto input{
+            width: 85%;
+            background-color:rgba(241, 247, 253, 0.928);
+            text-align: center;
+            padding: 5px;  
+            height: 16px;
+            font-size: 14px;
+        }
+
+
+
+
+    </style>
+</head>
+    <body>
+        <div class="planoFundo">
+            <form>
+                <div class="formulario">
+                    <h3> Cálculo Custo Benefício Pizza</h3>
+                    <br><br>
+                    <div class="camposTexto">
+                        <label class="labels" for="idNome">Nome da pizza:</label><br><br>
+                        <input type="text" id="idNome" name="nmNome" placeholder="Insira um nome"><br><br>
+                        
+                        <label class="labels" for="idTamanho">Tamanho da pizza:</label><br><br>
+                        <input type="number" id="idTamanho" name="nmTamanho" placeholder="Insira o tamanho em (cm)"><br><br>
+
+                        <label class="labels" for="idPreco">Insira o preço da pizza:</label><br><br>
+                        <input type="number" id="idPreco" name="nmPreco" placeholder="Preço em reais">
+                    </div>
+                    <br><br><br>
+                    <input type="button" id="idBtSalvar" value="Salvar">
+                    <input type="button" id="idBtLimpar" value="Limpar">
+                    <input type="button" id="idBtLimpar" value="Relatório">
+                </div>
+            </form> 
+        </div>    
+    </body>
+</html>
