@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+            <label for="idMoeda">Escolha a Moeda:</label><br><br>
+            <select id="idMoeda">
+                <option value="AUD">Dolar Australiano</option>
+                <option value="CAD">Dolar Canadense</option>
+                <option value="CHF">Franco Suiço</option>
+                <option value="DKK">Coroa Dinamarquesa</option>
+                <option value="EUR">Euro</option>
+                <option value="GBP">Libra Esterlina</option>
+                <option value="JPY">Iene</option>
+                <option value="NOK">Coroa Noroeguesa</option>
+                <option value="SEK">Coroa Sueca</option>
+                <option value="USD">Dolar Americano</option>
+            </select><br><br>
+            <input type="datetime" id="idData" placeholder="Data (mm-dd-ano)"><br><br>
+            <input type="button" value="Buscar" id="idBtBuscar"><br><br>
+            <output id="idOut">...</output><br><br>
+            <output id="idParCompra">...</output><br><br>
+            <output id="idParVenda">...</output><br><br>
+            <output id="idCotCompra">...</output><br><br>
+            <output id="idCotVenda">...</output><br><br>
+            <output id="idDataHora">...</output><br><br>
+            <br><br>
+            <output id="idOut2">...</output><br><br>
+            
+        <script>
+
+            var btBuscarCotacao = document.getElementById("idBtBuscar")
+            var out = document.getElementById("idOut")
+            var outParCompra = document.getElementById("idParCompra")
+            var outParVenda = document.getElementById("idParVenda")
+            var outCotCompra = document.getElementById("idCotCompra")
+            var outCotVenda = document.getElementById("idCotVenda")
+            var outDataHora = document.getElementById("idDataHora")
+
+            // API - Application Programing Interface
+            btBuscarCotacao.onclick = function (codigoMoeda, dataCotacao){
+                var codigoMoeda = document.getElementById("idMoeda").value
+                var dataCotacao = document.getElementById("idData").value
+                buscarCotacao(codigoMoeda, dataCotacao)
+
+            }
+
+            function buscarCotacao(codigoMoeda, dataCotacao){    
+                console.log("moeda",codigoMoeda, dataCotacao)
+                var xhr = new XMLHttpRequest();
+                
+                var url = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda='"+codigoMoeda+"'&@dataCotacao='"+dataCotacao+"'&$top=100&$format=json&$select=paridadeCompra,paridadeVenda,cotacaoCompra,cotacaoVenda,dataHoraCotacao,tipoBoletim"
+
+                xhr.open("GET", url)
+
+                xhr.addEventListener("load", function(){
+                    var resposta = xhr.responseText;
+                    imprimirCotacao(resposta)
+                    imprimirCotacaoDois(resposta)
+                })
+
+                xhr.send()
+
+            }
+
+            function imprimirCotacao(cotacaoJson){
+                //console.log(cotacaoJSON)
+
+                let cotacaoObj = JSON.parse(cotacaoJson)
+                
+                // cotacao do fechamento -> array[4] 
+
+                var fechamento = cotacaoObj.value[4]
+
+                /*out.value = ("Paridade Compra : " + fechamento.paridadeCompra + ";\n Paridade Venda : " + 
+                            fechamento.paridadeVenda + "; Cotacao Compra : " + fechamento.cotacaoCompra + "; Cotacao Venda : " +
+                            fechamento.cotacaoVenda + "; Data/Hora : " + fechamento.dataHoraCotacao)
+                */
+
+                outParCompra.value = ("Paridade Compra : " + fechamento.paridadeCompra)
+                outParVenda.value = ("Paridade Venda : " + fechamento.paridadeVenda)
+                outCotCompra.value = ("Cotacao Compra : " + fechamento.cotacaoCompra)
+                outCotVenda.value = ("Cotacao Venda : " + fechamento.cotacaoVenda)
+                outDataHora.value = ("Data/Hora : " + fechamento.dataHoraCotacao)
+                
+            }
+
+            function imprimirCotacaoDois(cotacaoJson){
+
+                let boletinsCotacaoObj = JSON.parse(cotacaoJson)
+                let msn = "("
+
+                boletinsCotacaoObj.value.forEach(boletim => {
+                    boletim.paridadeCompra
+                    msn = msn + boletim.paridadeCompra + ";"
+                });
+
+                msn = msn + ")"
+
+                document.getElementById("idOut2").value = msn
+            }
+
+        </script>
+        
+    </body>
+</html>

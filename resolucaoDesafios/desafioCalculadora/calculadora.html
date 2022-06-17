@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        .background{
+            background-image: linear-gradient(45deg, rgb(148, 142, 142), rgb(177, 177, 177));
+            height: 100vh;
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        
+        .calculadora{
+            position: absolute;
+            background-color: rgba(0,0,0,0.6);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 15px;
+            padding: 10px;
+        }
+
+        .botao1{
+            background-color: rgb(201, 197, 197);
+            color: black;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 15px;
+            cursor: pointer;
+            border-style: none;
+        }
+        .botao2{
+            background-color: orange;
+            color: #fff;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 15px;
+            cursor: pointer;
+            border-style: none;
+        }
+        .botao3{
+            background-color: rgba(41, 41, 41, 0.968);
+            color: #fff;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 15px;
+            cursor: pointer;
+            border-style: none;
+        }
+        .botao4{
+            background-color: rgba(41, 41, 41, 0.968);
+            color: #fff;
+            border-radius: 50px;
+            width: 50px;
+            height: 25px;
+            font-size: 15px;
+            cursor: pointer;
+            border-style: none;
+        }
+        .botao1:hover{
+            background-color: rgba(201, 193, 193, 0.819);
+        }
+        .botao2:hover{
+            background-color: rgba(201, 193, 193, 0.819);
+        }
+        .botao3:hover{
+            background-color: rgba(201, 193, 193, 0.819);
+        }
+        .botao4:hover{
+            background-color: rgba(201, 193, 193, 0.819);
+        }
+        #idResultado{
+            width: 100px;
+            background-color: rgba(0, 0, 0, 0.8);
+            height: 25px;
+            margin: 2px;
+            text-align: center;
+            border-radius: 7px;
+            text-align: right;
+            font-size: 15px;
+            text-align: right;
+            padding-top: 10px;
+            padding-right: 10px;
+            color: #fff;
+        }
+    </style>
+</head>
+    <body>
+        <div class="background">
+            <h1>Desafio Calculadora</h1>
+
+            <div class="calculadora">
+                <p id="idResultado"></p>
+                <table>
+                    <tr>
+                        <td><button class="botao1" onclick="limparTela()">C</button></td>
+                        <td><button class="botao1" id="idMaisMenos" onclick="mudarSinal(num1)">+/-</button></td>
+                        <td><button class="botao1" id="idPorcentagem" name="nmPorcentagem" onclick="porcentagem()">%</button></td>
+                        <td><button class="botao2" id="idDivisao" name="nmDivisao" onclick="funcaoDivisao()">/</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="botao3" onclick="mostrarNum(7)">7</button></td>
+                        <td><button class="botao3" onclick="mostrarNum(8)">8</button></td>
+                        <td><button class="botao3" onclick="mostrarNum(9)">9</button></td>
+                        <td><button class="botao2" id="idMultiplicacao" name="nmMultiplicacao" onclick="funcaoMultiplicacao()">x</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="botao3" onclick="mostrarNum(4)">4</button></td>
+                        <td><button class="botao3" onclick="mostrarNum(5)">5</button></td>
+                        <td><button class="botao3" onclick="mostrarNum(6)">6</button></td>
+                        <td><button class="botao2" id="idSubtracao" name="nmSubtracao" onclick="funcaoSubtracao()">-</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="botao3" onclick="mostrarNum(1)">1</button></td>
+                        <td><button class="botao3" onclick="mostrarNum(2)">2</button></td>
+                        <td><button class="botao3" onclick="mostrarNum(3)">3</button></td>
+                        <td><button class="botao2" id="idSoma" name="nmSoma" onclick="funcaoSoma()">+</button></td>
+                    </tr> 
+                    <tr>
+                        <td colspan="2"><button  class="botao4" onclick="mostrarNum(0)">0</button></td>
+                        <td><button class="botao3" onclick="virgula()">.</button></td>
+                        <td><button class="botao2" onclick="resultado(num1, operacao)">=</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <script>
+
+            // declarando variaveis globais
+            
+            var num1 = 0 // inicializando a variável de entrada 
+            var operacao = '' // inicializando a string da operacao desejada
+
+            function mostrarNum(numero){
+
+                /*
+                    Função que faz com que o numero clicado no botão apareça
+                    na tela, e se clicar dois botões em sequencia "concatena" os dois
+                    valores. Ou seja, junta o valor que está no vistor com o novo valor digitado.
+                    -- a variável 'numeroTela' é o valor que ja esta no visor (0 por default)
+                    -- a variável 'numero' é o valor do botão (passado como parametro).
+                */
+
+                var numeroTela = document.getElementById('idResultado').innerHTML 
+                document.getElementById("idResultado").innerHTML = numeroTela + numero
+
+                
+            }
+
+            function limparTela(){
+
+                /*
+                    Criar função para o botao "C" (clear) que irá limpar os valores
+                    do visor.
+                */
+
+                document.getElementById("idResultado").innerHTML = ""
+
+            }
+
+            function funcaoSoma(){
+
+                /*
+                    Essa funcao serve para gravar o primeiro numero digitado da operacao
+                    e o registrar que deseja-se somar os numeros.
+                */
+
+                num1 = Number(document.getElementById("idResultado").innerHTML) 
+                operacao = 'soma'
+
+                document.getElementById("idResultado").innerHTML = ""
+
+                return num1, operacao
+
+            }
+
+            function funcaoSubtracao(){
+
+                /*
+                    Essa funcao serve para gravar o primeiro numero digitado da operacao
+                    e o registrar que deseja-se somar os numeros.
+                */
+
+                num1 = Number(document.getElementById("idResultado").innerHTML) 
+                operacao = 'subtracao'
+
+                document.getElementById("idResultado").innerHTML = ""
+
+                return num1, operacao
+
+            }
+            function funcaoDivisao(){
+
+                /*
+                    Essa funcao serve para gravar o primeiro numero digitado da operacao
+                    e o registrar que deseja-se somar os numeros.
+                */
+
+                num1 = Number(document.getElementById("idResultado").innerHTML) 
+                operacao = 'divisao'
+
+                document.getElementById("idResultado").innerHTML = ""
+
+                return num1, operacao
+
+                }
+            
+            function funcaoMultiplicacao(){
+
+                /*
+                    Essa funcao serve para gravar o primeiro numero digitado da operacao
+                    e o registrar que deseja-se somar os numeros.
+                */
+
+                num1 = Number(document.getElementById("idResultado").innerHTML) 
+                operacao = 'multiplicacao'
+
+                document.getElementById("idResultado").innerHTML = ""
+
+                return num1, operacao
+
+                }
+
+            function resultado(num1, operacao){
+
+                console.log(num1, operacao)
+
+                var num2 = Number(document.getElementById("idResultado").innerHTML)
+
+                if (operacao=='soma'){
+                    result = num1 + num2
+
+                }else if (operacao=='divisao'){
+                    if (num2 != 0){
+                        result = num1 / num2
+                    }
+                    else{result = 'Erro'}
+
+                }else if(operacao == 'multiplicacao'){
+                    result = num1 * num2
+                
+                }else if(operacao == 'subtracao'){
+                    result = num1 - num2
+                }else{
+                    result = "Error"
+                }
+
+                document.getElementById("idResultado").innerHTML = result
+
+            }
+
+
+
+            function virgula(){
+
+                /*
+                    Essa funcao insere a virgula apenas uma vez, verifica se ja existe na string
+                    caso não exista ( indexOf = -1 ) ela deixa inserir, caso contrario, não.
+                */
+
+                var numeroTela = document.getElementById('idResultado').innerHTML 
+                
+                if (numeroTela.indexOf(".") == -1){
+                document.getElementById("idResultado").innerHTML = numeroTela + "."
+                }
+                
+            }
+
+            function mudarSinal(num1){
+                /* Funcao para funcionar o botão +/- que troca o atual sinal
+                    do numero digitado no vistor
+                */
+
+                num1 = Number(document.getElementById("idResultado").innerHTML) 
+
+                document.getElementById("idResultado").innerHTML = ( -1 * num1 )
+
+            }
+
+            function porcentagem(){
+
+                /*
+                    funcao para o botao de porcentagem, transforma o numero do visor 
+                    em numeros percentuais.
+                */
+
+                num1 = Number(document.getElementById("idResultado").innerHTML) 
+
+                document.getElementById("idResultado").innerHTML = num1 / 100 
+
+
+
+            }
+
+
+        </script>
+    </body>
+    
+</html>

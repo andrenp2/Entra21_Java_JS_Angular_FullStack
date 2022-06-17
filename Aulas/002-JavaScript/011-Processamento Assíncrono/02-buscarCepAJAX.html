@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <input type="text" id="idCep" placeholder="CEP...">
+            <input type="button" value="Buscar CEP" id="idBtBuscarCep">
+        </div>
+        <Script>
+            //Assíncrono 
+            //Single Thread 
+            //IO Não Bloqueante 
+
+            var btBuscarCep = document.getElementById("idBtBuscarCep")
+
+            btBuscarCep.onclick = function(){
+                buscarCEP(document.getElementById("idCep").value)
+            
+            }
+
+            //API - Application Programing Interface
+            //Endpoint - Endereço dentro do servidor 
+            function buscarCEP(cep) {
+                //AJAX
+                var xhr = new XMLHttpRequest(); 
+
+                xhr.open("GET", "https://viacep.com.br/ws/" + cep + "/json/")
+
+                xhr.addEventListener("load", function(){
+                    var resposta = xhr.responseText;
+                    imprimirEndereco(resposta)
+                  
+                })
+                
+                xhr.send()
+
+            }
+
+            function imprimirEndereco(enderecoJson){
+                console.log(enderecoJson);
+
+                let enderecoObj = JSON.parse(enderecoJson)
+
+                console.log(enderecoObj);
+                console.log("Logradouro " + enderecoObj.logradouro);
+            }
+
+           
+
+
+        </Script>
+    </body>
+</html>
