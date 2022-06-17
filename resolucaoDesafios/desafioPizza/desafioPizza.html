@@ -25,7 +25,7 @@
             position: absolute;
             background-color: rgba(0, 0, 0, 0.84);
             top: 10%;
-            left: 20%;
+            left: 15%;
             padding: 50px;
             color: rgb(234, 234, 234);
             width: 300px;
@@ -45,6 +45,27 @@
             font-size: 14px;
         }
 
+        .botoes input{
+            width: 80px;
+            height: 25px;
+            background-color: gainsboro;
+            color: black;
+            font-weight: bold;
+        }
+
+        .saidaRelatorio{
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.84);
+            top: 0%;
+            left: 110%;
+            padding: 50px;
+            color: rgb(234, 234, 234);
+            width: 500px;
+            height: 400px;
+            text-align: center;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 17px;
+        }
 
 
 
@@ -67,9 +88,18 @@
                         <input type="number" id="idPreco" name="nmPreco" placeholder="Preço em reais">
                     </div>
                     <br><br><br>
-                    <input type="button" id="idBtSalvar" value="Salvar">
-                    <input type="button" id="idBtLimpar" value="Limpar">
-                    <input type="button" id="idBtLimpar" value="Relatório">
+                    <div class="botoes">
+                        <input type="button" id="idBtSalvar" value="Salvar">
+                        <input type="button" id="idBtLimpar" value="Limpar">
+                        <input type="button" id="idBtLimpar" value="Relatório">
+                    </div>
+                    <div class="saidaRelatorio">
+                        <label class="labels" for="idRelatorio">Relatorio:</label><br><br>
+                        <input type="text" id="idRelatorio" name="nmRelatorio" placeholder="Saida"><br><br>
+
+                    </div>
+
+
                 </div>
             </form> 
         </div>    
