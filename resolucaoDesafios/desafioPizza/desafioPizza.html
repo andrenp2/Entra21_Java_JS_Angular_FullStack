@@ -27,7 +27,7 @@
             top: 10%;
             left: 15%;
             padding: 50px;
-            color: rgb(234, 234, 234);
+            color: rgb(189, 189, 16);
             width: 300px;
             height: 400px;
             text-align: center;
@@ -66,6 +66,12 @@
             font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             font-size: 17px;
         }
+        
+        .saidaSalvar{
+            color: rgb(4, 141, 16);
+            font-size: 12px;
+            font-weight: bold;
+        }
 
 
 
@@ -86,22 +92,158 @@
 
                         <label class="labels" for="idPreco">Insira o preço da pizza:</label><br><br>
                         <input type="number" id="idPreco" name="nmPreco" placeholder="Preço em reais">
+                        <br><br>
+
+                        <output class="saidaSalvar" id="idOut">...</output>
                     </div>
-                    <br><br><br>
+                    <br>
                     <div class="botoes">
                         <input type="button" id="idBtSalvar" value="Salvar">
                         <input type="button" id="idBtLimpar" value="Limpar">
-                        <input type="button" id="idBtLimpar" value="Relatório">
+                        <input type="button" id="idBtRelatorio" value="Relatório">
                     </div>
                     <div class="saidaRelatorio">
                         <label class="labels" for="idRelatorio">Relatorio:</label><br><br>
-                        <input type="text" id="idRelatorio" name="nmRelatorio" placeholder="Saida"><br><br>
-
+                        
+                        <div class="content">
+                            <table border="1">
+                                <thead>
+                                    <th class="center">Nome</th>
+                                    <th>Tamanho</th>
+                                    <th>Preço</th>
+                                    <th>Preço/cm2</th>
+                                    <th>Custo Beneficio</th>
+                                </thead>
+                                <tbody id="tbody">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-
-
                 </div>
+
+
+
             </form> 
         </div>    
+
+        <script>
+
+            // declarando os botoes
+            var btSalvar = document.getElementById('idBtSalvar')
+            var btLimpar = document.getElementById('idBtLimpar')
+            var btRelatorio = document.getElementById('idBtRelatorio')
+
+            // declarando variaveis de input
+            var nome = document.getElementById('idNome')
+            var tamanho = document.getElementById('idTamanho')
+            var preco = document.getElementById('idPreco')
+
+            // declarando variavel output
+            var outSalvar = document.getElementById("idOut")
+
+            // declarando os arrays que receberao as entradas
+            var nomes = []
+            var tamanhos = []
+            var precos = []
+            var precoPorCm = []
+
+            // declarando variavel constantes
+            const pi = 3.14;
+
+            // ----------- tratando eventos ----------
+
+            // salvar dados da tela
+            btSalvar.onclick = function(){
+                salvar(nome,tamanho,preco)
+            }
+
+            btRelatorio.onclick = function(){
+                relacaoPreco(tamanhos, precos)
+                tabela()
+            }
+            
+            /*
+                Essa funcao irá salvar as entradas na tela em cada vetor correspondente.
+            */
+            function salvar(nome,tamanho,preco){
+                nomes.push(nome.value)
+                tamanhos.push(tamanho.value)
+                precos.push(preco.value)
+
+                outSalvar.value = "Pizza [ " + nome.value + " ] salva com sucesso!"
+
+                nome.value = ""
+                tamanho.value = ""
+                preco.value = ""
+
+                nome.focus()
+            }
+
+            /*
+                Função que irá criar a tabela para o relatório
+                baseada em: https://www.youtube.com/watch?v=pVjtv9K3sRM
+            */
+
+            function tabela(){
+                let tbody = document.getElementById("tbody")
+
+                for (let i=0; i < nomes.length; i++){
+                    let tr = tbody.insertRow();
+
+                    let td_nome = tr.insertCell();
+                    let td_tam = tr.insertCell();
+                    let td_preco = tr.insertCell();
+                    let td_precoPorCm = tr.insertCell()
+
+                    td_nome.innerText = nomes[i]
+                    td_tam.innerText = tamanhos[i] + " cm"
+                    td_preco.innerText = "R$ " + precos[i] 
+                    //td_precoPorCm.innerText = "R$  " + relacaoPreco(tamanhos[i], precos[i])
+                    td_precoPorCm.innerText = "R$  " + precoPorCm[i]
+                    //td_custoBeneficio.innerText = 
+
+                }
+            }
+
+            /*
+                Funcao calcula o preco por area em cm2 da pizza
+                -> area = pi * r^2 (para pizzas cirulares)
+                -> entrada: diametro
+            */
+
+            function relacaoPreco(diametro, preco){
+                
+                for (let i=0; i < diametro.length; i++){
+                    var area = pi * ( Number((diametro[i]/2)) ** 2 )
+
+                    var precoCm = preco[i] / area
+
+                    precoPorCm.push((Number(precoCm)).toFixed(2))
+
+                return precoPorCm
+
+                }
+              
+            }
+
+            /*
+                Funcao para calcular o melhor custo beneficio:
+                -> classificar o preco/tamanho do menor para o maior
+                -> o menor preco por tamanho, é o melhor custo beneficio
+                -> retorno: array ordenado com os precos por tamanho
+            */
+
+            function melhorCustoBeneficio(precoPorCm){}
+
+                var custoBenOrdenado = []
+            
+
+
+            // classificar do menor para o maior, sendo o menor o melhor custo beneficio
+
+
+        </script>
+
+
     </body>
 </html>
