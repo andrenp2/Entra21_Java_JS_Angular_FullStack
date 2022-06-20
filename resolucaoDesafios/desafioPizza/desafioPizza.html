@@ -73,6 +73,10 @@
             font-weight: bold;
         }
 
+        .alerta {
+            color: red;
+        }
+
 
 
     </style>
@@ -88,10 +92,10 @@
                         <input type="text" id="idNome" name="nmNome" placeholder="Insira um nome"><br><br>
                         
                         <label class="labels" for="idTamanho">Tamanho da pizza:</label><br><br>
-                        <input type="number" id="idTamanho" name="nmTamanho" placeholder="Insira o tamanho em (cm)"><br><br>
+                        <input type="number" id="idTamanho" name="nmTamanho" placeholder="Insira o tamanho em (cm)" min="0"><br><br>
 
                         <label class="labels" for="idPreco">Insira o preço da pizza:</label><br><br>
-                        <input type="number" id="idPreco" name="nmPreco" placeholder="Preço em reais">
+                        <input type="number" id="idPreco" name="nmPreco" placeholder="Preço em reais" min="0">
                         <br><br>
 
                         <output class="saidaSalvar" id="idOut">...</output>
@@ -147,6 +151,13 @@
             var precos = []
             var precoPorCm = []
 
+            // declarando arrays que receberao as saidas ordenadas, outputs.
+
+            var nomesOrdenados = []
+            var precosOrdenados = []
+            var tamanhosOrdenados = []
+            var aumentoPorcentual = []
+
             // declarando variavel constantes
             const pi = 3.14;
 
@@ -154,37 +165,93 @@
 
             // salvar dados da tela
             btSalvar.onclick = function(){
-                salvar(nome,tamanho,preco)
+
+                let isTelaValida = consistirTela() // true or false
+
+                if (isTelaValida){
+                    salvar(nome,tamanho,preco)
+                    limparTela()
+                }
             }
 
+
             btRelatorio.onclick = function(){
+
                 relacaoPreco(tamanhos, precos)
-                tabela()
+                melhorCustoBeneficio(precoPorCm,nomes,precos,tamanhos)
+                tabela(nomesOrdenados, tamanhosOrdenados, precosOrdenados, precoPorCm)
+
             }
-            
+
+            /*
+                Rotina de consistencia.
+                => checar se os campos estaos preenchidos corretamente, caso sim, retorna trua
+            */
+
+            function consistirTela(){
+
+                console.log(nome, tamanho, preco)
+
+                // consistencia do campo "Nome" da pizza
+                if (nome.value == "" || nome.value == " "){
+                    outSalvar.value = "Campo nome, preenchimento obrigatório."
+                    outSalvar.classList.add("alerta")
+                    nome.focus()
+                    return false
+                }
+
+                // consistencia campo "Tamanho" pizza
+                if (tamanho.value == "" || tamanho.value == " "){
+                    outSalvar.value = "Campo tamanho, preenchimento obrigatório."
+                    outSalvar.classList.add("alerta")
+                    tamanho.focus()
+                    return false
+                }
+
+                if (preco.value == "" || preco.value == " "){
+                    outSalvar.value = "Campo preço, preenchimento obrigatório."
+                    outSalvar.classList.add("alerta")
+                    preco.focus()
+                    return false
+                }
+
+                outSalvar.classList.remove("alerta")
+                return true
+            }
+
             /*
                 Essa funcao irá salvar as entradas na tela em cada vetor correspondente.
             */
             function salvar(nome,tamanho,preco){
+
                 nomes.push(nome.value)
                 tamanhos.push(tamanho.value)
                 precos.push(preco.value)
 
                 outSalvar.value = "Pizza [ " + nome.value + " ] salva com sucesso!"
 
+                nome.focus()
+            }
+
+            /*
+                Funcao limpar
+            */
+
+            function limparTela(){
                 nome.value = ""
                 tamanho.value = ""
                 preco.value = ""
-
-                nome.focus()
             }
+
+
 
             /*
                 Função que irá criar a tabela para o relatório
                 baseada em: https://www.youtube.com/watch?v=pVjtv9K3sRM
             */
 
-            function tabela(){
+            function tabela(nomesOrdenados, tamanhosOrdenados, precosOrdenados, precoPorCm){
+                
                 let tbody = document.getElementById("tbody")
 
                 for (let i=0; i < nomes.length; i++){
@@ -194,14 +261,19 @@
                     let td_tam = tr.insertCell();
                     let td_preco = tr.insertCell();
                     let td_precoPorCm = tr.insertCell()
+                    let td_custoBeneficio = tr.insertCell()
 
-                    td_nome.innerText = nomes[i]
-                    td_tam.innerText = tamanhos[i] + " cm"
-                    td_preco.innerText = "R$ " + precos[i] 
-                    //td_precoPorCm.innerText = "R$  " + relacaoPreco(tamanhos[i], precos[i])
+                    td_nome.innerText = nomesOrdenados[i]
+                    td_tam.innerText = tamanhosOrdenados[i] + " cm"
+                    td_preco.innerText = "R$ " + precosOrdenados[i] 
                     td_precoPorCm.innerText = "R$  " + precoPorCm[i]
-                    //td_custoBeneficio.innerText = 
 
+                    if (i == 0){
+                        td_custoBeneficio.innerText = "Melhor Escolha!"
+                    
+                    }else{
+                        
+                    }
                 }
             }
 
@@ -211,39 +283,64 @@
                 -> entrada: diametro
             */
 
-            function relacaoPreco(diametro, preco){
+            function relacaoPreco(tamanhos, preco){
                 
-                for (let i=0; i < diametro.length; i++){
-                    var area = pi * ( Number((diametro[i]/2)) ** 2 )
+                for (let i=0; i < tamanhos.length; i++){
+                    
+                    var raio = Number(tamanhos[i] / 2)
 
-                    var precoCm = preco[i] / area
+                    var area = pi * ( raio ** 2 ) 
 
-                    precoPorCm.push((Number(precoCm)).toFixed(2))
+                    var precoCm = precos[i] / area
 
-                return precoPorCm
+                    precoPorCm.push((Number(precoCm)).toFixed(3))
 
                 }
-              
             }
 
             /*
-                Funcao para calcular o melhor custo beneficio:
+                Funcao para encontrar o melhor custo beneficio:
                 -> classificar o preco/tamanho do menor para o maior
                 -> o menor preco por tamanho, é o melhor custo beneficio
-                -> retorno: array ordenado com os precos por tamanho
+                -> metodo de ordenação "bubble sort" para ordenar em formato crescente
+                -> ORDENAR TODOS ELEMENTOS DA TABELA
             */
 
-            function melhorCustoBeneficio(precoPorCm){}
+            function melhorCustoBeneficio(precoPorCm,nomes,precos,tamanhos){
 
-                var custoBenOrdenado = []
-            
+                nomesOrdenados = nomes
+                precosOrdenados = precos
+                tamanhosOrdenados = tamanhos
 
+                let isTrocou = true
 
-            // classificar do menor para o maior, sendo o menor o melhor custo beneficio
+                while (isTrocou){
+                    isTrocou = false
+                
+                    for (let i = 0; i < precoPorCm.length; i++){
 
+                        if (precoPorCm[i] > precoPorCm[i + 1]){
+                            isTrocou = true
+                            let aux = precoPorCm[i]
+                            let auxNome = nomes[i]
+                            let auxPreco = precos[i]
+                            let auxTam = tamanhos[i]
+    
+                            precoPorCm[i] = precoPorCm[i + 1]
+                            precoPorCm[i + 1] = aux 
 
+                            nomesOrdenados[i] = nomes[i + 1]
+                            nomesOrdenados[i + 1] = auxNome
+
+                            precosOrdenados[i] = precos[i + 1]
+                            precosOrdenados[i + 1] = auxPreco
+
+                            tamanhosOrdenados[i] = tamanhos[i + 1]
+                            tamanhosOrdenados[i + 1] = auxTam
+                        }
+                    }  
+                }
+            }
         </script>
-
-
     </body>
 </html>
