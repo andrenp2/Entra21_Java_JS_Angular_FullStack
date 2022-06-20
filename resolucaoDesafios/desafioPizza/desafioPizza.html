@@ -27,7 +27,7 @@
             top: 10%;
             left: 15%;
             padding: 50px;
-            color: rgb(189, 189, 16);
+            color: rgb(160, 160, 20);
             width: 300px;
             height: 400px;
             text-align: center;
@@ -60,7 +60,7 @@
             left: 110%;
             padding: 50px;
             color: rgb(234, 234, 234);
-            width: 500px;
+            width: 600px;
             height: 400px;
             text-align: center;
             font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -75,6 +75,16 @@
 
         .alerta {
             color: red;
+        }
+
+        .table {
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+
+        .labels {
+            font-size: 20px;
+            color: rgb(220, 216, 216)
         }
 
 
@@ -107,16 +117,16 @@
                         <input type="button" id="idBtRelatorio" value="Relatório">
                     </div>
                     <div class="saidaRelatorio">
-                        <label class="labels" for="idRelatorio">Relatorio:</label><br><br>
+                        <label class="labels" for="idRelatorio">Relatório:</label><br><br>
                         
                         <div class="content">
-                            <table border="1">
+                            <table border="1" id="idTab1" class="table">
                                 <thead>
-                                    <th class="center">Nome</th>
-                                    <th>Tamanho</th>
-                                    <th>Preço</th>
-                                    <th>Preço/cm2</th>
-                                    <th>Custo Beneficio</th>
+                                    <th class="center"style="width:120px">Nome</th>
+                                    <th style="width:120px">Tamanho</th>
+                                    <th style="width:120px">Preço</th>
+                                    <th style="width:120px">Preço/cm2</th>
+                                    <th style="width:120px">Custo Beneficio</th>
                                 </thead>
                                 <tbody id="tbody">
                                 </tbody>
@@ -141,6 +151,7 @@
             var nome = document.getElementById('idNome')
             var tamanho = document.getElementById('idTamanho')
             var preco = document.getElementById('idPreco')
+            var tab = document.getElementById('idTab1')
 
             // declarando variavel output
             var outSalvar = document.getElementById("idOut")
@@ -170,18 +181,26 @@
 
                 if (isTelaValida){
                     salvar(nome,tamanho,preco)
-                    limparTela()
+                    limparCampos()
                 }
             }
 
-
+            // mostrar relatorio das pizzas
             btRelatorio.onclick = function(){
 
                 relacaoPreco(tamanhos, precos)
                 melhorCustoBeneficio(precoPorCm,nomes,precos,tamanhos)
-                tabela(nomesOrdenados, tamanhosOrdenados, precosOrdenados, precoPorCm)
+                diferencaPorcentagem()
+                tabela(nomesOrdenados, tamanhosOrdenados, precosOrdenados, precoPorCm, aumentoPorcentual)
+                esvaziarVetores()
 
             }
+
+            // limpar todos os campos
+            btLimpar.onclick = function(){
+                limparTabela()
+            }
+
 
             /*
                 Rotina de consistencia.
@@ -189,8 +208,6 @@
             */
 
             function consistirTela(){
-
-                console.log(nome, tamanho, preco)
 
                 // consistencia do campo "Nome" da pizza
                 if (nome.value == "" || nome.value == " "){
@@ -237,20 +254,37 @@
                 Funcao limpar
             */
 
-            function limparTela(){
+            function limparCampos(){
                 nome.value = ""
                 tamanho.value = ""
                 preco.value = ""
+
             }
 
+            function limparTabela(){
 
+                while (tab.rows.length > 1){ 
+                    tab.deleteRow(1); 
+                }
+            }
+
+            function esvaziarVetores(){
+                nomes = []
+                tamanhos = []
+                precos = []
+                precoPorCm = []
+                nomesOrdenados = []
+                precosOrdenados = []
+                tamanhosOrdenados = []
+                aumentoPorcentual = []
+            }
 
             /*
                 Função que irá criar a tabela para o relatório
                 baseada em: https://www.youtube.com/watch?v=pVjtv9K3sRM
             */
 
-            function tabela(nomesOrdenados, tamanhosOrdenados, precosOrdenados, precoPorCm){
+            function tabela(nomesOrdenados, tamanhosOrdenados, precosOrdenados, precoPorCm, aumentoPorcentual){
                 
                 let tbody = document.getElementById("tbody")
 
@@ -268,11 +302,12 @@
                     td_preco.innerText = "R$ " + precosOrdenados[i] 
                     td_precoPorCm.innerText = "R$  " + precoPorCm[i]
 
+
                     if (i == 0){
                         td_custoBeneficio.innerText = "Melhor Escolha!"
                     
                     }else{
-                        
+                        td_custoBeneficio.innerText = " + " + aumentoPorcentual[i] + " % "
                     }
                 }
             }
@@ -341,6 +376,22 @@
                     }  
                 }
             }
+
+            function diferencaPorcentagem(){
+
+                aumentoPorcentual = []
+
+                for (let i =0; i < precoPorCm.length; i++){
+
+                    var aumento = ( 1 - ( precoPorCm[i] / precoPorCm[i - 1] ) ) * -100 
+
+                    aumentoPorcentual.push(aumento.toFixed(2))
+
+                }
+            }
+
+
+
         </script>
     </body>
 </html>
