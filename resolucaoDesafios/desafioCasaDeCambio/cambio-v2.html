@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <form action="get">
+            <fieldset><legend>Consultar Cotação Prévia</legend>
+                <label for="idMoeda">Escolha a Moeda:</label><br><br>
+                <select id="idMoeda">
+                    <option value="DKK">Coroa Dinamarquesa</option>
+                    <option value="NOK">Coroa Noroeguesa</option>
+                    <option value="SEK">Coroa Sueca</option>
+                    <option value="USD">Dolar Americano</option>
+                    <option value="AUD">Dolar Australiano</option>
+                    <option value="CAD">Dolar Canadense</option>
+                    <option value="EUR">Euro</option>
+                    <option value="CHF">Franco Suiço</option>
+                    <option value="JPY">Iene</option>
+                    <option value="GBP">Libra Esterlina</option>
+                </select><br><br>
+                <input type="datetime" id="idData" placeholder="Data (mm-dd-ano)"><br><br>
+                <input type="button" value="Buscar" id="idBtBuscar"><br><br>
+                <label for="idSaidaCotVenda">Preço Venda</label>
+                <input type="text" id="idSaidaCotVenda" disabled><br><br>
+                <label for="idSaidaCotCompra">Preço Compra</label>
+                <input type="text" id="idSaidaCotCompra" disabled>
+            </fieldset>
+            <fieldset><legend>Conversor de Moedas</legend>
+                <label for="idMoedaEntrada">Moeda Entrada</label>
+                <select id="idMoedaEntrada">
+                    <option value="DKK">Coroa Dinamarquesa</option>
+                    <option value="NOK">Coroa Noroeguesa</option>
+                    <option value="SEK">Coroa Sueca</option>
+                    <option value="USD">Dolar Americano</option>
+                    <option value="AUD">Dolar Australiano</option>
+                    <option value="CAD">Dolar Canadense</option>
+                    <option value="EUR">Euro</option>
+                    <option value="CHF">Franco Suiço</option>
+                    <option value="JPY">Iene</option>
+                    <option value="GBP">Libra Esterlina</option>
+                    <option value="BRL">Real Brasileiro</option>
+                </select><br><br>
+                <label for="idMoedaSaida">Moeda Saída</label>
+                <select id="idMoedaSaida">
+                    <option value="DKK">Coroa Dinamarquesa</option>
+                    <option value="NOK">Coroa Noroeguesa</option>
+                    <option value="SEK">Coroa Sueca</option>
+                    <option value="USD">Dolar Americano</option>
+                    <option value="AUD">Dolar Australiano</option>
+                    <option value="CAD">Dolar Canadense</option>
+                    <option value="EUR">Euro</option>
+                    <option value="CHF">Franco Suiço</option>
+                    <option value="JPY">Iene</option>
+                    <option value="GBP">Libra Esterlina</option>
+                    <option value="BRL">Real Brasileiro</option>
+                </select><br><br>
+                <label for="idQuantidade">Quantidade</label>
+                <input type="number" id="idQuantidade"><br><br>
+                <input type="button" id="idBtConverter" value="Converter"><br><br>
+                <output id="idOutConversao"></output><br><br>
+                <label for="idSaidaConvertida">Moeda Convertida</label>
+                <input type="text" id="idSaidaConvertida">
+            </fieldset>
+        </form>
+        <script>
+
+            var btBuscarCotacao = document.getElementById("idBtBuscar")
+            var btConverter = document.getElementById('idBtConverter')
+
+            let cotacaoHoje = dataHoje()
+
+
+            // API - Application Programming Interface
+            btBuscarCotacao.onclick = async function(){
+                var codigoMoeda = document.getElementById('idMoeda').value
+                var dataCotacao = document.getElementById('idData').value
+                
+                var cotacoes = await buscarCotacao(codigoMoeda, dataCotacao)
+
+                mostrarCotacoes(cotacoes)
+                //consistir campos
+
+            }
+
+            btConverter.onclick = async function(){
+
+                let moedaEntrada = document.getElementById('idMoedaEntrada').value
+                let moedaSaida = document.getElementById('idMoedaSaida').value
+                let quantidade = document.getElementById('idQuantidade').value
+
+                let entradaJson = await buscarCotacao(moedaEntrada, cotacaoHoje)
+                let saidaJson = await buscarCotacao(moedaSaida, cotacaoHoje)
+
+                if (moedaEntrada == "BRL"){
+                    entradaJson = await buscarCotacao("AUD", cotacaoHoje) // "AUD" serve como lixo
+                }
+
+                if (moedaSaida == "BRL"){
+                    saidaJson = await buscarCotacao("AUD", cotacaoHoje)
+                }
+
+                converterMoedas(moedaEntrada, moedaSaida, entradaJson, saidaJson, quantidade)
+
+            }
+
+            async function buscarCotacao(codigoMoeda, dataCotacao){
+
+                var resposta = await fetch("https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaDia(moeda=@moeda,dataCotacao=@dataCotacao)?@moeda='"+codigoMoeda+"'&@dataCotacao='"+dataCotacao+"'&$top=100&$format=json&$select=paridadeCompra,paridadeVenda,cotacaoCompra,cotacaoVenda,dataHoraCotacao,tipoBoletim") 
+
+                return resposta.json()
+
+            }
+
+            function mostrarCotacoes(cotacoes){
+
+                let precoVenda = document.getElementById('idSaidaCotVenda')
+                let precoCompra = document.getElementById('idSaidaCotCompra')
+                let cod = document.getElementById('idMoeda').value
+
+                precoVenda.value = cod + " " + cotacoes.value[cotacoes.value.length - 1].cotacaoVenda
+                precoCompra.value = cod + " " + cotacoes.value[cotacoes.value.length - 1].cotacaoCompra
+
+            }
+
+            function converterMoedas(moedaEntrada, moedaSaida, entradaJson, saidaJson, quantidade){
+
+                let entrada = entradaJson.value[entradaJson.value.length - 1].cotacaoCompra
+                let saida = saidaJson.value[saidaJson.value.length - 1].cotacaoCompra
+                let outConversao = document.getElementById('idOutConversao')
+
+                if(moedaEntrada == "BRL"){
+                    valorConvertido = (1/saida) * quantidade
+                }else if(moedaSaida == "BRL"){
+                    valorConvertido = entrada * quantidade
+                }else{
+                    valorConvertido = (entrada/saida) * quantidade
+                }
+
+                document.getElementById('idQuantidade').placeholder = moedaEntrada
+
+                outConversao.value = "Conversão de " + quantidade + ",00 " + moedaEntrada + " equivalente a : "
+
+                document.getElementById('idSaidaConvertida').value = valorConvertido.toFixed(2) + " " + moedaSaida
+
+            }
+
+            function dataHoje(){
+
+                var data = new Date();
+
+                var dia = String(data.getDate()).padStart(2, '0');
+                
+                var mes = String(data.getMonth() + 1).padStart(2, '0');
+
+                var ano = data.getFullYear();
+
+                dataAtual  = mes + '-' + dia + '-' + ano
+
+                return dataAtual
+
+            }
+
+        </script>
+
+        
+    </body>
+</html>
