@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <div class="climaAtual">
+            <fieldset>
+                <div class="title">
+                    <h1>TEMPO E TEMPERATURA</h1>
+                </div>
+                <div class="textos">
+                    <output id="idOutCidade">Cidade Exemplo, BR</output><br><br>
+                    <output id="idOutData">Quarta-feira, 13 Julho 2022</output><br><br>
+                </div>
+                <div>
+                    <img src="clouds_icon.png" alt="" width="150px">
+                </div>
+                <div class="descricao">
+                    <output id="idOutDescricao">Parcialmente Nublado</output><br><br>
+                </div>
+                
+                <div class="inputCidade">
+                    <!-- <label for="idClima">Clima na Cidade:</label><br> -->
+                    <input type="text" id="idCidade" placeholder="Buscar Cidade">
+                </div>
+                <div class="btBuscar">
+                    <input type="button" id="idBtBuscar" value="Buscar">
+                </div>
+                <fieldset id="campoDois">
+                    <output id="idTempAtual">23 º C</output><br><br>
+                    <output id="idHumidadeAtual">50uH</output><br><br>
+                    <output id="idVentoAtual">70 km/h</output>
+
+                </fieldset>
+            </fieldset>
+        </div>
+        <div class="climaProximosDias">
+            <fieldset>
+                <div class="dia1">
+                    <fieldset id="campoDia1">
+                        <div>
+                            <output id="idDiaSemana1">Qua</output><br>
+                            <output id="idData1">17/07</output><br>
+                            <img id="idImgDia1" src="clouds_icon.png" width="50px"><br>
+                            <output id="idTempMax1">Temp max dia 1</output><br>
+                            <output id="idTempMin1">Tem min dia 1</output><br>
+                            <output id="idDescricao1">Parcialmente Nublado</output>
+                        </div>
+                    </fieldset>
+                    <fieldset id="campoDia2">
+                        <div>
+                            <output id="idDiaSemana2">Qui</output><br>
+                            <output id="idData2">18/07</output><br>
+                            <img id="idImgDia2" src="clouds_icon.png" width="50px"><br>
+                            <output id="idTempMax2">Temp max dia 2</output><br>
+                            <output id="idTempMin2">Tem min dia 2</output><br>
+                            <output id="idDescricao2">Nublado</output>
+                        </div>
+                    </fieldset>
+                    <fieldset id="campoDia3">
+                        <div>
+                            <output id="idDiaSemana3">Sex</output><br>
+                            <output id="idData3">19/07</output><br>
+                            <img id="idImgDia3" src="clouds_icon.png" width="50px"><br>
+                            <output id="idTempMax3">Temp max dia 3</output><br>
+                            <output id="idTempMin3">Tem min dia 3</output><br>
+                            <output id="idDescricao3">Chuvoso</output>
+                        </div>
+                    </fieldset>
+                    <fieldset id="campoDia4">
+                        <div>
+                            <output id="idDiaSemana4">Sab</output><br>
+                            <output id="idData4">20/07</output><br>
+                            <img id="idImgDia4" src="clouds_icon.png" width="50px"><br>
+                            <output id="idTempMax4">Temp max dia 4</output><br>
+                            <output id="idTempMin4">Tem min dia 4</output><br>
+                            <output id="idDescricao4">Nublado</output>
+                        </div>
+                    </fieldset>                    
+                    <fieldset id="campoDia5">
+                        <div>
+                            <output id="idDiaSemana5">Dom</output><br>
+                            <output id="idData5">21/07</output><br>
+                            <img id="idImgDia5" src="clouds_icon.png" width="50px"><br>
+                            <output id="idTempMax5">Temp max dia 5</output><br>
+                            <output id="idTempMin5">Tem min dia 5</output><br>
+                            <output id="idDescricao5">Parcialmente Nublado</output>
+                        </div>
+                    </fieldset>
+                    <fieldset id="campoDia6">
+                        <div>
+                            <output id="idDiaSemana6">Seg</output><br>
+                            <output id="idData6">22/07</output><br>
+                            <img id="idImgDia6" src="clouds_icon.png" width="50px"><br>
+                            <output id="idTempMax6">Temp max dia 6</output><br>
+                            <output id="idTempMin6">Tem min dia 6</output><br>
+                            <output id="idDescricao6">Nublado</output>
+                        </div>
+                    </fieldset>
+                    <fieldset id="campoDia7">
+                        <div>
+                            <output id="idDiaSemana7">Qua</output><br>
+                            <output id="idData7">23/07</output><br>
+                            <img id="idImgDia7" src="clouds_icon.png" width="50px"><br>
+                            <output id="idTempMax7">Temp max dia 7</output><br>
+                            <output id="idTempMin7">Tem min dia 7</output><br>
+                            <output id="idDescricao7">Parcialmente Nublado</output>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+        </div>
+
+    </body>
+    <script>
+
+        let cidade = document.getElementById('idCidade')
+        let btBuscar = document.getElementById('idBtBuscar')
+
+        /*
+            Declarando variaveis
+        */
+
+        // declarando vetores para receber as previsoes futuras 7 dias
+
+        let informacoesPrevisoes = []
+
+
+        var cidades = [{cidade: "", woeid: "cod"},
+                       {cidade: "", woeid: "cod"},
+                       {cidade: "", woeid: "cod"},
+                       {cidade: "", woeid: "cod"},
+                       {cidade: "", woeid: "cod"},
+                       {cidade: "", woeid: "cod"},
+                       {cidade: "", woeid: "cod"},
+                       {cidade: "", woeid: "cod"},
+                       {cidade: "", woeid: "cod"},
+                       {cidade: "", woeid: "cod"}]
+
+        const key = "b960be07"
+
+        btBuscar.onclick = async function(){
+
+            let infoCidade = await getClima("459546")
+
+            let infoCidadeJson = infoCidade.results
+
+            infoPrevisoes = getClimaPrevisao(infoCidadeJson)
+
+            mostrarInformacoesPrevisoes(infoPrevisoes)
+
+        }
+        
+
+        async function getClima(woeid) {
+
+            let resposta = await fetch('https://api.hgbrasil.com/weather?key='+ key +'&format=json-cors&woeid=' + woeid);
+
+            return resposta.json();
+        }
+
+        function getClimaPrincipal(infoCidade){
+
+            let cidadeAtual = infoCidade.city; // nome da cidade 
+            let codigoCondicao = infoCidade.condition_code; // codigo da condicao
+            let dataAtual = infoCidade.date; // data xx/xx/xxxx
+            let descricaoAtual = infoCidade.description // "parcialmente ..."
+            let humidadeAtual = infoCidade.humidity
+            let ventoAtual = infoCidade.wind_speedy
+            let nascerSolAtual = infoCidade.sunrise
+            let porSolAtual = infoCidade.sunset 
+            let tempAtual = infoCidade.temp 
+
+            // preencher os campos com as variaveis
+
+        }
+
+        function getClimaPrevisao(infoCidadeJson){
+
+            let arrayAux = []
+
+            let infoPrevisao = infoCidadeJson.forecast  
+
+            for(let i=0; i < 7; i++){
+
+                let aux = infoPrevisao[i]
+
+                arrayAux.push(aux.date, aux.weekday, aux.max, aux.min, aux.description)
+
+                informacoesPrevisoes.push(arrayAux)
+
+                arrayAux = []
+            
+            }
+            /*  informacoesPrevisoes[i]
+                => [0] : date 
+                => [1] : weekday
+                => [2] : temp max
+                => [3] : temp min
+                => [4] : description            
+            */
+
+            return informacoesPrevisoes
+        }
+
+        function mostrarInformacoesPrevisoes(infoPrevisoes){
+
+            let idDiaSem;
+            let idData;
+            let idTempMax;
+            let idTempMin;
+            let idDescricao;
+
+            for(let i = 0; i < 7; i++){
+
+                idDiaSem = "idDiaSemana" + (i + 1)
+                idData = "idData" + (i + 1)
+                idTempMax = "idTempMax" + (i + 1)
+                idTempMin = "idTempMin" + (i + 1)
+                idDescricao = "idDescricao" + (i + 1)
+
+                console.log(idDiaSem);
+                console.log(idData);
+                console.log(idTempMax);
+                console.log(idTempMin);
+
+
+                document.getElementById(idDiaSem).value = infoPrevisoes[i][1] 
+                document.getElementById(idData).value = infoPrevisoes[i][0]
+                document.getElementById(idTempMax).value =  "max: " + infoPrevisoes[i][2] + " º C"
+                document.getElementById(idTempMin).value = "min: " + infoPrevisoes[i][3] + " º C"
+                document.getElementById(idDescricao).value = infoPrevisoes[i][4]
+
+                // TROCAR OS ICONES
+
+            }
+
+        }
+
+
+
+    </script>
+</html>
