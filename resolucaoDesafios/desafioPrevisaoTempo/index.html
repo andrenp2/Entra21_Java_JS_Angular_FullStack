@@ -25,11 +25,42 @@
                 </div>
                 
                 <div class="inputCidade">
-                    <!-- <label for="idClima">Clima na Cidade:</label><br> -->
-                    <input type="text" id="idCidade" placeholder="Buscar Cidade">
+                    <!--<input type="text" id="idCidade" placeholder="Buscar Cidade">-->
+                    <select id="idCidade">
+                            <option value="default">--Cidade--</option>
+                            <option value="455819">Brasília, DF</option>
+                            <option value="455904">Rio Branco, AC</option>
+                            <option value="455880">Maceió, AL</option>
+                            <option value="456030">Amapá, AP</option>
+                            <option value="455833">Manaus, AM</option>
+                            <option value="455826">Salvador, BA</option>
+                            <option value="455830">Fortaleza, CE</option>
+                            <option value="455922">Vitoria, ES</option>
+                            <option value="455831">Goiânia, GO</option>
+                            <option value="455834">São Luís, MA</option>
+                            <option value="455829">Cuiabá, MT</option>
+                            <option value="26804347">Campo Grande, MS</option>
+                            <option value="455821">Belo Horizonte, MG</option>
+                            <option value="455820">Belém, PA</option>
+                            <option value="455872">João Pessoa, PB</option>
+                            <option value="455822">Curitiba, PR</option>
+                            <option value="455824">Recife, PE</option>
+                            <option value="455835">Terezina, PI</option>
+                            <option value="455825">Rio de Janeiro, RJ</option>
+                            <option value="455888">Natal, RN</option>
+                            <option value="455823">Porto Alegre, RS</option>
+                            <option value="455901">Porto Velho, RO</option>
+                            <option value="455936">Boa Vista, RR</option>
+                            <option value="90200648">Florianópolis, SC</option>
+                            <option value="455827">São Paulo, SP</option>
+                            <option value="455839">Aracajú, SE</option>
+                            <option value="457721">Palmas, TO</option>
+                    </select>   
+
                 </div>
                 <div class="btBuscar">
                     <input type="button" id="idBtBuscar" value="Buscar">
+                    <input type="button" id="idBtLocalizacao" value="Usar Localização">
                 </div>
                     <output id="idTempAtual"></output><br><br>
                     <output id="idHumidadeAtual"></output><br><br>
@@ -124,92 +155,71 @@
     </body>
     <script>
             
-        // Declarando variaveis
+        // ------------------- Declarando variaveis ----------------------
 
         const key = "b960be07" // chave de acesso API 
         const cidadeDefault = "455856" // Criciuma, SC
 
         let cidade = document.getElementById('idCidade')
         let btBuscar = document.getElementById('idBtBuscar')
+        let btUsarLocalizacao = document.getElementById('idBtLocalizacao')
         let informacoesPrevisoes = []
         let condicoesPrevisoes = []
-
-        // Conjunto de dados com o id de cada cidade
-        var cidades = [{cidade: "", woeid: "cod"},
-                       {cidade: "", woeid: "cod"},
-                       {cidade: "", woeid: "cod"},
-                       {cidade: "", woeid: "cod"},
-                       {cidade: "", woeid: "cod"},
-                       {cidade: "", woeid: "cod"},
-                       {cidade: "", woeid: "cod"},
-                       {cidade: "", woeid: "cod"},
-                       {cidade: "", woeid: "cod"},
-                       {cidade: "", woeid: "cod"}]
         
-        
-                    
-        // Ao carregar tela, chamar as funcoes com a cidade baseado na
-        // geolocalizacao do usuario. Caso a localizacao nao seja encontrada,
-        // o programa ira carregar as informacoes para a cidade default, Criciuma, SC.
+        // ------------------- Tratamento de eventos ----------------------
 
         window.onload = async function(){
             
-            let cidade = await encontrarLocalizacao()
+            let cidadeEntrada = await encontrarLocalizacao()
             
-            let infoCidade = await getClima(cidade)
+            funcaoPrincipal(cidadeEntrada)
 
-            let infoCidadeJson = infoCidade.results
-
-            // array com as condicoes da semana
-            infoCondicaoPrevisao(infoCidadeJson)
-
-            infoPrevisoes = getClimaPrevisao(infoCidadeJson)
-            
-            mostrarInformacoesPrevisoes(infoPrevisoes, condicoesPrevisoes)
-            
-            mostrarInformacoesHoje(infoCidadeJson)
-
-            let condicaoPrincipal = infoCidadeJson.condition_slug
-
-            let imgPrinciapal = modificaImagem(condicaoPrincipal);
-
-            document.getElementById('idImgPrincipal').src = imgPrinciapal
-
-            
         }
 
-
-
-        // Botao *Buscar* onde rodará as funções para uma determinada cidade.
         btBuscar.onclick = async function(){
 
-            let infoCidade = await getClima("459546")
+            if (cidade.value == "default"){
+                cidadeEntrada = await encontrarLocalizacao()
+            }else{
+                cidadeEntrada = cidade.value
+            }
 
-            let infoCidadeJson = infoCidade.results
-
-            // array com as condicoes da semana
-            infoCondicaoPrevisao(infoCidadeJson)
-
-            infoPrevisoes = getClimaPrevisao(infoCidadeJson)
-
-            mostrarInformacoesPrevisoes(infoPrevisoes, condicoesPrevisoes)
-
-            mostrarInformacoesHoje(infoCidadeJson)
+            funcaoPrincipal(cidadeEntrada)
 
         }
         
+        btUsarLocalizacao.onclick = async function(){
+            
+            let cidadeEntrada = await encontrarLocalizacao()
+            
+            funcaoPrincipal(cidadeEntrada)
+        }
 
         // --------------------------- Funções ----------------------------
 
         /*
             Função
         */
+
+        function limparVetores(){
+            informacoesPrevisoes = []
+            condicoesPrevisoes = []
+            infoPrevisoes = []
+        }
+
+        /*
+            Função
+        */
+
         async function getClima(woeid) {
 
             let resposta = await fetch('https://api.hgbrasil.com/weather?key='+ key +'&format=json-cors&woeid=' + woeid);
 
             return resposta.json();
         }
+        /*
+            Função
+        */
 
         function getClimaPrevisao(infoCidadeJson){
 
@@ -235,9 +245,12 @@
                 => [3] : temp min
                 => [4] : description            
             */
-
             return informacoesPrevisoes
         }
+        
+        /*
+            Função
+        */
 
         function mostrarInformacoesPrevisoes(infoPrevisoes, condicoesPrevisoes){
 
@@ -263,31 +276,25 @@
                 document.getElementById(idDescricao).value = infoPrevisoes[i][4]
 
                 document.getElementById(idImagem).src = modificaImagem(condicoesPrevisoes[i]);
-
-
             }
-
         }
+        
+        /*
+            Função
+        */
 
         function infoCondicaoPrevisao(infoCidadeJson){
 
             for (let i = 0; i < 7; i++){
-
                 condicoesPrevisoes.push(infoCidadeJson.forecast[i].condition)
-
             }
-
         }
 
+        /*
+            Função
+        */
 
         function mostrarInformacoesHoje(infoCidadeJson){
-
-            /*
-            infoCidadeJson.condition_code
-            infoCidadeJson.condition_slug
-            infoCidadeJson.img_id
-            */
-            
 
             document.getElementById('idOutCidade').value = infoCidadeJson.city
             document.getElementById('idOutData').value = infoCidadeJson.date
@@ -297,9 +304,12 @@
             document.getElementById('idVentoAtual').value = infoCidadeJson.wind_speedy
             document.getElementById('idNascerSol').value = infoCidadeJson.sunrise
             document.getElementById('idPorSol').value = infoCidadeJson.sunset
-            document.getElementById('idAtualmente').value = infoCidadeJson.currently
-
+            document.getElementById('idAtualmente').value = infoCidadeJson.currently.toUpperCase()
         }
+        
+        /*
+            Função
+        */
 
         async function encontrarLocalizacao(){
 
@@ -313,10 +323,11 @@
             }
 
             return geoWoeid
-
         }
         
-        // funcao que pegara a condicao do tempo e mudara a imagem
+        /*
+            Função
+        */
 
         function modificaImagem(condicao){
 
@@ -339,7 +350,36 @@
             }
 
             return img;
+        }
 
+        /*
+            Função
+        */
+
+        async function funcaoPrincipal(cidadeEntrada){
+
+            //let cidadeEntrada = await encontrarLocalizacao()
+            
+            let infoCidade = await getClima(cidadeEntrada)
+
+            let infoCidadeJson = infoCidade.results
+            
+            // array com as condicoes da semana
+            infoCondicaoPrevisao(infoCidadeJson)
+
+            infoPrevisoes = getClimaPrevisao(infoCidadeJson)
+            
+            mostrarInformacoesPrevisoes(infoPrevisoes, condicoesPrevisoes)
+
+            mostrarInformacoesHoje(infoCidadeJson)
+
+            let condicaoPrincipal = infoCidadeJson.condition_slug
+
+            let imgPrincipal = modificaImagem(condicaoPrincipal);
+
+            document.getElementById('idImgPrincipal').src = imgPrincipal
+
+            limparVetores()
         }
 
     </script>
