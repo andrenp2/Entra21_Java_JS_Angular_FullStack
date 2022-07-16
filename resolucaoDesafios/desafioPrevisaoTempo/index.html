@@ -22,7 +22,6 @@
         .climaAtual{
             width: 40%;
             height: 100vh;
-
         }
 
         .climaProximosDias{
@@ -54,8 +53,8 @@
         }
 
         .textos{
-            color: rgb(91, 91, 91);
-            margin-top: 5%;
+            color: rgb(0, 0, 0);
+            margin-top: 15%;
             text-align: center;
             font-size: 20px;
             font-weight: bold;   
@@ -71,28 +70,57 @@
         .descricao{
             text-align: center;
             font-size: 20px;
-            color: rgb(91, 91, 91);
+            color: rgb(0, 0, 0);
         }
 
-        .inputCidade{
+        .entradaCidade{
             width: fit-content;
             position: relative;
             left: 50%;
             transform: translate(-50%);
         }
+
+        #idCidade{
+            position: relative;
+            width: 200px;
+            height: 30px;   
+            text-align: center;
+            border-radius: 5px;
+        }
+
+
 
         .botoes{
-            background-color: blue;
-            width: fit-content;
+            width: 200px;
+            height: 30px;
             position: relative;
             left: 50%;
             transform: translate(-50%);
         }
+
+        .botaoBuscar{
+            width: 40%;
+            height: 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            background-color: #2a2a2a99;
+            color: white;
+        }
+
+        .btLocalizacao{
+            width: 58%;
+            height: 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            background-color: #2a2a2a99;
+            color: white;
+        }
+
+
 
         .periodo{
             font-size: 14px;
-            color: rgb(91, 91, 91);
-            font-family:Arial, Helvetica, sans-serif;
+            color: rgb(0, 0, 0);
             font-weight: bold;
         }
 
@@ -138,15 +166,15 @@
                 <fieldset class="campoEsquerda">
                     <div class="title">
                         <h1>CLIMA E TEMPO</h1>
-                    </div>
+                    </div><br>
                     <div class="textos">
-                        <output id="idOutCidade"></output><br><br>
-                        <output id="idOutData"></output><br><br>
-                        <output class="periodo" id="idAtualmente"></output><br><br>
+                        <output id="idOutCidade"></output><br><br><br>
+                        <output id="idOutData"></output><br><br><br>
+                        <output class="periodo" id="idAtualmente"></output><br><br><br>
                     </div>
 
                     
-                    <div class="inputCidade">
+                    <div class="entradaCidade">
                         <!--<input type="text" id="idCidade" placeholder="Buscar Cidade">-->
                         <select id="idCidade">
                                 <option value="default">--Cidade--</option>
@@ -177,15 +205,10 @@
                                 <option value="455827">São Paulo, SP</option>
                                 <option value="455839">Aracajú, SE</option>
                                 <option value="457721">Palmas, TO</option>
-                        </select>   
-
-                    </div>
-                    <div>
-                        <div class="botaoBuscar">
-                            <input type="button" id="idBtBuscar" value="Buscar">
-                        </div>
-                        <div class="btLocalizacao">
-                            <input type="button" id="idBtLocalizacao" value="Usar Localização">
+                        </select><br><br>
+                        <div class="botoes">
+                            <input class="botaoBuscar" type="button" id="idBtBuscar" value="Buscar">
+                            <input class="btLocalizacao" type="button" id="idBtLocalizacao" value="Usar Localização">
                         </div>
                     </div>
                         
@@ -306,6 +329,8 @@
         let btUsarLocalizacao = document.getElementById('idBtLocalizacao')
         let informacoesPrevisoes = []
         let condicoesPrevisoes = []
+
+        
         
         // ------------------- Tratamento de eventos ----------------------
 
@@ -314,7 +339,8 @@
             let cidadeEntrada = await encontrarLocalizacao()
             
             funcaoPrincipal(cidadeEntrada)
-
+            
+            getData()
         }
 
         btBuscar.onclick = async function(){
@@ -335,6 +361,7 @@
             
             funcaoPrincipal(cidadeEntrada)
         }
+
 
         // --------------------------- Funções ----------------------------
 
@@ -438,7 +465,7 @@
         function mostrarInformacoesHoje(infoCidadeJson){
 
             document.getElementById('idOutCidade').value = infoCidadeJson.city
-            document.getElementById('idOutData').value = infoCidadeJson.date
+            document.getElementById('idOutData').value = getData()//infoCidadeJson.date
             document.getElementById('idOutDescricao').value = infoCidadeJson.description 
             document.getElementById('idTempAtual').value = infoCidadeJson.temp + " º C"
             document.getElementById('idHumidadeAtual').value = infoCidadeJson.humidity + " %"
@@ -523,6 +550,23 @@
             document.getElementById('idImgPrincipal').src = imgPrincipal
 
             limparVetores()
+        }
+
+        function getData() {
+
+            let hoje = new Date()
+
+            let dia = hoje.getDate();
+
+            let diaSem = hoje.toLocaleDateString("pt-br", {weekday: "long"})
+            let mes = hoje.toLocaleDateString("en-US", {month: "short"}) + " "
+            let diaNum = hoje.toLocaleDateString("en-US", {day: "numeric"}) + " "
+            let ano = hoje.toLocaleDateString("en-US", {year: "numeric"}) + " "
+
+            let outHoje = diaSem + ", " + diaNum + mes + " de " + ano
+            
+            return outHoje
+
         }
 
     </script>
