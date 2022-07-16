@@ -5,151 +5,291 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        .paginaPrincipal {
+            background-image: url(fundoCeu.jpg);
+            opacity: 0.9;
+            position: relative;
+
+        }
+
+        .climaAtual{
+            width: 40%;
+            height: 100vh;
+
+        }
+
+        .climaProximosDias{
+            position: absolute;
+            left: 35%;
+            top: -5%;       
+            height: 100%;
+            text-align: center;
+
+        }
+
+        #campoDia1, #campoDia2, #campoDia3, #campoDia4, #campoDia5, #campoDia6, #campoDia7{
+            float:left;
+            align-items: center;
+            width: fit-content;
+            margin: 5px;
+            text-align: center;
+            padding: 2px;
+            border-style: dashed;
+            font-weight: bolder;
+            font-size: 15px;
+        }
+
+        .title{
+            color: #2a2a2a;
+            text-align: center;
+            margin-top: 10%;
+            font-size: 20px;
+        }
+
+        .textos{
+            color: rgb(91, 91, 91);
+            margin-top: 5%;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;   
+        }
+
+        #idImgPrincipal{
+            left: 50%;
+            top: 10%;
+            
+            align-items: center;
+        }
+
+        .descricao{
+            text-align: center;
+            font-size: 20px;
+            color: rgb(91, 91, 91);
+        }
+
+        .inputCidade{
+            width: fit-content;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+        }
+
+        .botoes{
+            background-color: blue;
+            width: fit-content;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+        }
+
+        .periodo{
+            font-size: 14px;
+            color: rgb(91, 91, 91);
+            font-family:Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+
+        .temp{
+            color: rgb(91, 91, 91);
+            width: fit-content;
+            font-size: 80px;
+            left: 50%;
+        }
+
+        .contornoPrevisao{
+            border-style: dashed;
+        }
+
+        .campoEsquerda{
+            border: none;
+        }
+
+        .infoSol{
+            width: fit-content;
+            position: relative;
+            left: 12%;
+            top: 13.78%;
+        }
+
+        .ventoHumidade{
+            width: fit-content;
+            position: relative;
+            left: 80%;
+            top: 0%;
+        }
+        .sunrise, .sunset, .humidade, .vento{
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+
+    </style>
 </head>
     <body>
-        <div class="climaAtual">
-            <fieldset>
-                <div class="title">
-                    <h1>TEMPO E TEMPERATURA</h1>
-                </div>
-                <div class="textos">
-                    <output id="idOutCidade"></output><br><br>
-                    <output id="idOutData"></output><br><br>
-                    <output id="idAtualmente"></output><br><br>
-                </div>
-                <div>
-                    <img id="idImgPrincipal" alt="" width="150px">
-                </div>
-                <div class="descricao">
-                    <output id="idOutDescricao"></output><br><br>
-                </div>
-                
-                <div class="inputCidade">
-                    <!--<input type="text" id="idCidade" placeholder="Buscar Cidade">-->
-                    <select id="idCidade">
-                            <option value="default">--Cidade--</option>
-                            <option value="455819">Brasília, DF</option>
-                            <option value="455904">Rio Branco, AC</option>
-                            <option value="455880">Maceió, AL</option>
-                            <option value="456030">Amapá, AP</option>
-                            <option value="455833">Manaus, AM</option>
-                            <option value="455826">Salvador, BA</option>
-                            <option value="455830">Fortaleza, CE</option>
-                            <option value="455922">Vitoria, ES</option>
-                            <option value="455831">Goiânia, GO</option>
-                            <option value="455834">São Luís, MA</option>
-                            <option value="455829">Cuiabá, MT</option>
-                            <option value="26804347">Campo Grande, MS</option>
-                            <option value="455821">Belo Horizonte, MG</option>
-                            <option value="455820">Belém, PA</option>
-                            <option value="455872">João Pessoa, PB</option>
-                            <option value="455822">Curitiba, PR</option>
-                            <option value="455824">Recife, PE</option>
-                            <option value="455835">Terezina, PI</option>
-                            <option value="455825">Rio de Janeiro, RJ</option>
-                            <option value="455888">Natal, RN</option>
-                            <option value="455823">Porto Alegre, RS</option>
-                            <option value="455901">Porto Velho, RO</option>
-                            <option value="455936">Boa Vista, RR</option>
-                            <option value="90200648">Florianópolis, SC</option>
-                            <option value="455827">São Paulo, SP</option>
-                            <option value="455839">Aracajú, SE</option>
-                            <option value="457721">Palmas, TO</option>
-                    </select>   
+        <div class="paginaPrincipal">
+            <div class="climaAtual">
+                <fieldset class="campoEsquerda">
+                    <div class="title">
+                        <h1>CLIMA E TEMPO</h1>
+                    </div>
+                    <div class="textos">
+                        <output id="idOutCidade"></output><br><br>
+                        <output id="idOutData"></output><br><br>
+                        <output class="periodo" id="idAtualmente"></output><br><br>
+                    </div>
 
-                </div>
-                <div class="btBuscar">
-                    <input type="button" id="idBtBuscar" value="Buscar">
-                    <input type="button" id="idBtLocalizacao" value="Usar Localização">
-                </div>
-                    <output id="idTempAtual"></output><br><br>
-                    <output id="idHumidadeAtual"></output><br><br>
-                    <output id="idVentoAtual"></output><br><br>
+                    
+                    <div class="inputCidade">
+                        <!--<input type="text" id="idCidade" placeholder="Buscar Cidade">-->
+                        <select id="idCidade">
+                                <option value="default">--Cidade--</option>
+                                <option value="455819">Brasília, DF</option>
+                                <option value="455904">Rio Branco, AC</option>
+                                <option value="455880">Maceió, AL</option>
+                                <option value="456030">Amapá, AP</option>
+                                <option value="455833">Manaus, AM</option>
+                                <option value="455826">Salvador, BA</option>
+                                <option value="455830">Fortaleza, CE</option>
+                                <option value="455922">Vitoria, ES</option>
+                                <option value="455831">Goiânia, GO</option>
+                                <option value="455834">São Luís, MA</option>
+                                <option value="455829">Cuiabá, MT</option>
+                                <option value="26804347">Campo Grande, MS</option>
+                                <option value="455821">Belo Horizonte, MG</option>
+                                <option value="455820">Belém, PA</option>
+                                <option value="455872">João Pessoa, PB</option>
+                                <option value="455822">Curitiba, PR</option>
+                                <option value="455824">Recife, PE</option>
+                                <option value="455835">Terezina, PI</option>
+                                <option value="455825">Rio de Janeiro, RJ</option>
+                                <option value="455888">Natal, RN</option>
+                                <option value="455823">Porto Alegre, RS</option>
+                                <option value="455901">Porto Velho, RO</option>
+                                <option value="455936">Boa Vista, RR</option>
+                                <option value="90200648">Florianópolis, SC</option>
+                                <option value="455827">São Paulo, SP</option>
+                                <option value="455839">Aracajú, SE</option>
+                                <option value="457721">Palmas, TO</option>
+                        </select>   
+
+                    </div>
+                    <div>
+                        <div class="botaoBuscar">
+                            <input type="button" id="idBtBuscar" value="Buscar">
+                        </div>
+                        <div class="btLocalizacao">
+                            <input type="button" id="idBtLocalizacao" value="Usar Localização">
+                        </div>
+                    </div>
+                        
+                </fieldset>
+            </div>
+            <div class="climaProximosDias">
+                <div class="infoSol">
                     <div class="sunrise">
-                        <img src="icons/sunrise.png" width="25px">
+                        <img src="icons/sunrise.png" width="40px">
                         <output id="idNascerSol"></output><br><br>
                     </div>
                     <div class="sunset">
-                        <img src="icons/sunset.png" width="25px">
-                        <output id="idPorSol"></output><br><br>
+                        <img src="icons/sunset.png" width="40px">
+                        <output id="idPorSol"></output>
                     </div>
-            </fieldset>
-        </div>
-        <div class="climaProximosDias">
-            <fieldset>
-                <div class="dia1">
-                    <fieldset id="campoDia1">
-                        <div>
-                            <output id="idDiaSemana1"></output><br>
-                            <output id="idData1"></output><br>
-                            <img id="idImgDia1" width="50px"><br>
-                            <output id="idTempMax1"></output><br>
-                            <output id="idTempMin1"></output><br>
-                            <output id="idDescricao1"></output>
-                        </div>
-                    </fieldset>
-                    <fieldset id="campoDia2">
-                        <div>
-                            <output id="idDiaSemana2"></output><br>
-                            <output id="idData2"></output><br>
-                            <img id="idImgDia2" width="50px"><br>
-                            <output id="idTempMax2"></output><br>
-                            <output id="idTempMin2"></output><br>
-                            <output id="idDescricao2"></output>
-                        </div>
-                    </fieldset>
-                    <fieldset id="campoDia3">
-                        <div>
-                            <output id="idDiaSemana3"></output><br>
-                            <output id="idData3"></output><br>
-                            <img id="idImgDia3" width="50px"><br>
-                            <output id="idTempMax3"></output><br>
-                            <output id="idTempMin3"></output><br>
-                            <output id="idDescricao3"></output>
-                        </div>
-                    </fieldset>
-                    <fieldset id="campoDia4">
-                        <div>
-                            <output id="idDiaSemana4"></output><br>
-                            <output id="idData4"></output><br>
-                            <img id="idImgDia4" width="50px"><br>
-                            <output id="idTempMax4"></output><br>
-                            <output id="idTempMin4"></output><br>
-                            <output id="idDescricao4"></output>
-                        </div>
-                    </fieldset>                    
-                    <fieldset id="campoDia5">
-                        <div>
-                            <output id="idDiaSemana5"></output><br>
-                            <output id="idData5"></output><br>
-                            <img id="idImgDia5" width="50px"><br>
-                            <output id="idTempMax5"></output><br>
-                            <output id="idTempMin5"></output><br>
-                            <output id="idDescricao5"></output>
-                        </div>
-                    </fieldset>
-                    <fieldset id="campoDia6">
-                        <div>
-                            <output id="idDiaSemana6"></output><br>
-                            <output id="idData6"></output><br>
-                            <img id="idImgDia6" width="50px"><br>
-                            <output id="idTempMax6"></output><br>
-                            <output id="idTempMin6"></output><br>
-                            <output id="idDescricao6"></output>
-                        </div>
-                    </fieldset>
-                    <fieldset id="campoDia7">
-                        <div>
-                            <output id="idDiaSemana7"></output><br>
-                            <output id="idData7"></output><br>
-                            <img id="idImgDia7" width="50px"><br>
-                            <output id="idTempMax7"></output><br>
-                            <output id="idTempMin7"></output><br>
-                            <output id="idDescricao7"></output>
-                        </div>
-                    </fieldset>
                 </div>
-            </fieldset>
+                <div class="ventoHumidade">
+                    <div class="humidade">
+                    <img src="icons/waterdrop.png" width="40px">
+                        <output class="humidade" id="idHumidadeAtual"></output>
+                    </div><br>
+                    <div class="vento">
+                        <img src="icons/wind.png" width="40px">
+                        <output class="vento" id="idVentoAtual"></output>
+                    </div>
+                </div>
+                <output class="temp" id="idTempAtual"></output><br>
+                <img id="idImgPrincipal" alt="" width="150px"><br><br>
+                <output class="descricao" id="idOutDescricao"></output><br><br><br>
+                <fieldset class="contornoPrevisao">
+                    <div class="dias">
+                        <fieldset id="campoDia1">
+                            <div>
+                                <output id="idDiaSemana1"></output><br>
+                                <output id="idData1"></output><br>
+                                <img id="idImgDia1" width="50px"><br>
+                                <output id="idTempMax1"></output><br>
+                                <output id="idTempMin1"></output><br>
+                                <output id="idDescricao1"></output>
+                            </div>
+                        </fieldset>
+                        <fieldset id="campoDia2">
+                            <div>
+                                <output id="idDiaSemana2"></output><br>
+                                <output id="idData2"></output><br>
+                                <img id="idImgDia2" width="50px"><br>
+                                <output id="idTempMax2"></output><br>
+                                <output id="idTempMin2"></output><br>
+                                <output id="idDescricao2"></output>
+                            </div>
+                        </fieldset>
+                        <fieldset id="campoDia3">
+                            <div>
+                                <output id="idDiaSemana3"></output><br>
+                                <output id="idData3"></output><br>
+                                <img id="idImgDia3" width="50px"><br>
+                                <output id="idTempMax3"></output><br>
+                                <output id="idTempMin3"></output><br>
+                                <output id="idDescricao3"></output>
+                            </div>
+                        </fieldset>
+                        <fieldset id="campoDia4">
+                            <div>
+                                <output id="idDiaSemana4"></output><br>
+                                <output id="idData4"></output><br>
+                                <img id="idImgDia4" width="50px"><br>
+                                <output id="idTempMax4"></output><br>
+                                <output id="idTempMin4"></output><br>
+                                <output id="idDescricao4"></output>
+                            </div>
+                        </fieldset>                    
+                        <fieldset id="campoDia5">
+                            <div>
+                                <output id="idDiaSemana5"></output><br>
+                                <output id="idData5"></output><br>
+                                <img id="idImgDia5" width="50px"><br>
+                                <output id="idTempMax5"></output><br>
+                                <output id="idTempMin5"></output><br>
+                                <output id="idDescricao5"></output>
+                            </div>
+                        </fieldset>
+                        <fieldset id="campoDia6">
+                            <div>
+                                <output id="idDiaSemana6"></output><br>
+                                <output id="idData6"></output><br>
+                                <img id="idImgDia6" width="50px"><br>
+                                <output id="idTempMax6"></output><br>
+                                <output id="idTempMin6"></output><br>
+                                <output id="idDescricao6"></output>
+                            </div>
+                        </fieldset>
+                        <fieldset id="campoDia7">
+                            <div>
+                                <output id="idDiaSemana7"></output><br>
+                                <output id="idData7"></output><br>
+                                <img id="idImgDia7" width="50px"><br>
+                                <output id="idTempMax7"></output><br>
+                                <output id="idTempMin7"></output><br>
+                                <output id="idDescricao7"></output>
+                            </div>
+                        </fieldset>
+                    </div>
+                </fieldset>
+            </div>
         </div>
 
     </body>
@@ -157,7 +297,8 @@
             
         // ------------------- Declarando variaveis ----------------------
 
-        const key = "b960be07" // chave de acesso API 
+        const key = "d91f67e3" // chave de acesso API 
+        // chave reserva d91f67e3 / b960be07
         const cidadeDefault = "455856" // Criciuma, SC
 
         let cidade = document.getElementById('idCidade')
@@ -338,7 +479,7 @@
             if (condition_slug == "clear_day"){
                 img = "icons/clear_weather_icon.png"
             } else if (condition_slug == "cloud"){
-                img = "icons/clouds_icon.png"
+                img = "icons/overcast_icon.png"
             } else if (condition_slug == "cloudly_night"){
                 img = "icons/clouds_night_icon.png"
             } else if (condition_slug == "clear_night"){
@@ -347,6 +488,8 @@
                 img = "icons/clouds_icon.png"
             } else if (condition_slug == "rain"){
                 img = "icons/showers_icon.png"
+            } else if (condition_slug == "fog"){
+                img = "icons/nevoa.png"
             }
 
             return img;
